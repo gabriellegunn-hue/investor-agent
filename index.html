@@ -142,6 +142,12 @@
   .silver .plain{font-size:12.5px; color:var(--soft-h); background:var(--indigo-soft); border-radius:9px; padding:8px 10px; margin-bottom:8px;}
   .silver .infobox{font-size:12.3px; color:var(--muted); border:1px solid var(--line); border-radius:9px; padding:8px 10px; margin-bottom:8px;}
   .silver .infobox b{color:var(--ink);}
+  .silver-chart{height:120px; margin:2px 0 14px;}
+  .miners{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-top:8px;}
+  .miner{border:1px solid var(--line); border-radius:10px; padding:10px 12px;}
+  .miner .mn{font-weight:700; font-size:13px;}
+  .miner .ms{color:var(--indigo); font-weight:600; font-size:11.5px;}
+  .miner .md{font-size:11.8px; color:var(--muted); margin-top:2px;}
 
   table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);}
   th,td{text-align:left; padding:10px 15px; font-size:13.5px; border-bottom:1px solid var(--line);}
@@ -430,7 +436,13 @@ const SNAPSHOT = {
     ],
     plain:"Plain English: silver is both an industrial metal (solar panels, EVs, electronics) and a precious metal. The world keeps using more than it mines, which supports the price — but silver swings harder than gold in both directions, so it's a higher-risk way to hold a metals hedge.",
     how:"Ways people get exposure: a silver ETF (e.g. SLV, or physically-backed PSLV; ETPMAG on the ASX), silver miners, or physical coins/bars. As always — small position, long horizon, expect volatility.",
-    watch:"Watch: the gold/silver ratio (a fall favours silver), real bond yields, and solar / industrial demand data."
+    watch:"Watch: the gold/silver ratio (a fall favours silver), real bond yields, and solar / industrial demand data.",
+    miners: [
+      { name:"Silver, physically backed", sym:"PSLV / SLV", note:"Tracks the silver price itself — the simplest exposure." },
+      { name:"Silver miners ETF", sym:"SIL", note:"Basket of global silver miners (~$91). Geared to silver — moves more in both directions." },
+      { name:"ASX developer", sym:"SVL.AX", note:"Silver Mines Ltd (~A$0.18) — Bowdens, Australia's largest undeveloped silver resource. Speculative." },
+      { name:"ASX-listed producer", sym:"DPM", note:"DPM Metals (~A$54) — owns the producing Vareš silver mine (absorbed Adriatic in 2025)." }
+    ]
   },
   themes: [
     { name:"AI & technology", stance:"Overweight", cls:"ow",
@@ -521,7 +533,10 @@ const SNAPSHOT = {
     { sym:"SMH", name:"Semiconductors (AI)", price:"$646.80", chg:-0.05, signal:"Watch" },
     { sym:"DBC", name:"Commodities basket", price:"$30.54", chg:-0.52, signal:"Hold" },
     { sym:"ICLN", name:"Clean energy", price:"$20.92", chg:0.87, signal:"Hold" },
-    { sym:"SCHD", name:"US dividend/quality", price:"$27.94", chg:1.54, signal:"Buy/Watch" }
+    { sym:"SCHD", name:"US dividend/quality", price:"$27.94", chg:1.54, signal:"Buy/Watch" },
+    { group:"Silver miners" },
+    { sym:"SIL", name:"Global X Silver Miners ETF", price:"$91.15", chg:3.45, signal:"Watch" },
+    { sym:"SVL.AX", name:"Silver Mines Ltd", price:"A$0.18", chg:2.00, signal:"Watch" }
   ],
   notes: "Risk-on session: >70% of ASX 200 names closed green, led by materials and financials; gold miners strong as bullion held above US$4,310. The standout macro cross-current is hotter US CPI (4.2%) against an oil-led drop in yields after the Hormuz reopening. Watch: the RBA decision, commodity follow-through, and the next US CPI print."
 };
@@ -621,10 +636,24 @@ document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
     '<span class="badge '+(s.cls||"nw")+'">'+s.stance+'</span></div>'+
     '<div class="silver-metrics">'+ s.metrics.map(function(m){
       return '<div class="stat"><div class="label">'+m.label+'</div><div class="val">'+m.value+'</div><div class="note">'+m.note+'</div></div>'; }).join("") +'</div>'+
+    '<div class="silver-chart"><canvas id="silverChart"></canvas></div>'+
     '<div class="silver-grid"><div><div class="sh">What’s driving it</div><ul class="drv">'+
       s.drivers.map(function(d){ return '<li>'+d+'</li>'; }).join("") +'</ul></div>'+
-    '<div><div class="plain">'+s.plain+'</div><div class="infobox"><b>How to get exposure.</b> '+s.how+'</div><div class="infobox">'+s.watch+'</div></div></div>';
+    '<div><div class="plain">'+s.plain+'</div><div class="infobox"><b>How to get exposure.</b> '+s.how+'</div><div class="infobox">'+s.watch+'</div></div></div>'+
+    ((s.miners&&s.miners.length) ? '<div class="sh" style="margin-top:14px">Ways to play it — silver miners &amp; funds</div><div class="miners">'+
+      s.miners.map(function(m){ return '<div class="miner"><div class="mn">'+m.name+' <span class="ms">'+m.sym+'</span></div><div class="md">'+m.note+'</div></div>'; }).join("") +'</div>' : '');
 })();
+function renderSilverChart(hist){
+  var el = document.getElementById("silverChart"); if(!el) return;
+  var v = hist && hist.series && hist.series.XAGUSD; if(!v || v.length<2) return;
+  var labels = (hist.dates || v.map(function(_,i){return i;})).slice(-v.length);
+  new Chart(el, { type:"line",
+    data:{ labels:labels, datasets:[{ data:v, borderColor:"#8b93a1", backgroundColor:"rgba(154,166,178,.18)", fill:true, tension:.3, pointRadius:0, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:function(c){return "$"+c.raw+"/oz";}}} },
+      scales:{ y:{ ticks:{callback:function(v){return "$"+v;}}, grid:{color:"rgba(127,127,127,.15)"} }, x:{ ticks:{maxTicksLimit:6}, grid:{display:false} } } }
+  });
+}
 
 document.getElementById("themes-wrap").innerHTML = SNAPSHOT.themes.map(function(t){
   return '<div class="theme"><div class="h"><span class="name">'+t.name+'</span><span class="badge '+t.cls+'">'+t.stance+'</span></div><p>'+t.text+'</p><div class="inst">'+t.inst+'</div></div>'; }).join("");
@@ -654,7 +683,7 @@ function renderWatchlist(hist){
       '<td>'+badge(r.signal)+'</td></tr>'; }).join("");
 }
 fetch("history.json", {cache:"no-store"}).then(function(r){ return r.ok?r.json():null; })
-  .then(function(h){ renderWatchlist(h); }).catch(function(){ renderWatchlist(null); });
+  .then(function(h){ renderWatchlist(h); renderSilverChart(h); }).catch(function(){ renderWatchlist(null); });
 
 document.getElementById("notes").textContent = SNAPSHOT.notes;
 
