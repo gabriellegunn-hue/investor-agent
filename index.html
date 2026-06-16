@@ -129,6 +129,20 @@
   .regime .lab{font-size:19px; font-weight:700; margin:10px 0 7px; letter-spacing:-0.3px;}
   .regime p{margin:0; font-size:13.5px; color:#cdd8ea;}
 
+  .silver{background:var(--card); border:1px solid var(--line); border-top:3px solid #9aa6b2; border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
+  .silver-head{display:flex; align-items:center; gap:12px;}
+  .silver-coin{flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:radial-gradient(circle at 34% 30%, #f4f6f9, #c2c9d1 65%, #98a1ac); color:#3a4048; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; box-shadow:inset 0 0 0 1px rgba(0,0,0,.07);}
+  .silver-title{font-weight:700; font-size:16px;}
+  .silver-sub{font-size:12.8px; color:var(--muted); margin-top:1px;}
+  .silver-metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin:14px 0;}
+  .silver-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .silver .sh{font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--indigo); margin:0 0 7px;}
+  .silver .drv{margin:0; padding-left:18px; font-size:12.8px; color:var(--ink); opacity:.86;}
+  .silver .drv li{margin-bottom:6px;}
+  .silver .plain{font-size:12.5px; color:var(--soft-h); background:var(--indigo-soft); border-radius:9px; padding:8px 10px; margin-bottom:8px;}
+  .silver .infobox{font-size:12.3px; color:var(--muted); border:1px solid var(--line); border-radius:9px; padding:8px 10px; margin-bottom:8px;}
+  .silver .infobox b{color:var(--ink);}
+
   table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);}
   th,td{text-align:left; padding:10px 15px; font-size:13.5px; border-bottom:1px solid var(--line);}
   th{background:var(--th); font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); font-weight:700;}
@@ -200,7 +214,7 @@
     .tk-headline{font-size:16px; margin:6px 0 14px;}
     .tk-points{grid-template-columns:1fr; gap:12px;}
     h2{margin:26px 0 10px;}
-    .outlook,.themes{grid-template-columns:1fr; gap:11px;}
+    .outlook,.themes,.silver-grid{grid-template-columns:1fr; gap:11px;}
     .ocard,.theme{padding:14px 15px;}
     .ocard .how{font-size:12px;}
     .pf{padding:15px 16px; gap:14px;}
@@ -249,6 +263,7 @@
   <a href="#portfolio">Portfolio</a>
   <a href="#plain">Plain English</a>
   <a href="#regime">Regime</a>
+  <a href="#silver">Silver</a>
   <a href="#themes">Themes</a>
   <a href="#outlook">Outlook</a>
   <a href="#calendar">Coming up</a>
@@ -302,6 +317,9 @@
 
   <h2>Market snapshot</h2>
   <div class="cards" id="market"></div>
+
+  <h2 id="silver">Silver spotlight</h2>
+  <div class="silver" id="silverCard"></div>
 
   <h2 id="themes">Structural themes &amp; positioning</h2>
   <div class="themes" id="themes-wrap"></div>
@@ -395,6 +413,25 @@ const SNAPSHOT = {
     { name:"Gold (USD/oz)", value:"4,310", chg:1.90 },
     { name:"AUD/USD", value:"0.6913", chg:-0.20 }
   ],
+  silver: {
+    stance:"Overweight (volatile)", cls:"ow",
+    headline:"Silver is in its sixth straight year of supply deficit while solar, EVs and electronics keep demand high — and investors are piling in.",
+    metrics: [
+      { label:"Silver spot", value:"$70.05/oz", note:"≈ +1.5% today" },
+      { label:"Gold/silver ratio", value:"~62", note:"below the ~70 long-run average" },
+      { label:"2026 supply deficit", value:"46.3 Moz", note:"6th year running; widening" },
+      { label:"Analyst view", value:"mid–high $70s", note:"J.P. Morgan ~$81 avg 2026" }
+    ],
+    drivers: [
+      "Structural deficit: a sixth consecutive year where demand outstrips mine supply plus recycling — roughly 46 million ounces short in 2026.",
+      "Industrial pull: solar (~120–130 Moz/yr), EVs (~70–75 Moz) and electronics — silver is the best electrical conductor there is.",
+      "Two-sided risk: very high prices are nudging some solar and jewellery makers to use less silver, but retail and ETF buying has more than offset that.",
+      "Relative value: a gold/silver ratio near 62 (vs a ~70 average) is why some investors see silver as the cheaper way to play precious metals."
+    ],
+    plain:"Plain English: silver is both an industrial metal (solar panels, EVs, electronics) and a precious metal. The world keeps using more than it mines, which supports the price — but silver swings harder than gold in both directions, so it's a higher-risk way to hold a metals hedge.",
+    how:"Ways people get exposure: a silver ETF (e.g. SLV, or physically-backed PSLV; ETPMAG on the ASX), silver miners, or physical coins/bars. As always — small position, long horizon, expect volatility.",
+    watch:"Watch: the gold/silver ratio (a fall favours silver), real bond yields, and solar / industrial demand data."
+  },
   themes: [
     { name:"AI & technology", stance:"Overweight", cls:"ow",
       text:"Semiconductor revenue forecast +50%+ in 2026 (~$1.3T); Mag7 AI capex ~$527–600B; data-centre power demand +220% by 2030. Structural supercycle — but concentrated and extended after big runs.",
@@ -478,6 +515,7 @@ const SNAPSHOT = {
     { sym:"CSL.AX", name:"CSL Limited", price:"A$175.53", chg:-0.30, signal:"Watch" },
     { group:"FX & commodities" },
     { sym:"XAUUSD", name:"Gold spot", price:"$4,310", chg:1.90, signal:"Watch" },
+    { sym:"XAGUSD", name:"Silver spot", price:"$70.05", chg:1.50, signal:"Watch" },
     { sym:"AUDUSD", name:"Aussie dollar", price:"0.6913", chg:-0.20, signal:"Hold" },
     { group:"Thematic ETFs" },
     { sym:"SMH", name:"Semiconductors (AI)", price:"$646.80", chg:-0.05, signal:"Watch" },
@@ -575,6 +613,19 @@ document.getElementById("macro").innerHTML = SNAPSHOT.macro.map(function(m){
   return '<div class="stat"><div class="label">'+m.label+'</div><div class="val">'+m.value+'</div><div class="note '+(m.tone||"flat")+'">'+m.note+'</div></div>'; }).join("");
 document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
   return '<div class="stat"><div class="label">'+m.name+'</div><div class="val">'+m.value+'</div><div class="chg '+cls(m.chg)+'">'+arrow(m.chg)+' '+pct(m.chg)+'</div></div>'; }).join("");
+(function(){
+  var s = SNAPSHOT.silver; if(!s) return;
+  document.getElementById("silverCard").innerHTML =
+    '<div class="silver-head"><div class="silver-coin">Ag</div>'+
+    '<div style="flex:1"><div class="silver-title">Silver spotlight</div><div class="silver-sub">'+s.headline+'</div></div>'+
+    '<span class="badge '+(s.cls||"nw")+'">'+s.stance+'</span></div>'+
+    '<div class="silver-metrics">'+ s.metrics.map(function(m){
+      return '<div class="stat"><div class="label">'+m.label+'</div><div class="val">'+m.value+'</div><div class="note">'+m.note+'</div></div>'; }).join("") +'</div>'+
+    '<div class="silver-grid"><div><div class="sh">What’s driving it</div><ul class="drv">'+
+      s.drivers.map(function(d){ return '<li>'+d+'</li>'; }).join("") +'</ul></div>'+
+    '<div><div class="plain">'+s.plain+'</div><div class="infobox"><b>How to get exposure.</b> '+s.how+'</div><div class="infobox">'+s.watch+'</div></div></div>';
+})();
+
 document.getElementById("themes-wrap").innerHTML = SNAPSHOT.themes.map(function(t){
   return '<div class="theme"><div class="h"><span class="name">'+t.name+'</span><span class="badge '+t.cls+'">'+t.stance+'</span></div><p>'+t.text+'</p><div class="inst">'+t.inst+'</div></div>'; }).join("");
 document.getElementById("outlookWrap").innerHTML = SNAPSHOT.outlook.map(function(o){
