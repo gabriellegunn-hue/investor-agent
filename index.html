@@ -186,6 +186,15 @@
   .ocard .hz{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; margin-top:1px;}
   .ocard p{margin:9px 0; font-size:12.8px; color:var(--ink); opacity:.82;}
   .ocard .how{font-size:12px; color:var(--soft-h); background:var(--indigo-soft); border-radius:9px; padding:8px 10px;}
+  .picks{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;}
+  .pick{background:var(--card); border:1px solid var(--line); border-top:3px solid var(--indigo); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow);}
+  .pick-h{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .pick-sym{font-weight:800; font-size:17px; letter-spacing:-0.3px;}
+  .pick-trend{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--indigo); background:var(--indigo-soft); padding:3px 8px; border-radius:999px; white-space:nowrap;}
+  .pick-name{font-size:12.3px; color:var(--muted); margin:5px 0 9px;}
+  .pick-price{color:var(--ink); font-weight:600;}
+  .pick p{font-size:12.8px; color:var(--ink); opacity:.86; margin:0 0 9px;}
+  .picks-disc{font-size:11.5px; color:var(--muted); margin-top:10px;}
 
   /* Calendar */
   .cal{display:flex; flex-direction:column; gap:8px;}
@@ -231,7 +240,7 @@
     .tk-headline{font-size:16px; margin:6px 0 14px;}
     .tk-points{grid-template-columns:1fr; gap:12px;}
     h2{margin:26px 0 10px;}
-    .outlook,.themes,.silver-grid{grid-template-columns:1fr; gap:11px;}
+    .outlook,.themes,.silver-grid,.picks{grid-template-columns:1fr; gap:11px;}
     .ocard,.theme{padding:14px 15px;}
     .ocard .how{font-size:12px;}
     .pf{padding:15px 16px; gap:14px;}
@@ -283,6 +292,7 @@
   <a href="#silver">Silver</a>
   <a href="#themes">Themes</a>
   <a href="#outlook">Outlook</a>
+  <a href="#picks">3 picks</a>
   <a href="#calendar">Coming up</a>
   <a href="#ideas">Ideas</a>
   <a href="#watchlist">Watchlist</a>
@@ -343,6 +353,10 @@
 
   <h2 id="outlook">Where we're heading</h2>
   <div class="outlook" id="outlookWrap"></div>
+
+  <h2 id="picks">3 ways to play these trends</h2>
+  <div class="picks" id="picksWrap"></div>
+  <div class="picks-disc">These three are illustrative examples chosen to reflect the trends above — general information, not a recommendation to buy. Prices are live from the watchlist where available. Do your own research and consider a licensed adviser.</div>
 
   <h2 id="calendar">What's coming up</h2>
   <div class="cal" id="calWrap"></div>
@@ -443,6 +457,17 @@ const SILVER_WEEKLY = [
   { m:"25 May", p:72.93, g:4402 },
   { m:"1 Jun", p:70.76, g:4337 },
   { m:"8 Jun", p:71.19, g:4317 }
+];
+const TREND_PICKS = [
+  { sym:"SMH", track:"SMH", name:"VanEck Semiconductor ETF", trend:"AI infrastructure",
+    why:"The cleanest way to own the AI build-out — the chips, data centres and the power behind them. Semiconductor revenue is forecast to grow more than 50% in 2026 and big-tech AI spending keeps climbing. Holding ~25 chip leaders in one fund spreads the single-stock risk of betting on any one name.",
+    note:"Higher growth but higher volatility — expect sharp pullbacks. Best added in small regular amounts rather than one lump sum." },
+  { sym:"SCHD", track:"SCHD", name:"Schwab US Dividend Equity ETF", trend:"Quality income",
+    why:"A low-cost (0.06% fee) basket of profitable, dividend-paying US companies yielding around 3.65%. As the cycle matures and rate cuts stall, this kind of quality income tends to hold up better than speculative growth — the steady ballast in a portfolio.",
+    note:"Slower-moving than tech, but calmer; reinvesting the dividends compounds over time." },
+  { sym:"GLD / PMGOLD", track:null, name:"Gold ETF (SPDR Gold / Perth Mint Gold)", trend:"Inflation hedge",
+    why:"With inflation sticky at 4.2% and geopolitics unsettled, gold is the classic shock-absorber — it often rises when shares fall. GLD (US) or PMGOLD / GOLD (ASX, priced in A$) give simple exposure to physical gold without storing bars yourself.",
+    note:"A hedge, not a growth engine — usually a small slice (~5–10%) held for the long term." }
 ];
 const SNAPSHOT = {
   updated: "16 Jun 2026, 6:00am AEST",
@@ -778,6 +803,19 @@ document.getElementById("themes-wrap").innerHTML = SNAPSHOT.themes.map(function(
   return '<div class="theme"><div class="h"><span class="name">'+t.name+'</span><span class="badge '+t.cls+'">'+t.stance+'</span></div><p>'+t.text+'</p><div class="inst">'+t.inst+'</div></div>'; }).join("");
 document.getElementById("outlookWrap").innerHTML = SNAPSHOT.outlook.map(function(o){
   return '<div class="ocard"><div class="name">'+o.name+'</div><div class="hz">'+o.hz+'</div><p>'+o.text+'</p><div class="how">'+o.how+'</div></div>'; }).join("");
+
+(function(){
+  if (typeof TREND_PICKS==="undefined" || !document.getElementById("picksWrap")) return;
+  function wlPrice(sym){ var w=SNAPSHOT.watchlist||[]; for(var i=0;i<w.length;i++){ if(w[i].sym===sym) return w[i].price; } return ""; }
+  var goldM = (SNAPSHOT.market||[]).filter(function(x){ return /Gold/.test(x.name); })[0];
+  var goldTxt = goldM ? "tracks gold ~"+goldM.value+"/oz" : "tracks the gold price";
+  document.getElementById("picksWrap").innerHTML = TREND_PICKS.map(function(p){
+    var price = p.track ? (wlPrice(p.track)||"—") : goldTxt;
+    return '<div class="pick"><div class="pick-h"><span class="pick-sym">'+p.sym+'</span><span class="pick-trend">'+p.trend+'</span></div>'+
+      '<div class="pick-name">'+p.name+' · <span class="pick-price">'+price+'</span></div>'+
+      '<p>'+p.why+'</p><div class="infobox" style="font-size:11.8px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:8px 10px;">'+p.note+'</div></div>';
+  }).join("");
+})();
 document.getElementById("calWrap").innerHTML = (SNAPSHOT.calendar||[]).map(function(c){
   return '<div class="cal-row"><span class="date">'+c.date+'</span><span class="ev"><b>'+c.event+'</b>'+(c.note?' <small>— '+c.note+'</small>':'')+'</span></div>'; }).join("");
 
