@@ -386,6 +386,64 @@ const SILVER_SERIES = [
   { m:"Apr ’26", p:75.00, g:4400 },
   { m:"May ’26", p:73.00, g:4420 }
 ];
+const SILVER_DAILY = [
+  { m:"18 May", p:73.34, g:4435 },
+  { m:"19 May", p:73.97, g:4428 },
+  { m:"20 May", p:72.95, g:4416 },
+  { m:"21 May", p:74.4, g:4444 },
+  { m:"22 May", p:74.27, g:4421 },
+  { m:"23 May", p:74.62, g:4432 },
+  { m:"24 May", p:74.87, g:4453 },
+  { m:"25 May", p:74.63, g:4433 },
+  { m:"26 May", p:73.64, g:4455 },
+  { m:"27 May", p:74.25, g:4449 },
+  { m:"28 May", p:72.79, g:4401 },
+  { m:"29 May", p:72.7, g:4395 },
+  { m:"30 May", p:72.99, g:4411 },
+  { m:"31 May", p:71.67, g:4388 },
+  { m:"1 Jun", p:72.61, g:4382 },
+  { m:"2 Jun", p:72.6, g:4374 },
+  { m:"3 Jun", p:70.95, g:4380 },
+  { m:"4 Jun", p:70.98, g:4352 },
+  { m:"5 Jun", p:71.86, g:4356 },
+  { m:"6 Jun", p:71.21, g:4355 },
+  { m:"7 Jun", p:71.23, g:4356 },
+  { m:"8 Jun", p:70.98, g:4322 },
+  { m:"9 Jun", p:71.37, g:4344 },
+  { m:"10 Jun", p:70.35, g:4342 },
+  { m:"11 Jun", p:70.67, g:4336 },
+  { m:"12 Jun", p:70.74, g:4319 },
+  { m:"13 Jun", p:70.91, g:4310 },
+  { m:"14 Jun", p:69.69, g:4336 },
+  { m:"15 Jun", p:70.56, g:4307 }
+];
+const SILVER_WEEKLY = [
+  { m:"22 Dec", p:71.52, g:4327 },
+  { m:"29 Dec", p:87.87, g:4697 },
+  { m:"5 Jan", p:106.6, g:5041 },
+  { m:"12 Jan", p:122.38, g:5438 },
+  { m:"19 Jan", p:108.74, g:5276 },
+  { m:"26 Jan", p:95.37, g:5082 },
+  { m:"2 Feb", p:89.63, g:5070 },
+  { m:"9 Feb", p:82.37, g:5019 },
+  { m:"16 Feb", p:76.85, g:4987 },
+  { m:"23 Feb", p:76.4, g:4874 },
+  { m:"2 Mar", p:75.47, g:4768 },
+  { m:"9 Mar", p:73.84, g:4638 },
+  { m:"16 Mar", p:73.36, g:4479 },
+  { m:"23 Mar", p:74.86, g:4499 },
+  { m:"30 Mar", p:74.21, g:4453 },
+  { m:"6 Apr", p:74.98, g:4409 },
+  { m:"13 Apr", p:74.04, g:4387 },
+  { m:"20 Apr", p:74.46, g:4407 },
+  { m:"27 Apr", p:74.92, g:4391 },
+  { m:"4 May", p:72.72, g:4390 },
+  { m:"11 May", p:72.3, g:4402 },
+  { m:"18 May", p:71.76, g:4417 },
+  { m:"25 May", p:72.93, g:4402 },
+  { m:"1 Jun", p:70.76, g:4337 },
+  { m:"8 Jun", p:71.19, g:4317 }
+];
 const SNAPSHOT = {
   updated: "16 Jun 2026, 6:00am AEST",
   takeaways: {
@@ -663,12 +721,12 @@ document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
       return '<div class="stat"><div class="label">'+m.label+'</div><div class="val">'+m.value+'</div><div class="note">'+m.note+'</div></div>'; }).join("") +'</div>'+
     '<div class="sc-wrap">'+
       '<div class="sc-bar">'+
-        '<div class="sc-tabs" id="scRange"><button data-r="3">3M</button><button data-r="6">6M</button><button data-r="12" class="on">1Y</button><button data-r="0">All</button></div>'+
+        '<div class="sc-tabs" id="scGran"><button data-g="daily">Daily</button><button data-g="weekly">Weekly</button><button data-g="monthly" class="on">Monthly</button></div>'+
         '<div class="sc-tabs" id="scMode"><button data-m="price" class="on">Price US$/oz</button><button data-m="ratio">Gold/silver ratio</button></div>'+
       '</div>'+
       '<div class="sc-readout" id="scReadout"></div>'+
       '<div class="sc-canvas"><canvas id="silverChart"></canvas></div>'+
-      '<div class="sc-note">Approx. monthly closes; final “Now” point is live and refreshes daily. Tap a range or toggle; hover for detail.</div>'+
+      '<div class="sc-note">Daily, weekly &amp; monthly views. History is approximate/illustrative; the final “Now” point is live and refreshes daily. Hover for detail.</div>'+
     '</div>'+
     '<div class="silver-grid"><div><div class="sh">What’s driving it</div><ul class="drv">'+
       s.drivers.map(function(d){ return '<li>'+d+'</li>'; }).join("") +'</ul></div>'+
@@ -679,12 +737,16 @@ document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
   function pnum(x){ return parseFloat(String(x).replace(/[^0-9.\-]/g,"")) || 0; }
   function findP(sym){ var w=SNAPSHOT.watchlist||[]; for(var i=0;i<w.length;i++){ if(w[i].sym===sym) return pnum(w[i].price); } return 0; }
   var liveS = findP("XAGUSD"), liveG = findP("XAUUSD");
-  var data = (typeof SILVER_SERIES!=="undefined" ? SILVER_SERIES.slice() : []);
-  if (liveS) data.push({ m:"Now", p:liveS, g:(liveG||(data.length?data[data.length-1].g:0)) });
-  if (!data.length || !document.getElementById("silverChart")) return;
-
-  var range=12, mode="price", chart;
-  function slice(){ return range===0 ? data : data.slice(-(range+1)); }
+  if (!document.getElementById("silverChart")) return;
+  var gran="monthly", mode="price", chart;
+  function seriesFor(){
+    var b = gran==="daily"  ? (typeof SILVER_DAILY!=="undefined"?SILVER_DAILY:[])
+          : gran==="weekly" ? (typeof SILVER_WEEKLY!=="undefined"?SILVER_WEEKLY:[])
+          : (typeof SILVER_SERIES!=="undefined"?SILVER_SERIES:[]);
+    var d = b.slice();
+    if (liveS) d.push({ m:"Now", p:liveS, g:(liveG||(d.length?d[d.length-1].g:0)) });
+    return d;
+  }
   function valOf(d){ return mode==="ratio" ? +(d.g/d.p).toFixed(1) : d.p; }
   function fmt(v){ return mode==="ratio" ? v.toFixed(1) : "$"+v.toFixed(2); }
   function readout(arr){
@@ -696,7 +758,7 @@ document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
       '<span class="ro-mm">range '+fmt(mn)+' – '+fmt(mx)+'</span>';
   }
   function draw(){
-    var arr=slice(), y=arr.map(valOf), labels=arr.map(function(d){return d.m;});
+    var arr=seriesFor(), y=arr.map(valOf), labels=arr.map(function(d){return d.m;});
     var col = mode==="ratio" ? "#b8860b" : "#8b93a1";
     var fill = mode==="ratio" ? "rgba(184,134,11,.14)" : "rgba(150,160,175,.20)";
     if(chart) chart.destroy();
@@ -707,7 +769,7 @@ document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
         scales:{ y:{ ticks:{callback:function(v){return mode==="ratio"?v:"$"+v;}}, grid:{color:"rgba(127,127,127,.15)"} }, x:{ ticks:{maxTicksLimit:7}, grid:{display:false} } } } });
     readout(arr);
   }
-  document.getElementById("scRange").addEventListener("click", function(e){ var b=e.target.closest("button"); if(!b)return; range=+b.dataset.r; this.querySelectorAll("button").forEach(function(x){x.classList.remove("on");}); b.classList.add("on"); draw(); });
+  document.getElementById("scGran").addEventListener("click", function(e){ var b=e.target.closest("button"); if(!b)return; gran=b.dataset.g; this.querySelectorAll("button").forEach(function(x){x.classList.remove("on");}); b.classList.add("on"); draw(); });
   document.getElementById("scMode").addEventListener("click", function(e){ var b=e.target.closest("button"); if(!b)return; mode=b.dataset.m; this.querySelectorAll("button").forEach(function(x){x.classList.remove("on");}); b.classList.add("on"); draw(); });
   draw();
 })();
