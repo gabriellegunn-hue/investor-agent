@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daily Investor Agent — markets, themes & ideas in plain English</title>
-<meta name="description" content="A plain-English daily read on markets: key takeaways, the macro regime, structural themes (AI, inflation, energy), and short- & long-term ideas. General information only — not financial advice.">
+<meta name="description" content="A plain-English daily read on markets: key takeaways, a suggested starter portfolio, the macro regime, structural themes (AI, inflation, energy), and short- & long-term ideas. General information only — not financial advice.">
 <meta property="og:title" content="Daily Investor Agent">
 <meta property="og:description" content="A plain-English daily read on markets and ideas. General information only — not financial advice.">
 <meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%234f46e5'/%3E%3Cpolyline points='4 16 9 11 13 14 20 6' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,40 +19,51 @@
     --bg:#f4f6fa; --ink:#141821; --muted:#646e7d; --line:#e7eaf0;
     --navy1:#1b2a4a; --navy2:#24344f; --indigo:#4f46e5; --indigo-soft:#eef0ff;
     --up:#0a8a44; --down:#d23b30; --gold:#b8860b; --warn:#b46a00;
-    --card:#ffffff; --shadow:0 1px 2px rgba(20,24,33,.04), 0 6px 20px rgba(20,24,33,.06);
+    --card:#ffffff; --soft:#f4f6ff; --soft-bd:#e3e8fb; --soft-ink:#2b3550; --soft-h:#26346a;
+    --th:#fbfcfe; --grp:#f3f5fa; --rowhover:#fafbff;
+    --shadow:0 1px 2px rgba(20,24,33,.04), 0 6px 20px rgba(20,24,33,.06);
+  }
+  [data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#0e131b; --ink:#e7ecf3; --muted:#93a0b1; --line:#222c3a;
+    --navy1:#0c1320; --navy2:#141d2c; --indigo:#7c83ff; --indigo-soft:#1b2440;
+    --up:#34d399; --down:#f87171; --gold:#e0b357; --warn:#e0a857;
+    --card:#151c27; --soft:#141d2e; --soft-bd:#26324a; --soft-ink:#c7d0e0; --soft-h:#b9c4dc;
+    --th:#121a25; --grp:#172030; --rowhover:#19222f;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.5);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{margin:0; background:var(--bg); color:var(--ink);
     font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    font-size:14.5px; line-height:1.58; -webkit-font-smoothing:antialiased;}
+    font-size:14.5px; line-height:1.58; -webkit-font-smoothing:antialiased; transition:background .2s,color .2s;}
   .wrap{max-width:1060px; margin:0 auto; padding:0 20px;}
   a{color:var(--indigo); text-decoration:none;}
 
   .topbar{background:#fff4d6; border-bottom:1px solid #f0dca0; color:#6b4e00; font-size:12px; text-align:center; padding:8px 16px;}
-  .topbar b{color:#5a4100;}
+  [data-theme="dark"] .topbar{background:#2a2410; border-bottom-color:#473d18; color:#e9d29a;}
+  .topbar b{color:inherit;}
 
-  /* Hero */
-  .hero{background:radial-gradient(1200px 400px at 80% -10%, #33507f 0%, transparent 60%), linear-gradient(135deg,var(--navy1),var(--navy2)); color:#fff; padding:42px 0 44px;}
+  .hero{background:radial-gradient(1200px 400px at 80% -10%, #33507f 0%, transparent 60%), linear-gradient(135deg,var(--navy1),var(--navy2)); color:#fff; padding:40px 0 44px;}
   .hero-grid{display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap;}
   .brand{display:flex; align-items:center; gap:12px;}
   .logo{width:42px; height:42px; border-radius:11px; background:linear-gradient(135deg,#6366f1,#22d3ee); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(99,102,241,.4);}
   h1{font-size:27px; font-weight:800; margin:0; letter-spacing:-0.5px;}
   .tag{font-size:14.5px; color:#c4d0e6; margin:4px 0 0; max-width:560px;}
-  .hero-meta{text-align:right; min-width:170px;}
+  .hero-meta{text-align:right; min-width:170px; display:flex; flex-direction:column; align-items:flex-end; gap:8px;}
   .mood{display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); padding:6px 13px; border-radius:999px; font-size:13px; font-weight:600;}
   .dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
   .dot.pos{background:#34d399;} .dot.neg{background:#f87171;} .dot.neutral{background:#fbbf24;}
-  .asat{font-size:12px; color:#9fb0cc; margin-top:8px;}
+  .asat{font-size:12px; color:#9fb0cc;}
+  .toggle{background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#dfe7f5; font:inherit; font-size:12px; font-weight:600; padding:5px 11px; border-radius:999px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;}
+  .toggle:hover{background:rgba(255,255,255,.2);}
 
-  /* sticky nav */
-  .nav{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.86); backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid var(--line);}
+  .nav{position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--card) 86%, transparent); backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid var(--line);}
   .nav-in{max-width:1060px; margin:0 auto; padding:0 20px; display:flex; gap:6px; overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none;}
   .nav-in::-webkit-scrollbar{display:none;}
   .nav a{color:var(--muted); font-size:12.5px; font-weight:600; padding:12px 11px; white-space:nowrap; border-bottom:2px solid transparent;}
   .nav a:hover{color:var(--ink); border-bottom-color:var(--indigo);}
 
-  /* Key takeaways — the star, overlapping the hero */
   .takeaways{margin-top:26px; position:relative; z-index:5;}
   .tk-card{background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px;}
   .tk-eyebrow{font-size:11.5px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--indigo);}
@@ -60,8 +72,9 @@
   .tk-pt{display:flex; gap:11px; align-items:flex-start;}
   .tk-ic{flex:0 0 auto; width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center;}
   .tk-ic svg{width:18px; height:18px;}
-  .ic-up{background:#e3f6ec; color:var(--up);} .ic-alert{background:#fde7e6; color:var(--down);}
-  .ic-drop{background:#e7eefb; color:#2b6cb0;} .ic-shield{background:var(--indigo-soft); color:var(--indigo);} .ic-idea{background:#fbf2dc; color:var(--gold);}
+  .ic-up{background:rgba(10,138,68,.12); color:var(--up);} .ic-alert{background:rgba(210,59,48,.12); color:var(--down);}
+  .ic-drop{background:rgba(43,108,176,.14); color:#2b6cb0;} .ic-shield{background:var(--indigo-soft); color:var(--indigo);} .ic-idea{background:rgba(184,134,11,.14); color:var(--gold);}
+  [data-theme="dark"] .ic-drop{color:#7fb6ef;}
   .tk-pt .t{font-size:13.5px; font-weight:700; margin:0 0 1px;}
   .tk-pt .d{font-size:12.8px; color:var(--muted); margin:0;}
   .tk-bottom{margin-top:18px; padding-top:15px; border-top:1px dashed var(--line); font-size:13.5px;}
@@ -77,48 +90,79 @@
   .stat .note{font-weight:500; color:var(--muted);}
   .up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--muted);} .warn{color:var(--warn);}
 
-  .beginner{background:linear-gradient(180deg,#fbfcff,#f4f6ff); border:1px solid #e3e8fb; border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
-  .beginner h3{margin:0 0 4px; font-size:16px; color:#26346a;}
-  .beginner .lead{font-size:14px; color:#2b3550; margin:0 0 14px;}
+  /* Portfolio + monthly plan */
+  .pf{display:grid; grid-template-columns:260px 1fr; gap:20px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
+  @media (max-width:680px){ .pf{grid-template-columns:1fr;} }
+  .pf-chart{position:relative; height:230px;}
+  .pf-center{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none;}
+  .pf-center .big{font-size:15px; font-weight:700;}
+  .pf-center .small{font-size:11px; color:var(--muted);}
+  .pf-legend{display:flex; flex-direction:column; gap:8px;}
+  .pf-row{display:grid; grid-template-columns:14px 1fr auto auto; gap:10px; align-items:center; font-size:13px; padding:6px 0; border-bottom:1px solid var(--line);}
+  .pf-row:last-child{border-bottom:none;}
+  .pf-sw{width:12px; height:12px; border-radius:3px;}
+  .pf-row .ex{font-size:11px; color:var(--muted);}
+  .pf-row .pc{font-weight:700;}
+  .pf-row .amt{font-weight:700; color:var(--indigo); min-width:64px; text-align:right;}
+  .pf-controls{display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap;}
+  .pf-controls label{font-size:12.5px; color:var(--muted);}
+  .moneywrap{display:inline-flex; align-items:center; background:var(--soft); border:1px solid var(--soft-bd); border-radius:10px; padding:6px 10px;}
+  .moneywrap span{color:var(--muted); font-weight:600;}
+  .moneywrap input{border:0; background:transparent; color:var(--ink); font:inherit; font-weight:700; width:90px; outline:none; font-size:14px;}
+  .pf-note{font-size:11.5px; color:var(--muted); margin-top:10px;}
+
+  .beginner{background:linear-gradient(180deg,var(--card),var(--soft)); border:1px solid var(--soft-bd); border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
+  .beginner h3{margin:0 0 4px; font-size:16px; color:var(--soft-h);}
+  .beginner .lead{font-size:14px; color:var(--soft-ink); margin:0 0 14px;}
   .beginner .twocol{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
   @media (max-width:720px){ .beginner .twocol{grid-template-columns:1fr;} }
-  .beginner h4{margin:0 0 7px; font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; color:#6877b8;}
-  .beginner ol{margin:0; padding-left:18px; font-size:13px; color:#2b3550;}
+  .beginner h4{margin:0 0 7px; font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--indigo);}
+  .beginner ol{margin:0; padding-left:18px; font-size:13px; color:var(--soft-ink);}
   .beginner ol li{margin-bottom:5px;}
   .jargon{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;}
-  .chip{background:#fff; border:1px solid #e3e8fb; border-radius:9px; padding:6px 10px; font-size:11.8px; color:#2b3550;}
-  .chip b{color:#26346a;}
+  .chip{background:var(--card); border:1px solid var(--soft-bd); border-radius:9px; padding:6px 10px; font-size:11.8px; color:var(--soft-ink);}
+  .chip b{color:var(--soft-h);}
 
   .regime{background:linear-gradient(135deg,var(--navy1),var(--navy2)); color:#fff; border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
+  [data-theme="dark"] .regime{border:1px solid var(--line);}
   .regime .rtag{display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,.13); padding:4px 11px; border-radius:999px; font-size:11px; letter-spacing:.5px; text-transform:uppercase; font-weight:600;}
   .regime .lab{font-size:19px; font-weight:700; margin:10px 0 7px; letter-spacing:-0.3px;}
   .regime p{margin:0; font-size:13.5px; color:#cdd8ea;}
 
   table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);}
-  th,td{text-align:left; padding:10px 15px; font-size:13.5px; border-bottom:1px solid #f0f2f6;}
-  th{background:#fbfcfe; font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); font-weight:700;}
+  th,td{text-align:left; padding:10px 15px; font-size:13.5px; border-bottom:1px solid var(--line);}
+  th{background:var(--th); font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); font-weight:700;}
   tr:last-child td{border-bottom:none;}
-  tbody tr:hover{background:#fafbff;}
+  tbody tr:hover{background:var(--rowhover);}
   td.num{text-align:right; font-variant-numeric:tabular-nums;}
-  .grp td{background:#f3f5fa; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:#566;}
+  td.spark{width:84px; text-align:center;}
+  .grp td{background:var(--grp); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted);}
   .badge{display:inline-block; padding:2px 10px; border-radius:999px; font-size:11.5px; font-weight:600;}
-  .b-buy{background:#e3f6ec; color:var(--up);} .b-watch{background:var(--indigo-soft); color:var(--indigo);}
-  .b-hold{background:#eef1f5; color:#5b6573;} .b-trim{background:#fdeceb; color:var(--down);}
-  .ow{background:#e3f6ec; color:var(--up);} .nw{background:#eef1f5; color:#5b6573;} .uw{background:#fdeceb; color:var(--down);}
+  .b-buy{background:rgba(10,138,68,.13); color:var(--up);} .b-watch{background:var(--indigo-soft); color:var(--indigo);}
+  .b-hold{background:rgba(120,130,145,.16); color:var(--muted);} .b-trim{background:rgba(210,59,48,.13); color:var(--down);}
+  .ow{background:rgba(10,138,68,.13); color:var(--up);} .nw{background:rgba(120,130,145,.16); color:var(--muted);} .uw{background:rgba(210,59,48,.13); color:var(--down);}
 
   .chartbox{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; height:280px; box-shadow:var(--shadow);}
   .themes{display:grid; grid-template-columns:repeat(auto-fit,minmax(245px,1fr)); gap:14px;}
   .theme{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow);}
   .theme .h{display:flex; justify-content:space-between; align-items:center; gap:8px;}
   .theme .name{font-weight:700; font-size:14.5px;}
-  .theme p{margin:9px 0; font-size:12.8px; color:#3a424f;}
+  .theme p{margin:9px 0; font-size:12.8px; color:var(--ink); opacity:.82;}
   .theme .inst{font-size:11.5px; color:var(--muted);}
   .outlook{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:14px;}
   .ocard{background:var(--card); border:1px solid var(--line); border-left:3px solid var(--indigo); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow);}
   .ocard .name{font-weight:700; font-size:14.5px;}
   .ocard .hz{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; margin-top:1px;}
-  .ocard p{margin:9px 0; font-size:12.8px; color:#3a424f;}
-  .ocard .how{font-size:12px; color:#26346a; background:var(--indigo-soft); border-radius:9px; padding:8px 10px;}
+  .ocard p{margin:9px 0; font-size:12.8px; color:var(--ink); opacity:.82;}
+  .ocard .how{font-size:12px; color:var(--soft-h); background:var(--indigo-soft); border-radius:9px; padding:8px 10px;}
+
+  /* Calendar */
+  .cal{display:flex; flex-direction:column; gap:8px;}
+  .cal-row{display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:11px 15px; box-shadow:var(--shadow);}
+  .cal-row .date{font-weight:700; font-size:12.5px; color:var(--indigo);}
+  .cal-row .ev{font-size:13px;}
+  .cal-row .ev small{color:var(--muted);}
+
   .recos{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
   @media (max-width:720px){ .recos{grid-template-columns:1fr;} }
   .col h3{font-size:13.5px; margin:0 0 11px; display:flex; align-items:center; gap:8px; font-weight:700;}
@@ -128,13 +172,14 @@
   .idea .h{display:flex; justify-content:space-between; align-items:center; gap:8px;}
   .idea .sym{font-weight:700; font-size:14.5px;}
   .idea .conv{font-size:11px; color:var(--muted);}
-  .idea p{margin:8px 0; font-size:12.8px; color:#3a424f;}
-  .idea .plain{font-size:12px; color:#26346a; background:var(--indigo-soft); border-radius:9px; padding:7px 10px; margin:8px 0;}
-  .levels{display:flex; gap:16px; font-size:11.5px; color:#5b6573; flex-wrap:wrap; padding-top:4px;}
+  .idea p{margin:8px 0; font-size:12.8px; color:var(--ink); opacity:.82;}
+  .idea .plain{font-size:12px; color:var(--soft-h); background:var(--indigo-soft); border-radius:9px; padding:7px 10px; margin:8px 0;}
+  .levels{display:flex; gap:16px; font-size:11.5px; color:var(--muted); flex-wrap:wrap; padding-top:4px;}
   .levels b{color:var(--ink);}
 
   .disc-lower{background:#fff8e6; border:1px solid #f0dca0; border-radius:13px; padding:14px 16px; font-size:12px; color:#7a5b00; margin-top:28px;}
-  footer{margin-top:22px; font-size:11.5px; color:#8a929c; padding:18px 0 50px;}
+  [data-theme="dark"] .disc-lower{background:#241f10; border-color:#473d18; color:#d8c290;}
+  footer{margin-top:22px; font-size:11.5px; color:var(--muted); padding:18px 0 50px;}
   footer p{margin:0 0 7px;}
 </style>
 </head>
@@ -154,6 +199,7 @@
       </div>
     </div>
     <div class="hero-meta">
+      <button class="toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
       <span class="mood" id="mood"></span>
       <div class="asat" id="asat"></div>
     </div>
@@ -162,10 +208,12 @@
 
 <div class="nav"><div class="nav-in">
   <a href="#takeaways">Takeaways</a>
+  <a href="#portfolio">Portfolio</a>
   <a href="#plain">Plain English</a>
   <a href="#regime">Regime</a>
   <a href="#themes">Themes</a>
   <a href="#outlook">Outlook</a>
+  <a href="#calendar">Coming up</a>
   <a href="#ideas">Ideas</a>
   <a href="#watchlist">Watchlist</a>
 </div></div>
@@ -181,12 +229,30 @@
     </div>
   </section>
 
+  <h2 id="portfolio">Suggested starter portfolio</h2>
+  <div class="pf">
+    <div>
+      <div class="pf-chart"><canvas id="pfChart"></canvas>
+        <div class="pf-center"><div class="big" id="pfBig">Balanced</div><div class="small">beginner mix</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="pf-legend" id="pfLegend"></div>
+      <div class="pf-controls">
+        <label for="pfAmt">If you invested</label>
+        <span class="moneywrap"><span>A$</span><input id="pfAmt" type="number" min="0" step="50" value="500"></span>
+        <label>a month, that's roughly:</label>
+      </div>
+      <div class="pf-note" id="pfNote"></div>
+    </div>
+  </div>
+
   <h2 id="plain">In plain English</h2>
   <div class="beginner">
     <h3 id="b-title">What's going on, simply</h3>
     <p class="lead" id="b-lead"></p>
     <div class="twocol">
-      <div><h4>What this means</h4><p style="margin:0;font-size:13px;color:#2b3550" id="b-meaning"></p></div>
+      <div><h4>What this means</h4><p style="margin:0;font-size:13px;color:var(--soft-ink)" id="b-meaning"></p></div>
       <div><h4>Sensible beginner habits</h4><ol id="b-steps"></ol></div>
     </div>
     <div class="jargon" id="b-jargon"></div>
@@ -205,6 +271,9 @@
   <h2 id="outlook">Where we're heading</h2>
   <div class="outlook" id="outlook"></div>
 
+  <h2 id="calendar">What's coming up</h2>
+  <div class="cal" id="calendar"></div>
+
   <h2 id="ideas">Ideas</h2>
   <div class="recos">
     <div class="col"><h3>Short-term tactical <span class="pill">days – weeks</span></h3><div id="tactical"></div></div>
@@ -212,26 +281,26 @@
   </div>
 
   <h2 id="watchlist">Watchlist</h2>
-  <table id="watchlist"><thead><tr><th>Instrument</th><th class="num">Price</th><th class="num">Day</th><th>Signal</th></tr></thead><tbody></tbody></table>
+  <table id="watchlist"><thead><tr><th>Instrument</th><th class="num">Price</th><th class="num">Day</th><th>Trend</th><th>Signal</th></tr></thead><tbody></tbody></table>
 
   <h2>Day moves (%)</h2>
   <div class="chartbox"><canvas id="chart"></canvas></div>
 
   <h2>Notes</h2>
-  <div class="stat" id="notes" style="font-size:13px;color:#3a424f"></div>
+  <div class="stat" id="notes" style="font-size:13px;color:var(--ink)"></div>
 
   <div class="disc-lower">
-    <b>Important.</b> This page is general information and commentary only and does not take account of anyone's objectives, financial situation or needs. It is not personal financial advice and is not a recommendation to buy, hold or sell any financial product. Prices and figures are indicative, may be delayed, and may be inaccurate. Past performance is not a reliable indicator of future performance. Investing carries the risk of loss, including loss of capital. Consider obtaining advice from an Australian Financial Services (AFS) licensee and read any relevant product disclosure statement before making any investment decision.
+    <b>Important.</b> This page is general information and commentary only and does not take account of anyone's objectives, financial situation or needs. It is not personal financial advice and is not a recommendation to buy, hold or sell any financial product. The suggested portfolio and monthly figures are illustrative examples of a generic balanced mix, not advice for you. Prices and figures are indicative, may be delayed, and may be inaccurate. Past performance is not a reliable indicator of future performance. Investing carries the risk of loss, including loss of capital. Consider obtaining advice from an Australian Financial Services (AFS) licensee and read any relevant product disclosure statement before making any investment decision.
   </div>
   <footer>
-    <p>Daily Investor Agent · prices &amp; macro data from public providers · "as at" date shown above · refreshed each weekday morning.</p>
+    <p>Daily Investor Agent · prices &amp; macro data from public providers · "as at" date shown above · refreshed daily.</p>
     <p>© <span id="yr"></span>. Shared for general educational purposes. No liability is accepted for any loss arising from reliance on this material.</p>
   </footer>
 </div>
 
 <script>
 const SNAPSHOT = {
-  updated: "16 Jun 2026, 8:00am AEST",
+  updated: "16 Jun 2026, 6:00am AEST",
   takeaways: {
     mood: "Risk-on", moodCls: "pos",
     headline: "A constructive day: US and Aussie shares rose and gold held firm, while falling oil quietly eased the inflation outlook — but US inflation ticking back up to 4.2% is the catch.",
@@ -242,6 +311,16 @@ const SNAPSHOT = {
       { icon:"shield", t:"What to do", d:"Nothing urgent. Hold a diversified core, a little gold, and invest small amounts regularly." }
     ],
     bottom: "Bottom line: a positive day, but inflation is the thing to watch. For beginners, steady regular investing beats chasing today's winners."
+  },
+  portfolio: {
+    note: "An illustration of how a balanced beginner might spread money across asset types — for education, not advice. Percentages, not a recommendation to buy any specific fund.",
+    mix: [
+      { name:"Broad index core", pct:55, color:"#4f46e5", ex:"e.g. IVV / VTS / global ETF" },
+      { name:"AI & technology", pct:15, color:"#22d3ee", ex:"e.g. SMH / QQQM" },
+      { name:"Gold & real assets", pct:10, color:"#b8860b", ex:"e.g. GOLD / PMGOLD / DBC" },
+      { name:"Dividends & defensives", pct:10, color:"#0a8a44", ex:"e.g. SCHD / VHY" },
+      { name:"Cash buffer", pct:10, color:"#94a3b8", ex:"e.g. high-interest savings" }
+    ]
   },
   beginner: {
     lead: "Markets had a good day. Shares rose in both the US and Australia, gold is strong, and oil fell after a Middle East de-escalation — which quietly takes some pressure off inflation. The one wrinkle: US inflation ticked back up to 4.2%, so central banks are sitting still rather than cutting interest rates.",
@@ -306,6 +385,12 @@ const SNAPSHOT = {
       text:"The least glamorous and most reliable: owning the whole market. Over years it has beaten most stock-pickers, including pros.",
       how:"Typically the biggest holding (e.g. SPY/QQQM or a global ETF), with themes added around it." }
   ],
+  calendar: [
+    { date:"14 Jul 2026", event:"US CPI (June) release", note:"Key inflation read — confirms whether 4.2% was a blip or a trend." },
+    { date:"28–29 Jul 2026", event:"US Fed (FOMC) decision", note:"Rates widely expected on hold at 3.50–3.75%." },
+    { date:"early Aug 2026", event:"RBA cash rate decision", note:"Markets lean towards a hold; next move may be a cut." },
+    { date:"Aug 2026", event:"US Q2 earnings season", note:"Big-tech AI capex guidance is the thing to watch." }
+  ],
   tactical: [
     { sym:"BHP.AX", conv:"Conviction: Medium", action:"b-buy",
       text:"Iron ore/copper rally with materials leading the ASX (+3% Mon). Risk-on tone supports continuation; watch a commodity pullback if oil weakness spreads.",
@@ -368,6 +453,7 @@ const SNAPSHOT = {
 function cls(v){ return v>0.05?"up":(v<-0.05?"down":"flat"); }
 function arrow(v){ return v>0.05?"▲":(v<-0.05?"▼":"▬"); }
 function pct(v){ return (v>0?"+":"")+v.toFixed(2)+"%"; }
+function money(n){ return "A$"+Math.round(n).toLocaleString(); }
 function badge(s){ var m={"Buy":"b-buy","Buy/Watch":"b-buy","Watch":"b-watch","Hold":"b-hold","Trim":"b-trim"};
   return '<span class="badge '+(m[s]||"b-hold")+'">'+s+'</span>'; }
 function icon(n){
@@ -380,6 +466,30 @@ function icon(n){
   };
   return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+(p[n]||p.idea)+'</svg>';
 }
+function sparkline(vals){
+  if(!vals || vals.length<2) return '<span style="color:var(--muted)">—</span>';
+  var w=72,h=22,pad=2, mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals), rng=(mx-mn)||1;
+  var pts=vals.map(function(v,i){ var x=pad+i*(w-2*pad)/(vals.length-1); var y=h-pad-((v-mn)/rng)*(h-2*pad); return x.toFixed(1)+","+y.toFixed(1); }).join(" ");
+  var col = vals[vals.length-1]>=vals[0] ? "var(--up)" : "var(--down)";
+  return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 '+w+' '+h+'"><polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
+// THEME (dark/light) with persistence + system default
+(function(){
+  var saved=null; try{ saved=localStorage.getItem("dia-theme"); }catch(e){}
+  var sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  var theme = saved || (sysDark?"dark":"light");
+  document.documentElement.setAttribute("data-theme", theme);
+  function lbl(t){ return t==="dark" ? "☀ Light" : "☾ Dark"; }
+  var btn=document.getElementById("themeToggle");
+  btn.textContent = lbl(theme);
+  btn.addEventListener("click", function(){
+    theme = document.documentElement.getAttribute("data-theme")==="dark" ? "light":"dark";
+    document.documentElement.setAttribute("data-theme", theme);
+    btn.textContent = lbl(theme);
+    try{ localStorage.setItem("dia-theme", theme); }catch(e){}
+  });
+})();
 
 var tk = SNAPSHOT.takeaways;
 document.getElementById("mood").innerHTML = '<span class="dot '+(tk.moodCls||"neutral")+'"></span>'+(tk.mood||"");
@@ -391,6 +501,29 @@ document.getElementById("tk-points").innerHTML = tk.points.map(function(p){
   return '<div class="tk-pt"><div class="tk-ic ic-'+p.icon+'">'+icon(p.icon)+'</div><div><p class="t">'+p.t+'</p><p class="d">'+p.d+'</p></div></div>';
 }).join("");
 document.getElementById("tk-bottom").innerHTML = tk.bottom.replace(/^Bottom line:/, "<b>Bottom line:</b>");
+
+// Portfolio donut + monthly plan
+(function(){
+  var mix = SNAPSHOT.portfolio.mix;
+  new Chart(document.getElementById("pfChart"), {
+    type:"doughnut",
+    data:{ labels:mix.map(function(m){return m.name;}),
+      datasets:[{ data:mix.map(function(m){return m.pct;}), backgroundColor:mix.map(function(m){return m.color;}), borderWidth:0, cutout:"66%" }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:function(c){return c.label+": "+c.raw+"%";}}} } }
+  });
+  function renderLegend(){
+    var amt = parseFloat(document.getElementById("pfAmt").value)||0;
+    document.getElementById("pfLegend").innerHTML = mix.map(function(m){
+      return '<div class="pf-row"><span class="pf-sw" style="background:'+m.color+'"></span>'+
+        '<span><b>'+m.name+'</b><div class="ex">'+m.ex+'</div></span>'+
+        '<span class="pc">'+m.pct+'%</span>'+
+        '<span class="amt">'+money(amt*m.pct/100)+'</span></div>';
+    }).join("");
+    document.getElementById("pfNote").textContent = SNAPSHOT.portfolio.note;
+  }
+  document.getElementById("pfAmt").addEventListener("input", renderLegend);
+  renderLegend();
+})();
 
 var b = SNAPSHOT.beginner;
 document.getElementById("b-lead").textContent = b.lead;
@@ -408,6 +541,8 @@ document.getElementById("themes-wrap").innerHTML = SNAPSHOT.themes.map(function(
   return '<div class="theme"><div class="h"><span class="name">'+t.name+'</span><span class="badge '+t.cls+'">'+t.stance+'</span></div><p>'+t.text+'</p><div class="inst">'+t.inst+'</div></div>'; }).join("");
 document.getElementById("outlook").innerHTML = SNAPSHOT.outlook.map(function(o){
   return '<div class="ocard"><div class="name">'+o.name+'</div><div class="hz">'+o.hz+'</div><p>'+o.text+'</p><div class="how">'+o.how+'</div></div>'; }).join("");
+document.getElementById("calendar").innerHTML = (SNAPSHOT.calendar||[]).map(function(c){
+  return '<div class="cal-row"><span class="date">'+c.date+'</span><span class="ev"><b>'+c.event+'</b>'+(c.note?' <small>— '+c.note+'</small>':'')+'</span></div>'; }).join("");
 
 function ideaCard(i){
   return '<div class="idea"><div class="h"><span class="sym">'+i.sym+' '+actionBadge(i.action)+'</span><span class="conv">'+i.conv+'</span></div><p>'+i.text+'</p>'+
@@ -418,9 +553,19 @@ function actionBadge(a){ var t={"b-buy":"Accumulate","b-watch":"Watch","b-hold":
 document.getElementById("tactical").innerHTML = SNAPSHOT.tactical.map(ideaCard).join("");
 document.getElementById("strategic").innerHTML = SNAPSHOT.strategic.map(ideaCard).join("");
 
-document.querySelector("#watchlist tbody").innerHTML = SNAPSHOT.watchlist.map(function(r){
-  if (r.group) return '<tr class="grp"><td colspan="4">'+r.group+'</td></tr>';
-  return '<tr><td><b>'+r.sym+'</b> &nbsp;<span style="color:var(--muted)">'+r.name+'</span></td><td class="num">'+r.price+'</td><td class="num '+cls(r.chg)+'">'+arrow(r.chg)+' '+pct(r.chg)+'</td><td>'+badge(r.signal)+'</td></tr>'; }).join("");
+// Watchlist (with sparklines from history.json if available)
+function renderWatchlist(hist){
+  var series = (hist && hist.series) || {};
+  document.querySelector("#watchlist tbody").innerHTML = SNAPSHOT.watchlist.map(function(r){
+    if (r.group) return '<tr class="grp"><td colspan="5">'+r.group+'</td></tr>';
+    return '<tr><td><b>'+r.sym+'</b> &nbsp;<span style="color:var(--muted)">'+r.name+'</span></td>'+
+      '<td class="num">'+r.price+'</td>'+
+      '<td class="num '+cls(r.chg)+'">'+arrow(r.chg)+' '+pct(r.chg)+'</td>'+
+      '<td class="spark">'+sparkline(series[r.sym])+'</td>'+
+      '<td>'+badge(r.signal)+'</td></tr>'; }).join("");
+}
+fetch("history.json", {cache:"no-store"}).then(function(r){ return r.ok?r.json():null; })
+  .then(function(h){ renderWatchlist(h); }).catch(function(){ renderWatchlist(null); });
 
 document.getElementById("notes").textContent = SNAPSHOT.notes;
 
@@ -433,7 +578,7 @@ document.getElementById("notes").textContent = SNAPSHOT.notes;
         backgroundColor:rows.map(function(r){return r.chg>=0?"#0a8a44":"#d23b30";}), borderRadius:5 }] },
     options:{ responsive:true, maintainAspectRatio:false,
       plugins:{ legend:{display:false}, tooltip:{callbacks:{label:function(c){return pct(c.raw);}}} },
-      scales:{ y:{ticks:{callback:function(v){return v+"%";}},grid:{color:"#eef0f4"}}, x:{grid:{display:false}} } }
+      scales:{ y:{ticks:{callback:function(v){return v+"%";}},grid:{color:"rgba(127,127,127,.15)"}}, x:{grid:{display:false}} } }
   });
 })();
 </script>
