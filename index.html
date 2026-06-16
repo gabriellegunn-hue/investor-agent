@@ -4,162 +4,227 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daily Investor Agent — markets, themes & ideas in plain English</title>
-<meta name="description" content="A plain-English daily read on markets: the macro regime, structural themes (AI, inflation, energy), and tactical & strategic ideas. General information only — not financial advice.">
+<meta name="description" content="A plain-English daily read on markets: key takeaways, the macro regime, structural themes (AI, inflation, energy), and short- & long-term ideas. General information only — not financial advice.">
 <meta property="og:title" content="Daily Investor Agent">
 <meta property="og:description" content="A plain-English daily read on markets and ideas. General information only — not financial advice.">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
 <style>
-  :root { color-scheme: light; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:#f6f7f9; color:#1a1d21;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; font-size:14px; line-height:1.5; }
-  .wrap { max-width:1080px; margin:0 auto; padding:0 18px 60px; }
+  :root{
+    color-scheme: light;
+    --bg:#f4f6fa; --ink:#141821; --muted:#646e7d; --line:#e7eaf0;
+    --navy1:#1b2a4a; --navy2:#24344f; --indigo:#4f46e5; --indigo-soft:#eef0ff;
+    --up:#0a8a44; --down:#d23b30; --gold:#b8860b; --warn:#b46a00;
+    --card:#ffffff; --shadow:0 1px 2px rgba(20,24,33,.04), 0 6px 20px rgba(20,24,33,.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    font-size:14.5px; line-height:1.58; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1060px; margin:0 auto; padding:0 20px;}
+  a{color:var(--indigo); text-decoration:none;}
+
+  .topbar{background:#fff4d6; border-bottom:1px solid #f0dca0; color:#6b4e00; font-size:12px; text-align:center; padding:8px 16px;}
+  .topbar b{color:#5a4100;}
 
   /* Hero */
-  .hero { background:linear-gradient(135deg,#1f3a8a,#28323f); color:#fff; }
-  .hero-in { max-width:1080px; margin:0 auto; padding:40px 18px 34px; }
-  .hero h1 { font-size:30px; margin:0 0 8px; letter-spacing:-0.4px; }
-  .hero .tag { font-size:15px; color:#dbe3f5; margin:0 0 18px; max-width:640px; }
-  .hero .meta { font-size:12.5px; color:#aeb9d6; }
-  .hero .chips { margin-top:16px; display:flex; gap:8px; flex-wrap:wrap; }
-  .hero .chips span { background:rgba(255,255,255,.12); padding:5px 11px; border-radius:999px; font-size:12px; }
+  .hero{background:radial-gradient(1200px 400px at 80% -10%, #33507f 0%, transparent 60%), linear-gradient(135deg,var(--navy1),var(--navy2)); color:#fff; padding:42px 0 70px;}
+  .hero-grid{display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .logo{width:42px; height:42px; border-radius:11px; background:linear-gradient(135deg,#6366f1,#22d3ee); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(99,102,241,.4);}
+  h1{font-size:27px; font-weight:800; margin:0; letter-spacing:-0.5px;}
+  .tag{font-size:14.5px; color:#c4d0e6; margin:4px 0 0; max-width:560px;}
+  .hero-meta{text-align:right; min-width:170px;}
+  .mood{display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); padding:6px 13px; border-radius:999px; font-size:13px; font-weight:600;}
+  .dot{width:9px; height:9px; border-radius:50%; display:inline-block;}
+  .dot.pos{background:#34d399;} .dot.neg{background:#f87171;} .dot.neutral{background:#fbbf24;}
+  .asat{font-size:12px; color:#9fb0cc; margin-top:8px;}
 
-  /* Disclaimer (prominent) */
-  .disclaimer { background:#fff4d6; border:1px solid #e8c873; color:#6b4e00; border-radius:0; padding:11px 18px; font-size:12.5px; text-align:center; }
-  .disclaimer b { color:#5a4100; }
-  .disclaimer-lower { background:#fff8e6; border:1px solid #f0dca0; border-radius:10px; padding:12px 14px; font-size:12px; color:#7a5b00; margin:24px 0 0; }
+  /* sticky nav */
+  .nav{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.86); backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid var(--line);}
+  .nav-in{max-width:1060px; margin:0 auto; padding:0 20px; display:flex; gap:6px; overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none;}
+  .nav-in::-webkit-scrollbar{display:none;}
+  .nav a{color:var(--muted); font-size:12.5px; font-weight:600; padding:12px 11px; white-space:nowrap; border-bottom:2px solid transparent;}
+  .nav a:hover{color:var(--ink); border-bottom-color:var(--indigo);}
 
-  h2 { font-size:13px; text-transform:uppercase; letter-spacing:0.6px; color:#6b7280; margin:30px 0 10px; font-weight:600; }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
-  .stat { background:#fff; border:1px solid #e6e8ec; border-radius:12px; padding:12px 14px; }
-  .stat .label { font-size:12px; color:#6b7280; }
-  .stat .val { font-size:19px; font-weight:650; margin-top:3px; }
-  .stat .chg, .stat .note { font-size:12px; font-weight:600; margin-top:2px; }
-  .stat .note { font-weight:500; color:#6b7280; }
-  .up { color:#0a8a44; } .down { color:#c8332a; } .flat { color:#6b7280; } .warn { color:#b46a00; }
+  /* Key takeaways — the star, overlapping the hero */
+  .takeaways{margin-top:-46px; position:relative; z-index:5;}
+  .tk-card{background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px;}
+  .tk-eyebrow{font-size:11.5px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--indigo);}
+  .tk-headline{font-size:19px; font-weight:700; letter-spacing:-0.3px; margin:7px 0 18px; line-height:1.4;}
+  .tk-points{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px;}
+  .tk-pt{display:flex; gap:11px; align-items:flex-start;}
+  .tk-ic{flex:0 0 auto; width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center;}
+  .tk-ic svg{width:18px; height:18px;}
+  .ic-up{background:#e3f6ec; color:var(--up);} .ic-alert{background:#fde7e6; color:var(--down);}
+  .ic-drop{background:#e7eefb; color:#2b6cb0;} .ic-shield{background:var(--indigo-soft); color:var(--indigo);} .ic-idea{background:#fbf2dc; color:var(--gold);}
+  .tk-pt .t{font-size:13.5px; font-weight:700; margin:0 0 1px;}
+  .tk-pt .d{font-size:12.8px; color:var(--muted); margin:0;}
+  .tk-bottom{margin-top:18px; padding-top:15px; border-top:1px dashed var(--line); font-size:13.5px;}
+  .tk-bottom b{color:var(--indigo);}
 
-  .beginner { background:#eef4ff; border:1px solid #cfe0ff; border-radius:14px; padding:16px 18px; }
-  .beginner h3 { margin:0 0 6px; font-size:16px; color:#1f3a8a; }
-  .beginner .lead { font-size:13.5px; color:#26324a; margin:0 0 12px; }
-  .beginner .twocol { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  @media (max-width:720px){ .beginner .twocol { grid-template-columns:1fr; } }
-  .beginner h4 { margin:0 0 6px; font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:#5566aa; }
-  .beginner ol { margin:0; padding-left:18px; font-size:13px; color:#26324a; }
-  .beginner ol li { margin-bottom:5px; }
-  .todo { background:#fff; border:1px solid #cfe0ff; border-radius:10px; padding:11px 13px; font-size:13px; margin-top:12px; }
-  .todo b { color:#1f3a8a; }
-  .jargon { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
-  .chip { background:#fff; border:1px solid #cfe0ff; border-radius:8px; padding:5px 9px; font-size:11.5px; color:#26324a; }
-  .chip b { color:#1f3a8a; }
+  h2{font-size:12px; text-transform:uppercase; letter-spacing:.8px; color:var(--muted); margin:34px 0 12px; font-weight:700; display:flex; align-items:center; gap:9px;}
+  h2::before{content:""; width:16px; height:2px; background:var(--indigo); border-radius:2px;}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:12px;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:13px 15px; box-shadow:var(--shadow);}
+  .stat .label{font-size:12px; color:var(--muted);}
+  .stat .val{font-size:20px; font-weight:700; margin-top:3px; letter-spacing:-0.3px;}
+  .stat .chg,.stat .note{font-size:12px; font-weight:600; margin-top:2px;}
+  .stat .note{font-weight:500; color:var(--muted);}
+  .up{color:var(--up);} .down{color:var(--down);} .flat{color:var(--muted);} .warn{color:var(--warn);}
 
-  .regime { background:linear-gradient(180deg,#1e2733,#28323f); color:#fff; border-radius:14px; padding:16px 18px; margin-bottom:12px; }
-  .regime .rtag { display:inline-block; background:rgba(255,255,255,.14); padding:3px 10px; border-radius:999px; font-size:11px; letter-spacing:.5px; text-transform:uppercase; }
-  .regime .lab { font-size:18px; font-weight:650; margin:8px 0 6px; }
-  .regime p { margin:0; font-size:13px; color:#cdd5df; }
-  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #e6e8ec; border-radius:12px; overflow:hidden; }
-  th, td { text-align:left; padding:9px 14px; font-size:13.5px; border-bottom:1px solid #eef0f3; }
-  th { background:#fafbfc; font-size:11.5px; text-transform:uppercase; letter-spacing:0.4px; color:#6b7280; }
-  tr:last-child td { border-bottom:none; }
-  td.num { text-align:right; font-variant-numeric:tabular-nums; }
-  .grp td { background:#f3f4f6; font-weight:650; font-size:11.5px; text-transform:uppercase; letter-spacing:0.4px; color:#4b5563; }
-  .badge { display:inline-block; padding:2px 9px; border-radius:999px; font-size:11.5px; font-weight:600; }
-  .b-buy { background:#e3f6ec; color:#0a8a44; } .b-watch { background:#eef2ff; color:#4458c8; }
-  .b-hold { background:#f1f3f5; color:#56606b; } .b-trim { background:#fdeceb; color:#c8332a; }
-  .ow { background:#e3f6ec; color:#0a8a44; } .nw { background:#f1f3f5; color:#56606b; } .uw { background:#fdeceb; color:#c8332a; }
-  .chartbox { background:#fff; border:1px solid #e6e8ec; border-radius:12px; padding:14px; height:260px; }
-  .themes { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
-  .theme { background:#fff; border:1px solid #e6e8ec; border-radius:12px; padding:13px 15px; }
-  .theme .h { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-  .theme .name { font-weight:650; font-size:14px; }
-  .theme p { margin:8px 0 8px; font-size:12.5px; color:#374151; }
-  .theme .inst { font-size:11.5px; color:#6b7280; }
-  .outlook { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; }
-  .ocard { background:#fff; border:1px solid #e6e8ec; border-left:3px solid #4458c8; border-radius:12px; padding:13px 15px; }
-  .ocard .name { font-weight:650; font-size:14px; }
-  .ocard .hz { font-size:11px; color:#6b7280; }
-  .ocard p { margin:7px 0; font-size:12.5px; color:#374151; }
-  .ocard .how { font-size:12px; color:#1f3a8a; background:#eef4ff; border-radius:8px; padding:7px 9px; }
-  .recos { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  @media (max-width:720px){ .recos { grid-template-columns:1fr; } }
-  .col h3 { font-size:13px; margin:0 0 10px; display:flex; align-items:center; gap:8px; }
-  .col .pill { font-size:10.5px; font-weight:600; color:#fff; background:#4458c8; padding:2px 8px; border-radius:999px; }
-  .col .pill.lt { background:#0a8a44; }
-  .idea { background:#fff; border:1px solid #e6e8ec; border-radius:12px; padding:13px 15px; margin-bottom:10px; }
-  .idea .h { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-  .idea .sym { font-weight:700; font-size:14.5px; }
-  .idea .conv { font-size:11px; color:#6b7280; }
-  .idea p { margin:7px 0 9px; font-size:12.5px; color:#374151; }
-  .idea .plain { font-size:12px; color:#1f3a8a; background:#eef4ff; border-radius:8px; padding:6px 9px; margin:7px 0; }
-  .levels { display:flex; gap:14px; font-size:11.5px; color:#4b5563; flex-wrap:wrap; }
-  .levels b { color:#1a1d21; }
-  footer { margin-top:34px; font-size:11.5px; color:#7a828c; border-top:1px solid #e6e8ec; padding-top:18px; }
-  footer p { margin:0 0 8px; }
+  .beginner{background:linear-gradient(180deg,#fbfcff,#f4f6ff); border:1px solid #e3e8fb; border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
+  .beginner h3{margin:0 0 4px; font-size:16px; color:#26346a;}
+  .beginner .lead{font-size:14px; color:#2b3550; margin:0 0 14px;}
+  .beginner .twocol{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:720px){ .beginner .twocol{grid-template-columns:1fr;} }
+  .beginner h4{margin:0 0 7px; font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; color:#6877b8;}
+  .beginner ol{margin:0; padding-left:18px; font-size:13px; color:#2b3550;}
+  .beginner ol li{margin-bottom:5px;}
+  .jargon{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;}
+  .chip{background:#fff; border:1px solid #e3e8fb; border-radius:9px; padding:6px 10px; font-size:11.8px; color:#2b3550;}
+  .chip b{color:#26346a;}
+
+  .regime{background:linear-gradient(135deg,var(--navy1),var(--navy2)); color:#fff; border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
+  .regime .rtag{display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,.13); padding:4px 11px; border-radius:999px; font-size:11px; letter-spacing:.5px; text-transform:uppercase; font-weight:600;}
+  .regime .lab{font-size:19px; font-weight:700; margin:10px 0 7px; letter-spacing:-0.3px;}
+  .regime p{margin:0; font-size:13.5px; color:#cdd8ea;}
+
+  table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);}
+  th,td{text-align:left; padding:10px 15px; font-size:13.5px; border-bottom:1px solid #f0f2f6;}
+  th{background:#fbfcfe; font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); font-weight:700;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#fafbff;}
+  td.num{text-align:right; font-variant-numeric:tabular-nums;}
+  .grp td{background:#f3f5fa; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:#566;}
+  .badge{display:inline-block; padding:2px 10px; border-radius:999px; font-size:11.5px; font-weight:600;}
+  .b-buy{background:#e3f6ec; color:var(--up);} .b-watch{background:var(--indigo-soft); color:var(--indigo);}
+  .b-hold{background:#eef1f5; color:#5b6573;} .b-trim{background:#fdeceb; color:var(--down);}
+  .ow{background:#e3f6ec; color:var(--up);} .nw{background:#eef1f5; color:#5b6573;} .uw{background:#fdeceb; color:var(--down);}
+
+  .chartbox{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; height:280px; box-shadow:var(--shadow);}
+  .themes{display:grid; grid-template-columns:repeat(auto-fit,minmax(245px,1fr)); gap:14px;}
+  .theme{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow);}
+  .theme .h{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+  .theme .name{font-weight:700; font-size:14.5px;}
+  .theme p{margin:9px 0; font-size:12.8px; color:#3a424f;}
+  .theme .inst{font-size:11.5px; color:var(--muted);}
+  .outlook{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:14px;}
+  .ocard{background:var(--card); border:1px solid var(--line); border-left:3px solid var(--indigo); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow);}
+  .ocard .name{font-weight:700; font-size:14.5px;}
+  .ocard .hz{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; margin-top:1px;}
+  .ocard p{margin:9px 0; font-size:12.8px; color:#3a424f;}
+  .ocard .how{font-size:12px; color:#26346a; background:var(--indigo-soft); border-radius:9px; padding:8px 10px;}
+  .recos{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:720px){ .recos{grid-template-columns:1fr;} }
+  .col h3{font-size:13.5px; margin:0 0 11px; display:flex; align-items:center; gap:8px; font-weight:700;}
+  .pill{font-size:10.5px; font-weight:700; color:#fff; background:var(--indigo); padding:3px 9px; border-radius:999px;}
+  .pill.lt{background:var(--up);}
+  .idea{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:11px; box-shadow:var(--shadow);}
+  .idea .h{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+  .idea .sym{font-weight:700; font-size:14.5px;}
+  .idea .conv{font-size:11px; color:var(--muted);}
+  .idea p{margin:8px 0; font-size:12.8px; color:#3a424f;}
+  .idea .plain{font-size:12px; color:#26346a; background:var(--indigo-soft); border-radius:9px; padding:7px 10px; margin:8px 0;}
+  .levels{display:flex; gap:16px; font-size:11.5px; color:#5b6573; flex-wrap:wrap; padding-top:4px;}
+  .levels b{color:var(--ink);}
+
+  .disc-lower{background:#fff8e6; border:1px solid #f0dca0; border-radius:13px; padding:14px 16px; font-size:12px; color:#7a5b00; margin-top:28px;}
+  footer{margin-top:22px; font-size:11.5px; color:#8a929c; padding:18px 0 50px;}
+  footer p{margin:0 0 7px;}
 </style>
 </head>
 <body>
 
-<div class="disclaimer">
-  <b>General information &amp; education only — not financial advice.</b> The author is not a licensed financial adviser. Nothing here is a recommendation to buy or sell any financial product. Investing involves risk of loss. Do your own research and seek licensed advice before acting.
-</div>
+<div class="topbar"><b>General information &amp; education only — not financial advice.</b> The author is not a licensed financial adviser. Nothing here is a recommendation to buy or sell. Investing involves risk of loss.</div>
 
 <div class="hero">
-  <div class="hero-in">
-    <h1>Daily Investor Agent</h1>
-    <p class="tag">A plain-English daily read on the markets — the big economic picture, the trends shaping the world (AI, inflation, energy), and ideas for the short and long term.</p>
-    <div class="meta" id="hero-updated"></div>
-    <div class="chips"><span>Macro regime</span><span>Structural themes</span><span>Tactical &amp; strategic ideas</span><span>Beginner-friendly</span></div>
+  <div class="wrap hero-grid">
+    <div class="brand">
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 6"/><polyline points="15 6 21 6 21 12"/></svg>
+      </div>
+      <div>
+        <h1>Daily Investor Agent</h1>
+        <p class="tag">A plain-English daily read on the markets — the big picture, the trends shaping the world, and ideas for the short and long term.</p>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <span class="mood" id="mood"></span>
+      <div class="asat" id="asat"></div>
+    </div>
   </div>
 </div>
+
+<div class="nav"><div class="nav-in">
+  <a href="#takeaways">Takeaways</a>
+  <a href="#plain">Plain English</a>
+  <a href="#regime">Regime</a>
+  <a href="#themes">Themes</a>
+  <a href="#outlook">Outlook</a>
+  <a href="#ideas">Ideas</a>
+  <a href="#watchlist">Watchlist</a>
+</div></div>
 
 <div class="wrap">
 
-  <h2>Start here</h2>
+  <section class="takeaways" id="takeaways">
+    <div class="tk-card">
+      <div class="tk-eyebrow">Today's key takeaways</div>
+      <div class="tk-headline" id="tk-headline"></div>
+      <div class="tk-points" id="tk-points"></div>
+      <div class="tk-bottom" id="tk-bottom"></div>
+    </div>
+  </section>
+
+  <h2 id="plain">In plain English</h2>
   <div class="beginner">
-    <h3>In plain English</h3>
+    <h3 id="b-title">What's going on, simply</h3>
     <p class="lead" id="b-lead"></p>
     <div class="twocol">
-      <div><h4>What this means</h4><p style="margin:0;font-size:13px;color:#26324a" id="b-meaning"></p></div>
+      <div><h4>What this means</h4><p style="margin:0;font-size:13px;color:#2b3550" id="b-meaning"></p></div>
       <div><h4>Sensible beginner habits</h4><ol id="b-steps"></ol></div>
     </div>
-    <div class="todo" id="b-today"></div>
     <div class="jargon" id="b-jargon"></div>
   </div>
 
-  <h2>Market regime</h2>
-  <div class="regime" id="regime"></div>
+  <h2 id="regime">Market regime</h2>
+  <div class="regime" id="regime" style="margin-bottom:12px"></div>
   <div class="cards" id="macro"></div>
 
   <h2>Market snapshot</h2>
   <div class="cards" id="market"></div>
 
-  <h2>Structural themes &amp; positioning</h2>
-  <div class="themes" id="themes"></div>
+  <h2 id="themes">Structural themes &amp; positioning</h2>
+  <div class="themes" id="themes-wrap"></div>
 
-  <h2>Where we're heading</h2>
+  <h2 id="outlook">Where we're heading</h2>
   <div class="outlook" id="outlook"></div>
 
-  <h2>Ideas</h2>
+  <h2 id="ideas">Ideas</h2>
   <div class="recos">
     <div class="col"><h3>Short-term tactical <span class="pill">days – weeks</span></h3><div id="tactical"></div></div>
     <div class="col"><h3>Long-term strategic <span class="pill lt">1 – 5 years</span></h3><div id="strategic"></div></div>
   </div>
 
-  <h2>Watchlist</h2>
+  <h2 id="watchlist">Watchlist</h2>
   <table id="watchlist"><thead><tr><th>Instrument</th><th class="num">Price</th><th class="num">Day</th><th>Signal</th></tr></thead><tbody></tbody></table>
 
   <h2>Day moves (%)</h2>
   <div class="chartbox"><canvas id="chart"></canvas></div>
 
   <h2>Notes</h2>
-  <div class="stat" id="notes" style="font-size:13px;color:#374151"></div>
+  <div class="stat" id="notes" style="font-size:13px;color:#3a424f"></div>
 
-  <div class="disclaimer-lower">
-    <b>Important.</b> This page is general information and commentary only and does not take account of anyone's objectives, financial situation or needs. It is not personal financial advice and is not a recommendation to buy, hold or sell any financial product. Prices and figures are indicative, may be delayed, and may be inaccurate. Past performance is not a reliable indicator of future performance. Investing carries the risk of loss, including loss of capital. You should consider obtaining advice from an Australian Financial Services (AFS) licensee and read any relevant product disclosure statement before making any investment decision.
+  <div class="disc-lower">
+    <b>Important.</b> This page is general information and commentary only and does not take account of anyone's objectives, financial situation or needs. It is not personal financial advice and is not a recommendation to buy, hold or sell any financial product. Prices and figures are indicative, may be delayed, and may be inaccurate. Past performance is not a reliable indicator of future performance. Investing carries the risk of loss, including loss of capital. Consider obtaining advice from an Australian Financial Services (AFS) licensee and read any relevant product disclosure statement before making any investment decision.
   </div>
-
   <footer>
-    <p>Daily Investor Agent · prices &amp; macro data sourced from public providers · "as at" date shown above.</p>
+    <p>Daily Investor Agent · prices &amp; macro data from public providers · "as at" date shown above · refreshed each weekday morning.</p>
     <p>© <span id="yr"></span>. Shared for general educational purposes. No liability is accepted for any loss arising from reliance on this material.</p>
   </footer>
 </div>
@@ -167,6 +232,17 @@
 <script>
 const SNAPSHOT = {
   updated: "16 Jun 2026, 8:00am AEST",
+  takeaways: {
+    mood: "Risk-on", moodCls: "pos",
+    headline: "A constructive day: US and Aussie shares rose and gold held firm, while falling oil quietly eased the inflation outlook — but US inflation ticking back up to 4.2% is the catch.",
+    points: [
+      { icon:"up", t:"Markets up", d:"US and Australian shares both rose; over 70% of the ASX 200 closed higher." },
+      { icon:"alert", t:"Inflation sticky", d:"US CPI re-accelerated to 4.2%, so rate cuts stay on hold for now." },
+      { icon:"drop", t:"Oil dropped", d:"A Middle-East de-escalation sent oil to a 2-month low — easing inflation pressure ahead." },
+      { icon:"shield", t:"What to do", d:"Nothing urgent. Hold a diversified core, a little gold, and invest small amounts regularly." }
+    ],
+    bottom: "Bottom line: a positive day, but inflation is the thing to watch. For beginners, steady regular investing beats chasing today's winners."
+  },
   beginner: {
     lead: "Markets had a good day. Shares rose in both the US and Australia, gold is strong, and oil fell after a Middle East de-escalation — which quietly takes some pressure off inflation. The one wrinkle: US inflation ticked back up to 4.2%, so central banks are sitting still rather than cutting interest rates.",
     meaning: "When prices are rising and inflation is sticky, a common balanced approach is: own a diversified core, keep a little in 'hedges' like gold, and don't chase whatever jumped today. For most people, investing regularly tends to beat reacting to daily moves.",
@@ -174,17 +250,16 @@ const SNAPSHOT = {
       "Build a core first: a broad, low-cost index fund (e.g. an S&P 500 / global ETF) before any single stocks.",
       "Invest a fixed amount on a regular schedule (dollar-cost averaging) instead of timing the market.",
       "Keep any single bet small — a few % of your pot — so one bad call can't hurt much.",
-      "Decide your exit before you buy (how much loss you'll accept), and write down why you bought.",
-      "Only invest money you won't need for years, and after you have an emergency cash buffer."
+      "Decide your exit before you buy, and write down why you bought.",
+      "Only invest money you won't need for years, after an emergency cash buffer."
     ],
-    today: "Today's simple read: nothing urgent. For someone starting out, the highest-value habit isn't a trade — it's a small regular auto-investment into a broad index ETF. Treat the single-stock ideas below as 'watch and learn'.",
     jargon: [
-      { t: "CPI / inflation", d: "how fast prices rise; 4.2% means things cost ~4% more than a year ago" },
-      { t: "Interest rate", d: "set by central banks; higher rates cool the economy and can weigh on shares" },
-      { t: "ETF", d: "a basket of many stocks in one — instant diversification, low cost" },
-      { t: "DCA", d: "dollar-cost averaging: investing the same amount on a set schedule" },
-      { t: "Overweight", d: "holding more of something than a neutral mix would" },
-      { t: "Stop", d: "a price where you'd sell to cap a loss" }
+      { t:"CPI / inflation", d:"how fast prices rise; 4.2% = ~4% dearer than a year ago" },
+      { t:"Interest rate", d:"set by central banks; higher rates cool the economy, can weigh on shares" },
+      { t:"ETF", d:"a basket of many stocks in one — instant diversification, low cost" },
+      { t:"DCA", d:"dollar-cost averaging: investing the same amount on a set schedule" },
+      { t:"Overweight", d:"holding more of something than a neutral mix would" },
+      { t:"Stop", d:"a price where you'd sell to cap a loss" }
     ]
   },
   regime: {
@@ -192,141 +267,152 @@ const SNAPSHOT = {
     text: "Headline US CPI re-accelerated to 4.2% (from 3.8%), keeping the Fed on hold at 3.50–3.75% and the RBA at 4.35%. But a US–Iran de-escalation reopened the Strait of Hormuz, sending oil to a 2-month low and pulling the US 10Y down to 4.42% — disinflationary at the margin and supportive for equities. Net: cautiously constructive, but a hotter inflation path is the key risk."
   },
   macro: [
-    { label: "US CPI (YoY)", value: "4.2%", note: "↑ from 3.8% — sticky", tone: "warn" },
-    { label: "Fed funds", value: "3.50–3.75%", note: "On hold (eff. 3.62%)", tone: "flat" },
-    { label: "RBA cash rate", value: "4.35%", note: "On hold; next move likely down", tone: "flat" },
-    { label: "US 10Y yield", value: "4.42%", note: "↓ 1-mth low (oil drop)", tone: "up" }
+    { label:"US CPI (YoY)", value:"4.2%", note:"↑ from 3.8% — sticky", tone:"warn" },
+    { label:"Fed funds", value:"3.50–3.75%", note:"On hold (eff. 3.62%)", tone:"flat" },
+    { label:"RBA cash rate", value:"4.35%", note:"On hold; next move likely down", tone:"flat" },
+    { label:"US 10Y yield", value:"4.42%", note:"↓ 1-mth low (oil drop)", tone:"up" }
   ],
   market: [
-    { name: "S&P 500", value: "7,431", chg: 0.50 },
-    { name: "ASX 200", value: "8,914", chg: 1.25 },
-    { name: "Gold (USD/oz)", value: "4,310", chg: 1.90 },
-    { name: "AUD/USD", value: "0.6913", chg: -0.20 }
+    { name:"S&P 500", value:"7,431", chg:0.50 },
+    { name:"ASX 200", value:"8,914", chg:1.25 },
+    { name:"Gold (USD/oz)", value:"4,310", chg:1.90 },
+    { name:"AUD/USD", value:"0.6913", chg:-0.20 }
   ],
   themes: [
-    { name: "AI & technology", stance: "Overweight", cls: "ow",
-      text: "Semiconductor revenue forecast +50%+ in 2026 (~$1.3T); Mag7 AI capex ~$527–600B; data-centre power demand +220% by 2030. Structural supercycle — but concentrated and extended after big runs.",
-      inst: "NVDA · SMH · QQQM · MSFT" },
-    { name: "Inflation & rates hedges", stance: "Overweight (gold)", cls: "ow",
-      text: "CPI back to 4.2% argues for real-asset ballast; gold firm above US$4,300 and miners leading. Broad commodities mixed as oil just dropped on the Hormuz reopening.",
-      inst: "Gold (XAUUSD) · DBC · BHP.AX" },
-    { name: "Energy transition", stance: "Neutral / underweight", cls: "nw",
-      text: "Clean energy (ICLN) still pressured by higher-for-longer rates and lagging price action. AI power demand is the real tailwind — favours nuclear/grid over solar for now.",
-      inst: "ICLN" },
-    { name: "Defensives & income", stance: "Neutral (build)", cls: "nw",
-      text: "Late-cycle backdrop favours quality ballast. SCHD yields ~3.65% at low cost; CSL is a beaten-down healthcare compounder. Often accumulated on weakness as portfolio anchors.",
-      inst: "SCHD · CSL.AX · CBA.AX" }
+    { name:"AI & technology", stance:"Overweight", cls:"ow",
+      text:"Semiconductor revenue forecast +50%+ in 2026 (~$1.3T); Mag7 AI capex ~$527–600B; data-centre power demand +220% by 2030. Structural supercycle — but concentrated and extended after big runs.",
+      inst:"NVDA · SMH · QQQM · MSFT" },
+    { name:"Inflation & rates hedges", stance:"Overweight (gold)", cls:"ow",
+      text:"CPI back to 4.2% argues for real-asset ballast; gold firm above US$4,300 and miners leading. Broad commodities mixed as oil just dropped on the Hormuz reopening.",
+      inst:"Gold (XAUUSD) · DBC · BHP.AX" },
+    { name:"Energy transition", stance:"Neutral / underweight", cls:"nw",
+      text:"Clean energy (ICLN) still pressured by higher-for-longer rates and lagging price action. AI power demand is the real tailwind — favours nuclear/grid over solar for now.",
+      inst:"ICLN" },
+    { name:"Defensives & income", stance:"Neutral (build)", cls:"nw",
+      text:"Late-cycle backdrop favours quality ballast. SCHD yields ~3.65% at low cost; CSL is a beaten-down healthcare compounder. Often accumulated on weakness as anchors.",
+      inst:"SCHD · CSL.AX · CBA.AX" }
   ],
   outlook: [
-    { name: "AI infrastructure", hz: "Multi-year tailwind",
-      text: "The biggest structural trend in markets: chips, data centres and the power to run them. Spending is accelerating, not slowing. Volatile and crowded, so expect sharp pullbacks.",
-      how: "A common beginner approach: a semiconductor or tech ETF (e.g. SMH/QQQM) with small regular buys — not a single stock you have to time." },
-    { name: "Gold & real assets", hz: "Hedge while inflation sticky",
-      text: "With inflation back at 4.2% and ongoing geopolitical risk, gold tends to act as ballast when shares wobble. Not a get-rich trade — a shock absorber.",
-      how: "Often a small slice (think ~5–10% of a portfolio) via gold or a commodities ETF, held rather than traded." },
-    { name: "Quality income / defensives", hz: "Steady compounding",
-      text: "As the cycle matures, durable dividend payers and healthcare can provide steadier returns and income if growth stocks stumble.",
-      how: "A low-cost dividend ETF (e.g. SCHD) as a calmer anchor alongside a growth core." },
-    { name: "Broad index core", hz: "Foundation (always)",
-      text: "The least glamorous and most reliable: owning the whole market. Over years it has beaten most stock-pickers, including pros.",
-      how: "Typically the biggest holding (e.g. SPY/QQQM or a global ETF), with themes added around it." }
+    { name:"AI infrastructure", hz:"Multi-year tailwind",
+      text:"The biggest structural trend in markets: chips, data centres and the power to run them. Spending is accelerating, not slowing. Volatile and crowded, so expect sharp pullbacks.",
+      how:"Beginner way in: a semiconductor or tech ETF (e.g. SMH/QQQM) with small regular buys — not a single stock you must time." },
+    { name:"Gold & real assets", hz:"Hedge while inflation sticky",
+      text:"With inflation back at 4.2% and ongoing geopolitical risk, gold tends to act as ballast when shares wobble. Not a get-rich trade — a shock absorber.",
+      how:"Often a small slice (~5–10% of a portfolio) via gold or a commodities ETF, held rather than traded." },
+    { name:"Quality income / defensives", hz:"Steady compounding",
+      text:"As the cycle matures, durable dividend payers and healthcare can provide steadier returns and income if growth stocks stumble.",
+      how:"A low-cost dividend ETF (e.g. SCHD) as a calmer anchor alongside a growth core." },
+    { name:"Broad index core", hz:"Foundation (always)",
+      text:"The least glamorous and most reliable: owning the whole market. Over years it has beaten most stock-pickers, including pros.",
+      how:"Typically the biggest holding (e.g. SPY/QQQM or a global ETF), with themes added around it." }
   ],
   tactical: [
-    { sym: "BHP.AX", conv: "Conviction: Medium", action: "b-buy",
-      text: "Iron ore/copper rally with materials leading the ASX (+3% Mon). Risk-on tone supports continuation; watch a commodity pullback if oil weakness spreads.",
-      plain: "Plain English: mining shares are hot right now — a momentum move, not a long-term must-own. Commodity prices can turn fast.",
-      entry: "A$59–60", target: "A$64", stop: "A$57" },
-    { sym: "SMH", conv: "Conviction: Medium", action: "b-watch",
-      text: "Semis flat near 52-week highs ($649). AI supercycle intact but extended — many prefer adding on a pullback rather than chasing the high.",
-      plain: "Plain English: the AI-chip basket. Great long-term theme but near record highs — waiting for a dip is often wiser than buying the top.",
-      entry: "$600–615", target: "$700", stop: "$575" },
-    { sym: "XAUUSD", conv: "Conviction: Medium", action: "b-watch",
-      text: "Gold extended above US$4,300. Falling yields help, but oil-led easing in inflation expectations is a mild headwind.",
-      plain: "Plain English: gold has run hard. A small hedge can make sense; chasing a big jump usually doesn't.",
-      entry: "Dips to $4,200", target: "$4,450", stop: "$4,120" },
-    { sym: "NVDA", conv: "Conviction: Medium", action: "b-watch",
-      text: "Down ~4% on the week vs a bullish Street (consensus ~$325). A pullback toward support could offer a cleaner entry to the AI theme.",
-      plain: "Plain English: the famous AI chip stock dipped this week. If you want a single name, waiting for it to steady — or owning it via an ETF — lowers the risk.",
-      entry: "$195–200", target: "$245", stop: "$185" }
+    { sym:"BHP.AX", conv:"Conviction: Medium", action:"b-buy",
+      text:"Iron ore/copper rally with materials leading the ASX (+3% Mon). Risk-on tone supports continuation; watch a commodity pullback if oil weakness spreads.",
+      plain:"Plain English: mining shares are hot right now — a momentum move, not a long-term must-own. Commodity prices can turn fast.",
+      entry:"A$59–60", target:"A$64", stop:"A$57" },
+    { sym:"SMH", conv:"Conviction: Medium", action:"b-watch",
+      text:"Semis flat near 52-week highs ($649). AI supercycle intact but extended — many prefer adding on a pullback rather than chasing the high.",
+      plain:"Plain English: the AI-chip basket. Great long-term theme but near record highs — waiting for a dip is often wiser than buying the top.",
+      entry:"$600–615", target:"$700", stop:"$575" },
+    { sym:"XAUUSD", conv:"Conviction: Medium", action:"b-watch",
+      text:"Gold extended above US$4,300. Falling yields help, but oil-led easing in inflation expectations is a mild headwind.",
+      plain:"Plain English: gold has run hard. A small hedge can make sense; chasing a big jump usually doesn't.",
+      entry:"Dips to $4,200", target:"$4,450", stop:"$4,120" },
+    { sym:"NVDA", conv:"Conviction: Medium", action:"b-watch",
+      text:"Down ~4% on the week vs a bullish Street (consensus ~$325). A pullback toward support could offer a cleaner entry to the AI theme.",
+      plain:"Plain English: the famous AI chip stock dipped this week. If you want a single name, waiting for it to steady — or owning it via an ETF — lowers the risk.",
+      entry:"$195–200", target:"$245", stop:"$185" }
   ],
   strategic: [
-    { sym: "SMH / NVDA", conv: "Theme conviction: High", action: "b-buy",
-      text: "Core multi-year AI & semiconductor exposure. Many dollar-cost average and add on drawdowns; capex and power-demand trends are accelerating.",
-      plain: "Plain English: a way to own the AI theme for years via an ETF, buying a bit at a time rather than timing the perfect price.",
-      entry: "Accumulate on dips", target: "Multi-year hold", stop: "Reassess if thesis breaks" },
-    { sym: "SCHD", conv: "Conviction: Medium", action: "b-buy",
-      text: "Low-cost quality-dividend anchor (~3.65% yield). A common defensive ballast for a balanced book as the cycle matures.",
-      plain: "Plain English: a steady, dividend-paying basket — the calm part of a portfolio. Often added to slowly with dividends reinvested.",
-      entry: "Accumulate steadily", target: "Income + compounding", stop: "—" },
-    { sym: "Gold / DBC", conv: "Conviction: Medium", action: "b-hold",
-      text: "A structural 5–10% real-asset sleeve as an inflation/geopolitical hedge given sticky 4.2% CPI. Gold as the core; commodities (DBC) more tactical.",
-      plain: "Plain English: a small hedge so a rough patch in shares hurts less — generally set and largely left alone.",
-      entry: "Hold core, add on dips", target: "Hedge / diversifier", stop: "—" },
-    { sym: "CSL.AX", conv: "Conviction: Medium", action: "b-watch",
-      text: "Quality healthcare compounder down sharply over the year. Potential long-term value if the franchise is intact — fundamentals worth verifying.",
-      plain: "Plain English: a quality Aussie healthcare name that's fallen a lot. Could be a long-term bargain — but homework on a faller matters.",
-      entry: "Scale in on weakness", target: "Multi-year hold", stop: "Reassess on guidance" }
+    { sym:"SMH / NVDA", conv:"Theme conviction: High", action:"b-buy",
+      text:"Core multi-year AI & semiconductor exposure. Many dollar-cost average and add on drawdowns; capex and power-demand trends are accelerating.",
+      plain:"Plain English: a way to own the AI theme for years via an ETF, buying a bit at a time rather than timing the perfect price.",
+      entry:"Accumulate on dips", target:"Multi-year hold", stop:"Reassess if thesis breaks" },
+    { sym:"SCHD", conv:"Conviction: Medium", action:"b-buy",
+      text:"Low-cost quality-dividend anchor (~3.65% yield). A common defensive ballast for a balanced book as the cycle matures.",
+      plain:"Plain English: a steady, dividend-paying basket — the calm part of a portfolio. Often added to slowly with dividends reinvested.",
+      entry:"Accumulate steadily", target:"Income + compounding", stop:"—" },
+    { sym:"Gold / DBC", conv:"Conviction: Medium", action:"b-hold",
+      text:"A structural 5–10% real-asset sleeve as an inflation/geopolitical hedge given sticky 4.2% CPI. Gold as the core; commodities (DBC) more tactical.",
+      plain:"Plain English: a small hedge so a rough patch in shares hurts less — generally set and largely left alone.",
+      entry:"Hold core, add on dips", target:"Hedge / diversifier", stop:"—" },
+    { sym:"CSL.AX", conv:"Conviction: Medium", action:"b-watch",
+      text:"Quality healthcare compounder down sharply over the year. Potential long-term value if the franchise is intact — fundamentals worth verifying.",
+      plain:"Plain English: a quality Aussie healthcare name that's fallen a lot. Could be a long-term bargain — but homework on a faller matters.",
+      entry:"Scale in on weakness", target:"Multi-year hold", stop:"Reassess on guidance" }
   ],
   watchlist: [
-    { group: "US equities & ETFs" },
-    { sym: "AAPL", name: "Apple", price: "$291.52", chg: 1.43, signal: "Hold" },
-    { sym: "MSFT", name: "Microsoft", price: "$400.07", chg: 2.39, signal: "Hold" },
-    { sym: "NVDA", name: "Nvidia", price: "$205.15", chg: -0.40, signal: "Watch" },
-    { sym: "SPY", name: "S&P 500 ETF", price: "$754.40", chg: 0.50, signal: "Hold" },
-    { sym: "QQQM", name: "Nasdaq-100 ETF", price: "$306.12", chg: 3.07, signal: "Hold" },
-    { group: "ASX" },
-    { sym: "BHP.AX", name: "BHP Group", price: "A$60.20", chg: 3.00, signal: "Buy/Watch" },
-    { sym: "CBA.AX", name: "Commonwealth Bank", price: "A$161.79", chg: 1.43, signal: "Hold" },
-    { sym: "CSL.AX", name: "CSL Limited", price: "A$175.53", chg: -0.30, signal: "Watch" },
-    { group: "FX & commodities" },
-    { sym: "XAUUSD", name: "Gold spot", price: "$4,310", chg: 1.90, signal: "Watch" },
-    { sym: "AUDUSD", name: "Aussie dollar", price: "0.6913", chg: -0.20, signal: "Hold" },
-    { group: "Thematic ETFs" },
-    { sym: "SMH", name: "Semiconductors (AI)", price: "$646.80", chg: -0.05, signal: "Watch" },
-    { sym: "DBC", name: "Commodities basket", price: "$30.54", chg: -0.52, signal: "Hold" },
-    { sym: "ICLN", name: "Clean energy", price: "$20.92", chg: 0.87, signal: "Hold" },
-    { sym: "SCHD", name: "US dividend/quality", price: "$27.94", chg: 1.54, signal: "Buy/Watch" }
+    { group:"US equities & ETFs" },
+    { sym:"AAPL", name:"Apple", price:"$291.52", chg:1.43, signal:"Hold" },
+    { sym:"MSFT", name:"Microsoft", price:"$400.07", chg:2.39, signal:"Hold" },
+    { sym:"NVDA", name:"Nvidia", price:"$205.15", chg:-0.40, signal:"Watch" },
+    { sym:"SPY", name:"S&P 500 ETF", price:"$754.40", chg:0.50, signal:"Hold" },
+    { sym:"QQQM", name:"Nasdaq-100 ETF", price:"$306.12", chg:3.07, signal:"Hold" },
+    { group:"ASX" },
+    { sym:"BHP.AX", name:"BHP Group", price:"A$60.20", chg:3.00, signal:"Buy/Watch" },
+    { sym:"CBA.AX", name:"Commonwealth Bank", price:"A$161.79", chg:1.43, signal:"Hold" },
+    { sym:"CSL.AX", name:"CSL Limited", price:"A$175.53", chg:-0.30, signal:"Watch" },
+    { group:"FX & commodities" },
+    { sym:"XAUUSD", name:"Gold spot", price:"$4,310", chg:1.90, signal:"Watch" },
+    { sym:"AUDUSD", name:"Aussie dollar", price:"0.6913", chg:-0.20, signal:"Hold" },
+    { group:"Thematic ETFs" },
+    { sym:"SMH", name:"Semiconductors (AI)", price:"$646.80", chg:-0.05, signal:"Watch" },
+    { sym:"DBC", name:"Commodities basket", price:"$30.54", chg:-0.52, signal:"Hold" },
+    { sym:"ICLN", name:"Clean energy", price:"$20.92", chg:0.87, signal:"Hold" },
+    { sym:"SCHD", name:"US dividend/quality", price:"$27.94", chg:1.54, signal:"Buy/Watch" }
   ],
   notes: "Risk-on session: >70% of ASX 200 names closed green, led by materials and financials; gold miners strong as bullion held above US$4,310. The standout macro cross-current is hotter US CPI (4.2%) against an oil-led drop in yields after the Hormuz reopening. Watch: the RBA decision, commodity follow-through, and the next US CPI print."
 };
 
-function cls(v){ return v > 0.05 ? "up" : (v < -0.05 ? "down" : "flat"); }
-function arrow(v){ return v > 0.05 ? "▲" : (v < -0.05 ? "▼" : "▬"); }
-function pct(v){ return (v>0?"+":"") + v.toFixed(2) + "%"; }
+function cls(v){ return v>0.05?"up":(v<-0.05?"down":"flat"); }
+function arrow(v){ return v>0.05?"▲":(v<-0.05?"▼":"▬"); }
+function pct(v){ return (v>0?"+":"")+v.toFixed(2)+"%"; }
 function badge(s){ var m={"Buy":"b-buy","Buy/Watch":"b-buy","Watch":"b-watch","Hold":"b-hold","Trim":"b-trim"};
   return '<span class="badge '+(m[s]||"b-hold")+'">'+s+'</span>'; }
+function icon(n){
+  var p={
+    up:'<polyline points="3 17 9 11 13 15 21 6"/><polyline points="15 6 21 6 21 12"/>',
+    alert:'<path d="M12 3l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17"/>',
+    drop:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+    shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><polyline points="9 12 11 14 15 10"/>',
+    idea:'<path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10c.7.7 1 1.3 1 2h6c0-.7.3-1.3 1-2a6 6 0 0 0-4-10z"/>'
+  };
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+(p[n]||p.idea)+'</svg>';
+}
 
-document.getElementById("hero-updated").textContent = "As at " + SNAPSHOT.updated;
+var tk = SNAPSHOT.takeaways;
+document.getElementById("mood").innerHTML = '<span class="dot '+(tk.moodCls||"neutral")+'"></span>'+(tk.mood||"");
+document.getElementById("asat").textContent = "As at "+SNAPSHOT.updated;
 document.getElementById("yr").textContent = new Date().getFullYear();
+
+document.getElementById("tk-headline").textContent = tk.headline;
+document.getElementById("tk-points").innerHTML = tk.points.map(function(p){
+  return '<div class="tk-pt"><div class="tk-ic ic-'+p.icon+'">'+icon(p.icon)+'</div><div><p class="t">'+p.t+'</p><p class="d">'+p.d+'</p></div></div>';
+}).join("");
+document.getElementById("tk-bottom").innerHTML = tk.bottom.replace(/^Bottom line:/, "<b>Bottom line:</b>");
 
 var b = SNAPSHOT.beginner;
 document.getElementById("b-lead").textContent = b.lead;
 document.getElementById("b-meaning").textContent = b.meaning;
 document.getElementById("b-steps").innerHTML = b.steps.map(function(s){ return "<li>"+s+"</li>"; }).join("");
-document.getElementById("b-today").innerHTML = "<b>Today:</b> " + b.today;
 document.getElementById("b-jargon").innerHTML = b.jargon.map(function(j){ return '<span class="chip"><b>'+j.t+'</b> — '+j.d+'</span>'; }).join("");
 
 document.getElementById("regime").innerHTML =
   '<span class="rtag">Market regime</span><div class="lab">'+SNAPSHOT.regime.label+'</div><p>'+SNAPSHOT.regime.text+'</p>';
 document.getElementById("macro").innerHTML = SNAPSHOT.macro.map(function(m){
-  return '<div class="stat"><div class="label">'+m.label+'</div><div class="val">'+m.value+
-    '</div><div class="note '+(m.tone||"flat")+'">'+m.note+'</div></div>'; }).join("");
+  return '<div class="stat"><div class="label">'+m.label+'</div><div class="val">'+m.value+'</div><div class="note '+(m.tone||"flat")+'">'+m.note+'</div></div>'; }).join("");
 document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
-  return '<div class="stat"><div class="label">'+m.name+'</div><div class="val">'+m.value+
-    '</div><div class="chg '+cls(m.chg)+'">'+arrow(m.chg)+' '+pct(m.chg)+'</div></div>'; }).join("");
-document.getElementById("themes").innerHTML = SNAPSHOT.themes.map(function(t){
-  return '<div class="theme"><div class="h"><span class="name">'+t.name+'</span><span class="badge '+t.cls+'">'+t.stance+
-    '</span></div><p>'+t.text+'</p><div class="inst">'+t.inst+'</div></div>'; }).join("");
+  return '<div class="stat"><div class="label">'+m.name+'</div><div class="val">'+m.value+'</div><div class="chg '+cls(m.chg)+'">'+arrow(m.chg)+' '+pct(m.chg)+'</div></div>'; }).join("");
+document.getElementById("themes-wrap").innerHTML = SNAPSHOT.themes.map(function(t){
+  return '<div class="theme"><div class="h"><span class="name">'+t.name+'</span><span class="badge '+t.cls+'">'+t.stance+'</span></div><p>'+t.text+'</p><div class="inst">'+t.inst+'</div></div>'; }).join("");
 document.getElementById("outlook").innerHTML = SNAPSHOT.outlook.map(function(o){
-  return '<div class="ocard"><div class="name">'+o.name+'</div><div class="hz">'+o.hz+
-    '</div><p>'+o.text+'</p><div class="how">'+o.how+'</div></div>'; }).join("");
+  return '<div class="ocard"><div class="name">'+o.name+'</div><div class="hz">'+o.hz+'</div><p>'+o.text+'</p><div class="how">'+o.how+'</div></div>'; }).join("");
 
 function ideaCard(i){
-  return '<div class="idea"><div class="h"><span class="sym">'+i.sym+' '+actionBadge(i.action)+
-    '</span><span class="conv">'+i.conv+'</span></div><p>'+i.text+'</p>'+
-    (i.plain ? '<div class="plain">'+i.plain+'</div>' : '')+
-    '<div class="levels"><span>Entry: <b>'+i.entry+'</b></span><span>Target: <b>'+i.target+
-    '</b></span><span>Stop: <b>'+i.stop+'</b></span></div></div>'; }
+  return '<div class="idea"><div class="h"><span class="sym">'+i.sym+' '+actionBadge(i.action)+'</span><span class="conv">'+i.conv+'</span></div><p>'+i.text+'</p>'+
+    (i.plain?'<div class="plain">'+i.plain+'</div>':'')+
+    '<div class="levels"><span>Entry: <b>'+i.entry+'</b></span><span>Target: <b>'+i.target+'</b></span><span>Stop: <b>'+i.stop+'</b></span></div></div>'; }
 function actionBadge(a){ var t={"b-buy":"Accumulate","b-watch":"Watch","b-hold":"Hold","b-trim":"Trim"};
   return '<span class="badge '+a+'" style="font-size:10.5px;vertical-align:middle">'+(t[a]||"")+'</span>'; }
 document.getElementById("tactical").innerHTML = SNAPSHOT.tactical.map(ideaCard).join("");
@@ -334,22 +420,20 @@ document.getElementById("strategic").innerHTML = SNAPSHOT.strategic.map(ideaCard
 
 document.querySelector("#watchlist tbody").innerHTML = SNAPSHOT.watchlist.map(function(r){
   if (r.group) return '<tr class="grp"><td colspan="4">'+r.group+'</td></tr>';
-  return '<tr><td><b>'+r.sym+'</b> &nbsp;<span style="color:#6b7280">'+r.name+'</span></td>'+
-    '<td class="num">'+r.price+'</td><td class="num '+cls(r.chg)+'">'+arrow(r.chg)+' '+pct(r.chg)+
-    '</td><td>'+badge(r.signal)+'</td></tr>'; }).join("");
+  return '<tr><td><b>'+r.sym+'</b> &nbsp;<span style="color:var(--muted)">'+r.name+'</span></td><td class="num">'+r.price+'</td><td class="num '+cls(r.chg)+'">'+arrow(r.chg)+' '+pct(r.chg)+'</td><td>'+badge(r.signal)+'</td></tr>'; }).join("");
 
 document.getElementById("notes").textContent = SNAPSHOT.notes;
 
 (function(){
   var rows = SNAPSHOT.watchlist.filter(function(r){ return !r.group; });
   new Chart(document.getElementById("chart"), {
-    type: "bar",
-    data: { labels: rows.map(function(r){ return r.sym; }),
-      datasets: [{ data: rows.map(function(r){ return r.chg; }),
-        backgroundColor: rows.map(function(r){ return r.chg >= 0 ? "#0a8a44" : "#c8332a"; }), borderRadius: 4 }] },
-    options: { responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{display:false}, tooltip:{callbacks:{label:function(c){return pct(c.raw);}}} },
-      scales: { y:{ticks:{callback:function(v){return v+"%";}},grid:{color:"#eef0f3"}}, x:{grid:{display:false}} } }
+    type:"bar",
+    data:{ labels:rows.map(function(r){return r.sym;}),
+      datasets:[{ data:rows.map(function(r){return r.chg;}),
+        backgroundColor:rows.map(function(r){return r.chg>=0?"#0a8a44":"#d23b30";}), borderRadius:5 }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:function(c){return pct(c.raw);}}} },
+      scales:{ y:{ticks:{callback:function(v){return v+"%";}},grid:{color:"#eef0f4"}}, x:{grid:{display:false}} } }
   });
 })();
 </script>
