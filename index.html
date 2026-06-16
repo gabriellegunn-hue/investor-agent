@@ -209,7 +209,7 @@
     .regime{padding:16px;}
     .regime .lab{font-size:17px;}
     th,td{padding:9px 10px; font-size:13px;}
-    #watchlist{min-width:470px;}
+    #watchTable{min-width:470px;}
     .cal-row{grid-template-columns:92px 1fr; gap:10px; padding:10px 13px;}
     .chartbox{height:240px; padding:12px;}
     .pf-row{grid-template-columns:14px 1fr auto auto; gap:8px;}
@@ -297,7 +297,7 @@
   </div>
 
   <h2 id="regime">Market regime</h2>
-  <div class="regime" id="regime" style="margin-bottom:12px"></div>
+  <div class="regime" id="regimeCard" style="margin-bottom:12px"></div>
   <div class="cards" id="macro"></div>
 
   <h2>Market snapshot</h2>
@@ -307,10 +307,10 @@
   <div class="themes" id="themes-wrap"></div>
 
   <h2 id="outlook">Where we're heading</h2>
-  <div class="outlook" id="outlook"></div>
+  <div class="outlook" id="outlookWrap"></div>
 
   <h2 id="calendar">What's coming up</h2>
-  <div class="cal" id="calendar"></div>
+  <div class="cal" id="calWrap"></div>
 
   <h2 id="ideas">Ideas</h2>
   <div class="recos">
@@ -319,7 +319,7 @@
   </div>
 
   <h2 id="watchlist">Watchlist</h2>
-  <div class="tablewrap"><table id="watchlist"><thead><tr><th>Instrument</th><th class="num">Price</th><th class="num">Day</th><th>Trend</th><th>Signal</th></tr></thead><tbody></tbody></table></div>
+  <div class="tablewrap"><table id="watchTable"><thead><tr><th>Instrument</th><th class="num">Price</th><th class="num">Day</th><th>Trend</th><th>Signal</th></tr></thead><tbody></tbody></table></div>
 
   <h2>Day moves (%)</h2>
   <div class="chartbox"><canvas id="chart"></canvas></div>
@@ -569,7 +569,7 @@ document.getElementById("b-meaning").textContent = b.meaning;
 document.getElementById("b-steps").innerHTML = b.steps.map(function(s){ return "<li>"+s+"</li>"; }).join("");
 document.getElementById("b-jargon").innerHTML = b.jargon.map(function(j){ return '<span class="chip"><b>'+j.t+'</b> — '+j.d+'</span>'; }).join("");
 
-document.getElementById("regime").innerHTML =
+document.getElementById("regimeCard").innerHTML =
   '<span class="rtag">Market regime</span><div class="lab">'+SNAPSHOT.regime.label+'</div><p>'+SNAPSHOT.regime.text+'</p>';
 document.getElementById("macro").innerHTML = SNAPSHOT.macro.map(function(m){
   return '<div class="stat"><div class="label">'+m.label+'</div><div class="val">'+m.value+'</div><div class="note '+(m.tone||"flat")+'">'+m.note+'</div></div>'; }).join("");
@@ -577,9 +577,9 @@ document.getElementById("market").innerHTML = SNAPSHOT.market.map(function(m){
   return '<div class="stat"><div class="label">'+m.name+'</div><div class="val">'+m.value+'</div><div class="chg '+cls(m.chg)+'">'+arrow(m.chg)+' '+pct(m.chg)+'</div></div>'; }).join("");
 document.getElementById("themes-wrap").innerHTML = SNAPSHOT.themes.map(function(t){
   return '<div class="theme"><div class="h"><span class="name">'+t.name+'</span><span class="badge '+t.cls+'">'+t.stance+'</span></div><p>'+t.text+'</p><div class="inst">'+t.inst+'</div></div>'; }).join("");
-document.getElementById("outlook").innerHTML = SNAPSHOT.outlook.map(function(o){
+document.getElementById("outlookWrap").innerHTML = SNAPSHOT.outlook.map(function(o){
   return '<div class="ocard"><div class="name">'+o.name+'</div><div class="hz">'+o.hz+'</div><p>'+o.text+'</p><div class="how">'+o.how+'</div></div>'; }).join("");
-document.getElementById("calendar").innerHTML = (SNAPSHOT.calendar||[]).map(function(c){
+document.getElementById("calWrap").innerHTML = (SNAPSHOT.calendar||[]).map(function(c){
   return '<div class="cal-row"><span class="date">'+c.date+'</span><span class="ev"><b>'+c.event+'</b>'+(c.note?' <small>— '+c.note+'</small>':'')+'</span></div>'; }).join("");
 
 function ideaCard(i){
@@ -594,7 +594,7 @@ document.getElementById("strategic").innerHTML = SNAPSHOT.strategic.map(ideaCard
 // Watchlist (with sparklines from history.json if available)
 function renderWatchlist(hist){
   var series = (hist && hist.series) || {};
-  document.querySelector("#watchlist tbody").innerHTML = SNAPSHOT.watchlist.map(function(r){
+  document.querySelector("#watchTable tbody").innerHTML = SNAPSHOT.watchlist.map(function(r){
     if (r.group) return '<tr class="grp"><td colspan="5">'+r.group+'</td></tr>';
     return '<tr><td><b>'+r.sym+'</b> &nbsp;<span style="color:var(--muted)">'+r.name+'</span></td>'+
       '<td class="num">'+r.price+'</td>'+
