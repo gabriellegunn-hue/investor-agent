@@ -470,175 +470,512 @@ const TREND_PICKS = [
     note:"A hedge, not a growth engine — usually a small slice (~5–10%) held for the long term." }
 ];
 const SNAPSHOT = {
-  updated: "7 Oct 2026 AEDT (Wednesday morning, 8:45am). US rows are Tuesday 6 October closes. ASX rows are Tuesday 6 October closes (the ASX opens 10:00am AEDT; futures flat at 8,765). Gold and silver are Tuesday closes on Trading Economics' CFD feed. AUD/USD is the ECB reference rate for 6 October (Frankfurter API). Rows marked † are stale or carried; rows marked ≈ are computed from a reported percentage move or taken from a single secondary source rather than a published close.",
-  takeaways: {
-    mood: "Positive, broadening a little. The S&P 500 closed above 7,800 for the first time (7,818.93, +0.58%) and the Nasdaq set a third straight record (+0.45%) while bond yields eased: the US 10-year fell 4bp to about 5.27% and the 30-year to 5.65%. Gold rose 0.6% to US$4,164 and silver 0.5% to US$61.36, so the gold/silver ratio is 67.9. Brent held about US$101. The ASX 200 closed +0.6% at 8,736 and futures are flat. Fed minutes land Thursday 5:00am AEDT; US CPI is Wednesday 14 October.",
-    moodCls: "pos",
-    headline: "A second record session on Wall Street, and this time yields helped rather than hindered. The S&P 500 closed at 7,818.93 (+0.58%), its first close above 7,800; the Nasdaq Composite closed at 27,599.79 (+0.45%), a third straight record; the Dow added 0.49% to 51,521.28. Small caps did not join in: the Russell 2000 fell 0.57%, dragged by healthcare. Nvidia closed at a record US$239.24 (+0.14%) after trading as high as US$243.37, with a market value of about US$5.78 trillion and a fresh US$150 billion buyback authorisation behind it. Microsoft rose 0.78% to US$529.30, Apple 0.22% to US$333.63. Marvell jumped 7% on raised long-term targets, AMD 2.8%, and Constellation Energy 12% after a 20-year nuclear power deal with Google, which is why the clean energy ETF ICLN rose 1.45% to US$17.54. The semiconductor ETF SMH slipped 0.22% to US$632.50 despite the records, a sign the gains were narrow. Bonds finally relaxed a little: the 10-year yield fell about 4bp to 5.27% (TheStreet: 5.275%), the 30-year to 5.65%, and the 2-year 4bp to 4.79%, after Monday's 24-year highs. Oil was the reason: Brent traded below US$99 during the day after the G7 agreed to release 100 million barrels of reserves over four months, then recovered to about US$101 by the New York close. Markets still price about an 80% chance the Fed holds on 28 October and about 70% for a December rise. The trade deficit widened to a 19-month high on record imports. In metals, gold rose 0.6% to US$4,164.34 and silver 0.5% to US$61.36 on Trading Economics' feed (range US$60.67 to US$62.06 in London), so the gold/silver ratio is 67.9, barely changed from 67.8. Copper +0.3%, platinum -0.4%. The silver miners ETF SIL closed about US$86.64 ≈ (+0.6%), so it rose with the metal this time, which is the sentiment check it failed on Monday. Locally, the ASX 200 closed +0.57% at 8,736 for a third straight gain: CBA A$152.38 (+0.77%), BHP A$62.86 (+1.57%), CSL A$178.68 (+0.95%). Westpac consumer sentiment fell 4.7% to 80.4 in October, with the post-RBA sub-sample at 67.2, a level last seen in the early 1990s recession; Westpac still expects a November rise. Futures are flat at 8,765. The Aussie dollar is 0.6982.",
-    points: [
-      { icon: "up", t: "S&P 500 first close above 7,800 (7,818.93, +0.58%); Nasdaq third straight record; Nvidia record US$239.24", d: "FactSet has Q3 earnings growth estimates revised up to nearly 30% after 50% in Q2, and that, not rates, is what the market is buying. The Russell 2000 fell 0.57% and SMH slipped 0.22%, so the record is narrow. Keep adding through the normal contribution; a record close is not an entry signal and a narrow one is less of one." },
-      { icon: "drop", t: "US 10-year eased to about 5.27% (-4bp), 30-year 5.65%, 2-year 4.79%, after Monday's 24-year highs", d: "Yields fell because oil fell during the session (G7 releasing 100 million barrels; Gulf exports above pre-war levels for half of September), not because the Fed changed. Brent still finished near US$101 and Iran attacked about 20 ships in a month, so this is a breather, not a trend. The 10% cash buffer and the Underweight on clean energy stay." },
-      { icon: "shield", t: "Gold +0.6% to US$4,164, silver +0.5% to US$61.36, ratio 67.9; SIL about US$86.64 ≈ (+0.6%), rising with the metal", d: "Fading odds of an October Fed rise (about 20%) helped both metals against a dollar near an 18-month high. The miners rose with the metal, which passes the test they failed on Monday; one day is not a trend. Silver is down 7.2% over a month and up 28% on a year ago. Hold the small slice at its cap; nothing to do." },
-      { icon: "alert", t: "Westpac consumer sentiment -4.7% to 80.4; post-RBA responses 67.2 (lowest since the early 1990s recession); ASX 200 +0.57% to 8,736, futures flat", d: "Households are feeling the 4.60% cash rate and A$2.30 petrol: 80% expect mortgage rates to rise again. Westpac still tips a November rise; the Q3 CPI on 28 October decides it. The ASX has now risen three sessions in a row, led by BHP overtaking CBA in size. Check your savings rate has moved with the cash rate; the big four pass the rise to mortgages on 9 October." }
+  "updated": "8 Oct 2026 AEDT (Thursday morning, about 9:05am). US rows are Wednesday 7 October closes. ASX rows are Wednesday 7 October closes (the ASX opens 10:00am AEDT). Gold and silver are Trading Economics CFD prices for 7 October. AUD/USD is the ECB reference rate for 7 October (Frankfurter API). Rows marked † are stale or carried; rows marked ≈ come from a single secondary source.",
+  "takeaways": {
+    "mood": "Cautious, a small pullback",
+    "moodCls": "neutral",
+    "headline": "Wall Street slipped from Tuesday's records on Wednesday and metals had a sharp down day. The S&P 500 closed at 7,801.77 (-0.22%), the Nasdaq at 27,538.69 (-0.22%) and the Dow at 51,179.87 (-0.66%), while the small-company Russell 2000 fell 1.31%. Nvidia dipped 0.74% to US$237.47 and the chip ETF SMH fell 1.18%; Apple rose 0.91% to US$336.67 and Microsoft was flat at US$529.76. The Fed's September minutes showed most members expect another rate rise before year end, with no fixed date; markets put about 17 to 20% odds on October. The US 10-year yield closed 5.28% after touching 5.36% (highest since 2002) earlier in the day. Gold fell 1.3% to about US$4,111 (a one-month low) and silver fell 2.5% to US$59.78 (lowest since early August), so the gold/silver ratio rose to 68.8. The silver miners ETF SIL dropped 3.5% to US$83.56. In Australia the ASX 200 closed 0.09% lower at 8,728; CBA fell 1.3%, BHP 0.65% and CSL rose 1.85%. The Aussie dollar is about 0.6951 (-0.4%) as the US dollar strengthened.",
+    "points": [
+      {
+        "icon": "drop",
+        "t": "S&P 500 -0.22% to 7,801.77, Dow -0.66%, Russell 2000 -1.31%, Nvidia -0.74%, SMH -1.18%",
+        "d": "A small step back from records, with smaller companies and chips weaker. One quiet down day is normal and not a signal. Keep the regular monthly contribution going."
+      },
+      {
+        "icon": "shield",
+        "t": "Silver -2.5% to US$59.78 (lowest since early Aug), gold -1.3% to US$4,111, ratio 68.8, SIL -3.5% to US$83.56",
+        "d": "Metals fell as the US dollar and bond yields rose and the Fed minutes leaned hawkish. Silver miners fell more than the metal, as they usually do. The small silver slice stays as is: no adding, no selling."
+      },
+      {
+        "icon": "alert",
+        "t": "Fed minutes: most members expect another rise by year end; US 10-year closed 5.28% (touched 5.36%)",
+        "d": "The minutes cover the 15 to 16 September meeting that raised rates. October odds are about 17 to 20%, December is the live date. Long yields near 24-year highs are the main pressure on shares and metals. This is why the mix keeps a 10% cash buffer."
+      },
+      {
+        "icon": "idea",
+        "t": "ASX 200 8,728 (-0.09%), CBA -1.3%, CSL +1.9%, BHP -0.65%; AUD/USD about 0.6951",
+        "d": "A quiet local session. Next local item is the big banks passing on the RBA rise on Friday 9 October, then US inflation (CPI) on 14 October. Check your savings account rate has moved too."
+      }
     ],
-    bottom: "A good night for shares, a small gain for gold and silver, and a small step down in bond yields because oil eased. The plan is unchanged: keep the monthly contribution going, keep the cash buffer earning close to 4.6%, hold the small silver slice without adding, and do not buy Nvidia or the S&P 500 because they hit a record. Fed minutes Thursday morning and US CPI next Wednesday are the two things that could change the picture."
+    "bottom": "A soft day for shares and a harder one for metals. Nothing in the plan changes: keep the monthly contribution going, keep the cash buffer earning close to the RBA rate, hold the small silver slice without adding. US CPI on 14 October is the next big test."
   },
-  portfolio: {
-    note: "An illustration of how a balanced beginner might spread money across asset types. Education, not advice, and not a recommendation to buy any specific fund. The mix is unchanged for a twentieth session. With the RBA at 4.60% and a November rise still live, the 10% cash slice earns a real return in a competitive account; that is the reason to hold it. Sample A$500 a month: A$275 broad index, A$75 AI & tech, A$50 gold & real assets, A$50 dividends & defensives, A$50 cash.",
-    mix: [
-      { name: "Broad index core", pct: 55, color: "#4f46e5", ex: "e.g. IVV / VTS / global ETF" },
-      { name: "AI & technology", pct: 15, color: "#22d3ee", ex: "e.g. SMH / QQQM" },
-      { name: "Gold & real assets", pct: 10, color: "#b8860b", ex: "e.g. GOLD / PMGOLD / DBC" },
-      { name: "Dividends & defensives", pct: 10, color: "#0a8a44", ex: "e.g. SCHD / VHY / CSL" },
-      { name: "Cash buffer", pct: 10, color: "#94a3b8", ex: "e.g. high-interest savings / cash ETF" }
+  "portfolio": {
+    "note": "An illustration of how a balanced beginner might spread money across asset types. Education, not advice, and not a recommendation to buy any specific fund. The mix is unchanged for a twentieth session. With the RBA at 4.60% and a November rise still live, the 10% cash slice earns a real return in a competitive account; that is the reason to hold it. Sample A$500 a month: A$275 broad index, A$75 AI & tech, A$50 gold & real assets, A$50 dividends & defensives, A$50 cash.",
+    "mix": [
+      {
+        "name": "Broad index core",
+        "pct": 55,
+        "color": "#4f46e5",
+        "ex": "e.g. IVV / VTS / global ETF"
+      },
+      {
+        "name": "AI & technology",
+        "pct": 15,
+        "color": "#22d3ee",
+        "ex": "e.g. SMH / QQQM"
+      },
+      {
+        "name": "Gold & real assets",
+        "pct": 10,
+        "color": "#b8860b",
+        "ex": "e.g. GOLD / PMGOLD / DBC"
+      },
+      {
+        "name": "Dividends & defensives",
+        "pct": 10,
+        "color": "#0a8a44",
+        "ex": "e.g. SCHD / VHY / CSL"
+      },
+      {
+        "name": "Cash buffer",
+        "pct": 10,
+        "color": "#94a3b8",
+        "ex": "e.g. high-interest savings / cash ETF"
+      }
     ]
   },
-  beginner: {
-    lead: "Today's lesson: what a 'narrow' record means, and why it matters more than the record itself.",
-    meaning: "The S&P 500 closed above 7,800 for the first time on Tuesday. That sounds like the whole market had a great day. It did not. The Russell 2000 (the 2,000 smaller US companies) fell 0.57%. The semiconductor ETF SMH fell 0.22% on the same day Nvidia hit a record. Only 386 of the 500 companies in the S&P 500 rose, and most of the index's gain came from a handful of very large AI-related names. Bank of America made the same point about the Nasdaq: a small group of giants is dragging it higher. Why does this matter to you? An index is weighted by company size, so when the biggest five or ten companies rise, the index rises even if the other 490 go nowhere. A record built that way is more fragile than one where most companies participate, because it depends on a few share prices staying expensive. It is also why the mix on this page holds a broad index core (you own all 500, so you get the winners without picking them) and caps the AI & technology sleeve at 15% (so a stumble in those few names does not define your result). The second thing to notice is why yields fell: oil dropped during the session after the G7 agreed to release emergency stocks, so traders worried a bit less about energy-driven inflation and bond yields slipped. Oil then recovered most of the fall by the close. That tells you the bond market is currently taking its cue from the oil price, not the Fed. When you read 'yields fell, stocks rose', check what oil did first. For a beginner the practical rule is the same as every day: a record is not a reason to buy more than your plan says, and a narrow record is a reason to check your AI slice has not drifted above 15%.",
-    steps: [
-      "Nothing to trade today. The ASX opens 10:00am AEDT with futures flat at 8,765 after three days of gains. No major local data today.",
-      "Savings rate check (still the one action item). RBA cash rate 4.60%. Bendigo passed the rise to mortgages today, the big four follow 9 October. If your saver pays under 4%, move it this week.",
-      "If your AI & technology sleeve has drifted above about 15% after this run, note it and trim back on your normal rebalancing date, not today.",
-      "Fed minutes Thursday 5:00am AEDT describe the 16 September meeting, before the weak jobs data. Expect them to read hawkish. Do not react; the market already has."
+  "beginner": {
+    "lead": "Today's lesson: why shares and metals can fall together when bond yields rise.",
+    "meaning": "On Wednesday the S&P 500 slipped 0.22%, gold fell 1.3% and silver fell 2.5% on the same day. The common cause was the bond market. The US 10-year yield (what the US government pays to borrow for ten years) reached 5.36% during the day, the highest since 2002, and the Fed's minutes said most members expect another rate rise this year. When safe government bonds pay more, shares look a bit less attractive, and gold and silver (which pay no income) look less attractive too. The US dollar also gets stronger, which makes metals dearer for overseas buyers. None of this changes a long-term plan. It is why a balanced mix holds some cash that earns interest while the rest rides out the swings.",
+    "steps": [
+      "Nothing to trade today. Make your normal monthly contribution on schedule.",
+      "Savings rate check (still the one action item). The RBA cash rate is 4.60% and the big four pass on the rise on 9 October. If your saver pays under 4%, it is worth moving this week.",
+      "If your AI & technology slice has drifted above about 15%, trim back on your normal rebalancing date, not today.",
+      "US inflation (CPI) lands on 14 October (11:30pm AEDT). Do not react to guesses before then."
     ],
-    jargon: [
-      { t: "Market breadth", d: "How many shares are rising versus falling on a given day. Good breadth means most companies are participating; poor breadth means a few large names are doing the lifting. Tuesday had a record index with poor breadth (Russell 2000 down, SMH down)." },
-      { t: "Cap-weighted index", d: "An index where each company's influence matches its market value. Nvidia (about US$5.8 trillion) moves the S&P 500 roughly 50 times more than a US$100 billion company does. This is why a few giants can set a record on their own." },
-      { t: "Strategic reserve release", d: "Governments hold emergency oil stocks. The G7 agreed to release 100 million barrels over four months, front-loaded with diesel. More supply lowers the price for a while, which is why oil and then bond yields fell on Tuesday. It does not fix the shortage if the Strait of Hormuz stays shut." },
-      { t: "Gold/silver ratio", d: "How many ounces of silver buy one ounce of gold. About 67.9 this morning (US$4,164 divided by US$61.36), almost unchanged from 67.8 because both metals rose about the same amount. Below the long-run average of about 70, so silver is slightly rich against gold." }
+    "jargon": [
+      {
+        "t": "Bond yield",
+        "d": "The interest rate the government pays on a bond. When yields rise, bond prices fall, and shares and gold often come under pressure."
+      },
+      {
+        "t": "FOMC minutes",
+        "d": "The written record of the Fed's last meeting, released about three weeks later. It shows how members were thinking, which markets use to guess the next move."
+      },
+      {
+        "t": "Gold/silver ratio",
+        "d": "How many ounces of silver buy one ounce of gold. About 68.8 today (US$4,111 divided by US$59.78), still just under the long-run average of about 70."
+      },
+      {
+        "t": "Russell 2000",
+        "d": "An index of 2,000 smaller US companies. It fell more than the big-company S&P 500 today, which usually happens when yields rise."
+      }
     ]
   },
-  regime: {
-    label: "Hiking cycle, energy-driven, pace in question · Fed 3.75-4.00%, ~80% hold in Oct, ~70% rise in Dec · US 10Y ~5.27% (off 24-year high), 30Y 5.65% · US PCE 3.4%, core 3.0%; CPI 14 Oct (consensus 3.7%) · RBA 4.60%, Nov rise live · gold US$4,164, silver US$61.36, ratio 67.9 · AUD/USD 0.6982 · S&P 500 record 7,819, Nasdaq record · ASX 200 8,736, futures 8,765",
-    text: "No change in regime. It is still a tightening cycle driven by oil-supply inflation and AI-related demand, with the first serious question mark over the pace coming from Friday's weak US jobs report (29,000 added, unemployment 4.2%, wages +3.0%). The market has settled on a Fed hold on 28 October (about 80%) and a December rise (about 70%). Tuesday's nuance is that long yields finally stepped back from their 24-year highs (10-year about 5.27%, 30-year 5.65%) because oil fell during the session on the G7's 100-million-barrel release and signs Gulf exports are running above pre-war levels. Oil recovered to about US$101 by the close, so the relief is shallow; Iran has attacked about 20 ships in a month and the strait is still formally shut. Shares set records on earnings expectations (FactSet: Q3 growth estimates near 30%) rather than on rates, and the records are narrow: the Russell 2000 fell and the chip ETF slipped on a day Nvidia made a new high. In Australia the ASX has risen three sessions in a row to 8,736, but consumer sentiment has collapsed to 80.4 (post-RBA sub-sample 67.2, a 1990s-recession level), petrol is above A$2.30 and the private inflation gauge runs at 4.8%; Westpac still expects a November rise and the Q3 CPI on 28 October decides it. AI stays Neutral (records plus hot IPOs is the enthusiastic phase). Real assets stay Overweight at a capped 10% with silver and gold both edging up and the miners rising with the metal for once. Clean energy stays Underweight while the 30-year is 5.65%, even after Tuesday's nuclear-deal bounce. Dividends stay Neutral. Next swing factors: Fed minutes Thursday 5:00am AEDT, US CPI 14 October, Australian Q3 CPI 28 October, FOMC 27-28 October, RBA 3 November."
+  "regime": {
+    "label": "Hiking cycle, energy-driven, minutes lean hawkish · Fed 3.75-4.00%, October hold likely (about 80 to 83%), December rise live · US 10Y 5.28% (touched 5.36%), 30Y 5.66% · US CPI 14 Oct (consensus about 3.7%) · RBA 4.60%, Nov rise live · gold US$4,111, silver US$59.78, ratio 68.8 · AUD/USD 0.6951 · S&P 500 7,802, ASX 200 8,728",
+    "text": "No change in regime: still a tightening cycle driven by oil-supply inflation. Wednesday's Fed minutes (15 to 16 September meeting) said most members expect another rise by year end without a set date, which kept the 10-year yield near 5.3% (it touched 5.36% intraday, the highest since 2002) and lifted the US dollar. Shares eased from records (S&P 500 -0.22%, Russell 2000 -1.31%), and metals took the bigger hit: gold to a one-month low and silver to its lowest since early August. Oil was steady, WTI about US$89 and Brent about US$100 to 102, with the Strait of Hormuz still formally shut. In Australia the ASX 200 closed 8,728 (-0.09%) and the RBA cash rate is 4.60%, with the Q3 CPI on 28 October deciding November. AI stays Neutral. Real assets stay Overweight at a capped 10%, though today was a reminder they are volatile. Clean energy stays Underweight while long yields are this high (ICLN -1.3%). Dividends stay Neutral. Next swing factors: Australian bank rate changes 9 October, US CPI 14 October, Australian Q3 CPI 28 October, FOMC 27 to 28 October, RBA 3 November."
   },
-  macro: [
-    { label: "US PCE inflation (YoY)", value: "3.4% (core 3.0%)", note: "August, released 30 September, both below forecast. August CPI was 3.4%. September CPI lands Wednesday 14 October (8:30am ET, 11:30pm AEDT) with consensus about 3.7%, the first month fully capturing the oil and diesel spike. ISM services prices-paid rose at the fastest pace in more than four years. US diesel topped US$6 a gallon in September; Trump has temporarily allowed dyed off-road diesel on highways.", tone: "neutral" },
-    { label: "Fed funds", value: "3.75-4.00%", note: "Raised 25bp on 16 September. After the 29,000 jobs print, markets price about an 80% chance of a hold on 28 October and about a 70% chance of a rise in December (CME FedWatch). Minutes of the September meeting land Wednesday 2:00pm ET (Thursday 5:00am AEDT); they predate the jobs data and will read hawkish.", tone: "neutral" },
-    { label: "RBA cash rate", value: "4.60%", note: "Raised 25bp on 29 September, the fourth rise of 2026 and a 15-year high. Westpac consumer sentiment fell 4.7% to 80.4 in October; among those surveyed after the decision it was 67.2, a level last seen in the early 1990s recession. 80% of consumers expect mortgage rates to rise. Westpac still tips a November rise. Bendigo passes the rise to mortgages today, the big four on 9 October. Q3 CPI 28 October.", tone: "neg" },
-    { label: "US 10-year yield", value: "~5.27% (30Y 5.65%)", note: "Eased about 4bp on Tuesday from Monday's 5.31%, the highest since 2002, as oil fell during the session. TheStreet's late print was 5.275%; Trading Economics 5.27%. The 30-year is 5.65%, the 2-year 4.79%. Australia's 10-year is about 5.35-5.39%, still above the US. France's 10-year dipped to 4.7% from a 2000s high. One day of relief, with the global long end still the pressure point.", tone: "neutral" }
+  "macro": [
+    {
+      "label": "US PCE inflation (YoY)",
+      "value": "3.4% (core 3.0%)",
+      "note": "August, released 30 September, both below forecast. August CPI was 3.4%. September CPI lands Wednesday 14 October (8:30am ET, 11:30pm AEDT) with consensus about 3.7%, the first month fully capturing the oil and diesel spike. ISM services prices-paid rose at the fastest pace in more than four years. US diesel topped US$6 a gallon in September; Trump has temporarily allowed dyed off-road diesel on highways.",
+      "tone": "neutral"
+    },
+    {
+      "label": "Fed funds",
+      "value": "3.75-4.00%",
+      "note": "Raised 25bp on 16 September. September minutes (released Wednesday) show most members expect another rise by year end, no date set. Markets price about 17 to 20% odds of a rise on 28 October and a likely rise in December.",
+      "tone": "neutral"
+    },
+    {
+      "label": "RBA cash rate",
+      "value": "4.60%",
+      "note": "Raised 25bp on 29 September, the fourth rise of 2026 and a 15-year high. Westpac consumer sentiment fell 4.7% to 80.4 in October; among those surveyed after the decision it was 67.2, a level last seen in the early 1990s recession. 80% of consumers expect mortgage rates to rise. Westpac still tips a November rise. Bendigo passes the rise to mortgages today, the big four on 9 October. Q3 CPI 28 October.",
+      "tone": "neg"
+    },
+    {
+      "label": "US 10-year yield",
+      "value": "5.28% (30Y 5.66%)",
+      "note": "Touched 5.36% on Wednesday (highest since 2002) before closing 5.28%, up 1bp on the day. The 30-year closed 5.66%. Long rates are the main pressure point for shares and metals.",
+      "tone": "neg"
+    }
   ],
-  market: [
-    { name: "S&P 500", value: "7,818.93 (record)", chg: 0.58 },
-    { name: "ASX 200", value: "8,736 (Tue) · futures 8,765 flat", chg: 0.57 },
-    { name: "Gold (USD/oz)", value: "4,164", chg: 0.59 },
-    { name: "AUD/USD", value: "0.6982", chg: 0.20 }
+  "market": [
+    {
+      "name": "S&P 500",
+      "value": "7,801.77",
+      "chg": -0.22
+    },
+    {
+      "name": "ASX 200",
+      "value": "8,728 (Wed)",
+      "chg": -0.09
+    },
+    {
+      "name": "Gold (USD/oz)",
+      "value": "4,111",
+      "chg": -1.29
+    },
+    {
+      "name": "AUD/USD",
+      "value": "0.6951",
+      "chg": -0.44
+    }
   ],
-  silver: {
-    stance: "Neutral (small sleeve) · held for a nineteenth session. Silver +0.5% to US$61.36 (Tuesday close), ratio 67.9; SIL rose with the metal (about US$86.64 ≈, +0.6%). Structural deficit intact; near-term oversupply argument also intact. Hold at target size; no adding, no selling",
-    cls: "nw",
-    headline: "Silver closed Tuesday at US$61.36 on Trading Economics' feed, up 0.5%, after a London range of US$60.67 to US$62.06; gold rose 0.6% to US$4,164.34, so the gold/silver ratio is 67.9, essentially unchanged from 67.8. Both metals were helped by the same thing: the odds of a Fed rise this month have fallen to about 20% after the weak jobs report, which lowers the cost of holding metal that pays no income. Working against them is a US dollar near an 18-month high as the euro sags on French budget stress. The miners behaved better than on Monday. SIL, the silver miners ETF, traded between US$85.14 and US$87.46 and finished about US$86.64 ≈ (+0.6%), so it rose with the metal; Yahoo's intraday print at 10:40am New York was US$85.99, which is why the close is marked ≈ pending a published figure. One day of the miners keeping pace does not undo a month in which SIL fell about 13% against the metal's 7%. The two-sided fundamental picture is unchanged: Metals Focus and the Silver Institute estimate a sixth straight deficit of about 46 Moz in 2026, with silver-backed ETFs having absorbed over 100 Moz and cumulative stock drawdowns near 800 Moz, while Deutsche Bank argues the near-term market has tipped into oversupply (free London vault stocks up about 70% since October 2025) and could flip to surplus in 2027, with solar makers cutting silver per cell by about 17% this year. Analyst views are unchanged: Trading Economics' model has silver at about US$63.60 by year-end and US$74.60 in 12 months; J.P. Morgan sees about US$63 in Q4; one forecast cited by MINING.COM has silver averaging US$70 by Q2 2027, still below the first-half 2026 highs. Silver Mines Ltd (SVL.AX) shows a last trade of about A$0.138 † on one feed, consistent with the A$0.1375 carried since 28 September; no exchange-published close has been verified. Hold a small slice sized so that a return to US$58 would not matter to your plan.",
-    metrics: [
-      { label: "Silver spot", value: "US$61.36/oz (+0.5% Tue)", note: "Trading Economics CFD close for Tuesday 6 October, up from US$61.05 on Monday. London range US$60.67 to US$62.06 (Fortune/Kitco). Down about 7.2% over a month, up about 28% on a year ago. All-time high US$121.64 in January 2026." },
-      { label: "Gold/silver ratio", value: "67.9 (flat)", note: "US$4,164.34 divided by US$61.36. Unchanged from 67.8 on Monday because gold (+0.6%) and silver (+0.5%) rose by about the same amount. Below the long-run average of about 70. J.P. Morgan still expects it to drift back toward 70 in H2." },
-      { label: "2026 supply deficit", value: "~46 Moz (6th straight year)", note: "Metals Focus / Silver Institute estimate of 46.3 Moz, widening from 40.3 Moz in 2025; cumulative above-ground drawdown near 800 Moz by end-2025. Silver ETFs have absorbed over 100 Moz. Against that, Deutsche Bank says free London stocks are up about 70% since October 2025, the near-term market is oversupplied and 2027 could be a surplus. Solar silver per cell is down about 17% this year. Trust the direction, not the decimal." },
-      { label: "Analyst view", value: "TE model: ~US$63.60 end-Q4, ~US$74.60 in 12 months; JPM: ~US$63 Q4; MINING.COM-cited: ~US$70 avg by Q2 2027", note: "Most published views see silver roughly flat to slightly higher into year-end and higher next year, but below the first-half 2026 peak. Bank of America's warning that rising yields could push gold below US$4,000 applies to silver with more force, since silver moves about twice as much. Heraeus' US$60 line has now held for eight sessions." }
+  "silver": {
+    "stance": "Neutral (small sleeve) · held for a twentieth session. Silver -2.5% to US$59.78 (lowest since early August), ratio 68.8, SIL -3.5%. Structural deficit intact; near-term oversupply argument intact. Hold at target size; no adding, no selling",
+    "cls": "nw",
+    "headline": "Silver fell 2.5% on Wednesday to US$59.78 on Trading Economics' feed, its lowest since early August, and gold fell 1.3% to about US$4,111, a one-month low, so the gold/silver ratio rose to 68.8 from 67.9. The cause was the same for both: a stronger US dollar, US 10-year yields near 5.3% (5.36% at the high, the highest since 2002) and Fed minutes saying most members expect another rise by year end. Metals pay no income, so higher yields hurt them. The silver miners ETF SIL fell 3.5% to US$83.56, more than the metal, which is normal for miners in a down move. The two-sided fundamental picture is unchanged: Metals Focus and the Silver Institute estimate a sixth straight deficit of about 46 Moz in 2026, while Deutsche Bank argues the near-term market is oversupplied and could flip to surplus in 2027. Hold a small slice sized so that a fall to US$55 would not matter to your plan.",
+    "metrics": [
+      {
+        "label": "Silver spot",
+        "value": "US$59.78/oz (-2.5% Wed)",
+        "note": "Trading Economics CFD price for 7 October, down from US$61.36 on Tuesday. Lowest since early August. Indicative CFD price, not an official benchmark. All-time high US$121.64 in January 2026."
+      },
+      {
+        "label": "Gold/silver ratio",
+        "value": "68.8 (up from 67.9)",
+        "note": "US$4,110.98 divided by US$59.78. Silver fell further than gold, so the ratio rose. Still just below the long-run average of about 70."
+      },
+      {
+        "label": "2026 supply deficit",
+        "value": "~46 Moz (6th straight year)",
+        "note": "Metals Focus / Silver Institute estimate of 46.3 Moz, widening from 40.3 Moz in 2025; cumulative above-ground drawdown near 800 Moz by end-2025. Silver ETFs have absorbed over 100 Moz. Against that, Deutsche Bank says free London stocks are up about 70% since October 2025, the near-term market is oversupplied and 2027 could be a surplus. Solar silver per cell is down about 17% this year. Trust the direction, not the decimal."
+      },
+      {
+        "label": "Analyst view",
+        "value": "TE model: ~US$63.60 end-Q4, ~US$74.60 in 12 months; JPM: ~US$63 Q4; MINING.COM-cited: ~US$70 avg by Q2 2027",
+        "note": "Most published views see silver roughly flat to slightly higher into year-end and higher next year, but below the first-half 2026 peak. Bank of America's warning that rising yields could push gold below US$4,000 applies to silver with more force, since silver moves about twice as much. Heraeus' US$60 line has now held for eight sessions."
+      }
     ],
-    drivers: [
-      "Rates: about 20% odds of a Fed rise in October and 70% for December after the weak jobs report. Silver pays no income, so a softer short-rate path is its main near-term help. The 10-year at about 5.27% is a touch lower than Monday's 5.31% but still a 24-year-high neighbourhood, and the dollar is near an 18-month high.",
-      "Industrial demand: copper +0.3% and silver +0.5% on Tuesday, platinum -0.4%. The industrial bid is still there but quieter than Monday. About half of silver demand is industrial, and the US manufacturing PMI at 55.9 (best since 2022) supports it.",
+    "drivers": [
+      "Rates and dollar: Fed minutes say most members expect another rise by year end (October odds about 17 to 20%, December likely). Silver pays no income, so higher yields and a stronger US dollar are its main near-term headwinds. The 10-year touched 5.36%.",
+      "Industrial demand: about half of silver demand is industrial. Copper and the wider metals complex were also soft, so the industrial bid did not cushion the fall on Wednesday.",
       "Supply: the sixth straight deficit (~46 Moz) is the multi-year reason to hold a small slice. Deutsche Bank's counter-argument (London stocks up 70% in a year, surplus possible in 2027) is why the slice stays small and why nobody should expect a straight line.",
-      "Miners vs metal: SIL rose about 0.6% with the metal on Tuesday after falling on Monday when silver rose. Miners carry cost-of-capital risk (yields near 24-year highs) and operating risk the metal does not. SIL is still down about 13% from US$99 at the start of September, roughly double the metal's fall."
+      "Miners vs metal: SIL fell 3.5% against silver's 2.5%. Miners carry cost-of-capital and operating risk the metal does not, and they fall harder in a sell-off."
     ],
-    plain: "Silver rose about half a per cent on Tuesday to US$61.36 and gold rose about the same, so the ratio between them did not move. The miners fund (SIL) rose with the metal this time. The long-term shortage story is unchanged; so is the warning that there is plenty of metal around right now. Hold your small slice, do not add, do not sell.",
-    how: "Lowest to highest risk. First, a physically backed silver ETF such as SLV or PSLV: you own a claim on the metal, no company risk; it would be tracking spot around US$61.36. Second, a silver miners ETF such as SIL (about US$86.64 ≈ Tuesday, +0.6%): a basket of about 41 miners that moves more than the metal in both directions and has lagged it for a month. Third, a single explorer such as SVL.AX (about A$0.138 †, no verified exchange close since 28 September): one project and the widest range of outcomes, including zero. Most beginners are best served by the first, in a small amount, bought in instalments.",
-    watch: "Three things. Whether silver holds above US$60 through the Fed minutes (Thursday 5:00am AEDT) and into the 14 October US CPI; a hot CPI would revive December-and-beyond pricing and hit metals. Whether the gold/silver ratio breaks below 67 (silver being bought as an industrial recovery play) or snaps back toward 69 (the rally was short covering). And whether SIL can string together more than one day of rising with the metal; Tuesday was one.",
-    miners: [
-      { name: "Physically backed silver (metal, not companies)", sym: "SLV / PSLV", note: "The simplest route. You own a claim on physical silver, so you get the metal's move without company risk. It would be tracking spot near US$61.36, up about 0.5% on Tuesday. For most beginners, this is the sensible default in a small size." },
-      { name: "Global X Silver Miners ETF", sym: "SIL", note: "About US$86.64 ≈ on Tuesday 6 October (Robinhood end-of-day quote; range US$85.14 to US$87.46; Yahoo's 10:40am print was US$85.99). Up about 0.6% from Monday's US$86.15. A basket of about 41 silver-focused miners led by Wheaton Precious Metals (about 24%), Pan American Silver (11%) and Coeur Mining (11%). 52-week range US$61.80 to US$119.24; about 1% yield. Rose with the metal on Tuesday after falling against it on Monday. Down about 13% from US$99 at the start of September." },
-      { name: "Silver Mines Ltd", sym: "SVL.AX", note: "About A$0.138 † (one feed's last trade; market cap about A$311 million), consistent with the A$0.1375 carried since 28 September. No exchange-published close verified. 52-week range A$0.115 to A$0.285. Completed A$26 million of royalty buy-backs on its Bowdens project near Mudgee, NSW, on 29 September; a NSW Independent Planning Commission hearing is the next item, and a 94 Moz reserve supports a 26-year mine plan if approved. The highest-risk way to own silver on this page; outcomes include zero." },
-      { name: "Producing precious-metals miner", sym: "e.g. WPM, PAAS", note: "A profitable producer already earns money at US$61 silver, so it does not need the price to rise for the business to work. That places it between an ETF and an explorer on the risk scale. Both are large SIL holdings and move with the fund; Pan American was about flat on Tuesday morning." }
+    "plain": "Silver fell about 2.5% to US$59.78 and gold fell about 1.3%, because bond yields and the US dollar rose after the Fed's minutes. The miners fund (SIL) fell more, about 3.5%. The long-term shortage story is unchanged, and so is the warning that there is plenty of metal around right now. Hold your small slice, do not add, do not sell.",
+    "how": "Lowest to highest risk. First, a physically backed silver ETF such as SLV or PSLV: you own a claim on the metal, no company risk; it would be tracking spot around US$59.78. Second, a silver miners ETF such as SIL (US$83.56 Wednesday, -3.5%): a basket of about 41 miners that moves more than the metal in both directions and has lagged it for a month. Third, a single explorer such as SVL.AX (about A$0.138 †, no verified exchange close since 28 September): one project and the widest range of outcomes, including zero. Most beginners are best served by the first, in a small amount, bought in instalments.",
+    "watch": "Three things. Whether silver holds above US$58 to 60 into the 14 October US CPI; a hot CPI would add to rate fears and hit metals again. Whether the gold/silver ratio climbs above 70 (silver being sold harder than gold) or falls back toward 67. And whether SIL stabilises after a 3.5% drop; a fund that falls faster than the metal needs a calmer day before it says anything.",
+    "miners": [
+      {
+        "name": "Physically backed silver (metal, not companies)",
+        "sym": "SLV / PSLV",
+        "note": "The simplest route. You own a claim on physical silver, so you get the metal's move without company risk. It would be tracking spot near US$59.78, down about 2.5% on Wednesday. For most beginners, this is the sensible default in a small size."
+      },
+      {
+        "name": "Global X Silver Miners ETF",
+        "sym": "SIL",
+        "note": "US$83.56 at the Wednesday 7 October close (StockAnalysis), down 3.5% from US$86.64 on Tuesday. A basket of about 41 silver-focused miners led by Wheaton Precious Metals, Pan American Silver and Coeur Mining. Fell more than the metal, as miners usually do in a down day. Higher risk than the metal itself."
+      },
+      {
+        "name": "Silver Mines Ltd",
+        "sym": "SVL.AX",
+        "note": "About A$0.138 † (carried; no exchange-published close verified since 28 September). 52-week range A$0.115 to A$0.285. The Bowdens project near Mudgee, NSW awaits a NSW Independent Planning Commission process. The highest-risk way to own silver on this page; outcomes include zero."
+      },
+      {
+        "name": "Producing precious-metals miner",
+        "sym": "e.g. WPM, PAAS",
+        "note": "A profitable producer already earns money at silver near US$60, so it does not need the price to rise for the business to work. That places it between an ETF and an explorer on the risk scale. Both are large SIL holdings and fell with the fund on Wednesday."
+      }
     ]
   },
-  themes: [
-    { name: "AI & technology", stance: "Neutral · unchanged for a sixteenth session", cls: "nw",
-      text: "Tuesday closes: Nvidia US$239.24 (+0.14%, record; intraday high US$243.37; market cap about US$5.78 trillion), Microsoft US$529.30 (+0.78%), Apple US$333.63 (+0.22%), SMH US$632.50 (-0.22%), QQQM about US$312.30 ≈ (+0.6%, computed from the Nasdaq-100 move). Marvell +7% on raised 2028 targets, AMD +2.8% on a supply ramp, Nvidia-backed Lambda raising US$4 billion before an IPO, Reflection AI launching an open-weight model. Demand is not the question. Breadth is: SMH fell on a day Nvidia hit a record, and Bank of America flagged a handful of giants dragging the Nasdaq higher. Hold the 15% sleeve, add through regular contributions, and trim back to 15% on your normal date if it has drifted.",
-      inst: "NVDA · SMH · QQQM · MSFT" },
-    { name: "Inflation & rates hedges", stance: "Overweight · unchanged", cls: "ow",
-      text: "A quiet, positive day. Gold +0.6% to US$4,164, silver +0.5% to US$61.36, copper +0.3%, platinum -0.4%. BHP closed A$62.86 (+1.57%), the best of the big three, with iron ore steady at about US$91. DBC about US$32.16 ≈ (-0.7% per a secondary source) as oil fell during the session on the G7 reserve release before recovering to about US$101 Brent by the close. The stance stays Overweight at a capped 10% because the inflation risk comes from oil supply (the strait is formally shut, Iran attacked about 20 ships in a month) and AI-driven power demand, neither of which a central bank can fix. The G7 release is why the cap matters: this sleeve is insurance, not a bet, and insurance loses a little when the risk recedes.",
-      inst: "XAUUSD · XAGUSD · DBC · BHP.AX" },
-    { name: "Energy transition", stance: "Underweight · unchanged", cls: "uw",
-      text: "ICLN closed Tuesday at US$17.54 (+1.45%), its best day in weeks, after Constellation Energy signed a 20-year deal to supply Google with 890 MW of new nuclear capacity and independent power producers rallied. Bloom Energy (about 10% of the fund) is the AI-power exception that keeps working. The bounce does not change the case: clean energy projects are long-duration assets and the US 30-year is 5.65%, the UK 30-year near 6%. One good day from a nuclear headline is not a reason to lift a sleeve that depends on long yields falling meaningfully.",
-      inst: "ICLN" },
-    { name: "Defensives & income", stance: "Neutral · unchanged", cls: "nw",
-      text: "CBA closed Tuesday at A$152.38 (+0.77%), CSL A$178.68 (+0.95%), BHP A$62.86 (+1.57%). SCHD rose 0.40% to US$32.85, still down from US$35 in August as 5%+ bond yields compete with its 3.2% dividend yield; a 5.27% Treasury is a direct rival for income money. Johnson & Johnson +0.7%. On the ASX, BHP has overtaken CBA as the largest company, a reminder that banks have been the laggards this quarter. Consumer sentiment at 80.4 is a headwind for anything retail-facing. Hold what you have inside the 10% sleeve.",
-      inst: "SCHD · CSL.AX · CBA.AX" }
+  "themes": [
+    {
+      "name": "AI & technology",
+      "stance": "Neutral · unchanged for a seventeenth session",
+      "cls": "nw",
+      "text": "Wednesday closes: Nvidia US$237.47 (-0.74%), Microsoft US$529.76 (+0.09%), Apple US$336.67 (+0.91%), SMH US$625.03 (-1.18%), QQQM US$311.94 (-0.26%). A modest pullback from records, with chips weaker. Demand is not the question; breadth is, and the Russell 2000 fell 1.31%. Hold the 15% sleeve, add through regular contributions, and trim back to 15% on your normal date if it has drifted.",
+      "inst": "NVDA · SMH · QQQM · MSFT"
+    },
+    {
+      "name": "Inflation & rates hedges",
+      "stance": "Overweight · unchanged",
+      "cls": "ow",
+      "text": "Gold fell to about US$4,111 (-1.3%, one-month low), silver to US$59.78 (-2.5%), DBC to US$32.51 (-0.55%) and BHP to A$62.45 (-0.65%). Higher yields and a stronger US dollar hurt metals on the day. These are held as a hedge against inflation, not as a short-term win, and the sleeve is capped at 10% for exactly this reason. Hold; no adding or selling.",
+      "inst": "XAUUSD · XAGUSD · DBC · BHP.AX"
+    },
+    {
+      "name": "Energy transition",
+      "stance": "Underweight · unchanged",
+      "cls": "uw",
+      "text": "ICLN fell 1.31% to US$17.31. Clean energy funds are sensitive to long-term interest rates because projects are financed with debt, and the 30-year yield is 5.66%. Stays Underweight until long yields calm down.",
+      "inst": "ICLN"
+    },
+    {
+      "name": "Defensives & income",
+      "stance": "Neutral · unchanged",
+      "cls": "nw",
+      "text": "SCHD US$32.65 (-0.61%), CBA A$150.37 (-1.32%), CSL A$181.99 (+1.85%). Mixed: banks fell, CSL rose. The sleeve is there for steadier income and smaller swings, and it did its job relative to the Russell 2000. Hold at target.",
+      "inst": "SCHD · CSL.AX · CBA.AX"
+    }
   ],
-  outlook: [
-    { name: "Fed minutes Thursday, then US CPI on 14 October", hz: "Horizon: 1-2 weeks", text: "Today: ASX opens with futures flat at 8,765 after three gains; no major local data. Bendigo passes the RBA rise to mortgages today; the big four follow Friday 9 October. The Fed's September minutes land Wednesday 2:00pm ET (Thursday 5:00am AEDT); they predate the jobs data and will read hawkish, and the market will look through them. US bond markets are closed Monday 12 October (Columbus Day); shares trade. The real test is US September CPI on Wednesday 14 October (11:30pm AEDT), consensus about 3.7% versus 3.4% in August, the first month fully reflecting the oil and diesel spike. A print above 3.7% with the 10-year near 5.3% is the scenario that hurts both bonds and long-duration shares.", how: "Nothing to trade. If you have a monthly contribution due, make it on schedule regardless of what the minutes or CPI say." },
-    { name: "The Fed's October meeting, now priced as a hold", hz: "Horizon: 3-4 weeks", text: "The FOMC meets 27-28 October (decision 29 October, 5:00am AEDT). Markets price about an 80% chance of no change, with December about 70% for a rise. Tuesday showed yields can ease when oil eases, but the long end (10-year about 5.27%, 30-year 5.65%) is still near 24-year highs and Europe's bond market is still fragile. A Fed pause does not mean lower mortgage rates or cheaper long-duration shares.", how: "A tightening cycle that pauses still favours regular contributions and a properly sized cash buffer over market timing." },
-    { name: "Australia: Q3 CPI 28 October, RBA 3 November", hz: "Horizon: 4-5 weeks", text: "Consumer sentiment at 80.4 (post-RBA 67.2) says households are already hurting, which argues for the RBA to pause; the Melbourne Institute gauge at 4.8% and petrol above A$2.30 argue the other way. Westpac and UBS still expect a 25bp rise in November; CBA's Comyn thinks the RBA is done. The Q3 CPI on 28 October is the deciding input. Australia's 10-year at about 5.35% is above the US. The ASX has risen three days in a row to 8,736, led by BHP.", how: "Know your mortgage and savings numbers. If your saver pays under 4%, move it. Do not reposition a portfolio around a coin-flip rate decision." },
-    { name: "US earnings season from mid-October; Firmus lists 23 October", hz: "Horizon: 2-7 weeks", text: "Banks report from about 13 October, BHP's quarterly review is 20 October, Firmus debuts on the ASX 23 October at a A$43.7 billion valuation, Microsoft reports 28 October, Apple 29 October and Nvidia 18 November. FactSet has Q3 earnings growth estimates near 30%, which is exactly what Tuesday's record was pricing, so the bar is high.", how: "Earnings move individual names; a diversified mix barely notices. Watch Microsoft and Apple as a read on the 15% AI & tech sleeve, and watch Firmus's debut as a lesson, not a trade." }
+  "outlook": [
+    {
+      "name": "US CPI on 14 October, then the Fed on 28 October",
+      "hz": "Horizon: 1-3 weeks",
+      "text": "The Fed's minutes say another rise by year end is expected; October is priced as a hold (about 80%+) and December is the live date. US September CPI on Wednesday 14 October (11:30pm AEDT, consensus about 3.7%) is the main input. US bond markets are closed Monday 12 October (shares open) and US bank earnings start 13 October.",
+      "how": "Nothing to trade. If you have a monthly contribution due, make it on schedule regardless of the minutes or CPI."
+    },
+    {
+      "name": "The Fed's October meeting, priced as a hold",
+      "hz": "Horizon: 3-4 weeks",
+      "text": "The FOMC meets 27-28 October (decision 29 October, 5:00am AEDT). Markets price about an 80% chance of no change, with December about 70% for a rise. Tuesday showed yields can ease when oil eases, but the long end (10-year about 5.27%, 30-year 5.65%) is still near 24-year highs and Europe's bond market is still fragile. A Fed pause does not mean lower mortgage rates or cheaper long-duration shares.",
+      "how": "A tightening cycle that pauses still favours regular contributions and a properly sized cash buffer over market timing."
+    },
+    {
+      "name": "Australia: Q3 CPI 28 October, RBA 3 November",
+      "hz": "Horizon: 4-5 weeks",
+      "text": "Consumer sentiment at 80.4 (post-RBA 67.2) says households are already hurting, which argues for the RBA to pause; the Melbourne Institute gauge at 4.8% and petrol above A$2.30 argue the other way. Westpac and UBS still expect a 25bp rise in November; CBA's Comyn thinks the RBA is done. The Q3 CPI on 28 October is the deciding input. Australia's 10-year at about 5.35% is above the US. The ASX has risen three days in a row to 8,736, led by BHP.",
+      "how": "Know your mortgage and savings numbers. If your saver pays under 4%, move it. Do not reposition a portfolio around a coin-flip rate decision."
+    },
+    {
+      "name": "US earnings season from mid-October; Firmus lists 23 October",
+      "hz": "Horizon: 2-7 weeks",
+      "text": "Banks report from about 13 October, BHP's quarterly review is 20 October, Firmus debuts on the ASX 23 October at a A$43.7 billion valuation, Microsoft reports 28 October, Apple 29 October and Nvidia 18 November. FactSet has Q3 earnings growth estimates near 30%, which is exactly what Tuesday's record was pricing, so the bar is high.",
+      "how": "Earnings move individual names; a diversified mix barely notices. Watch Microsoft and Apple as a read on the 15% AI & tech sleeve, and watch Firmus's debut as a lesson, not a trade."
+    }
   ],
-  calendar: [
-    { date: "Wed 7 Oct (today)", event: "ASX opens 10:00am AEDT (futures flat, 8,765) · Bendigo mortgage rates rise · China Golden Week ends · US trade deficit at 19-month high (Tue)", note: "US rows are Tuesday closes; no major local data today" },
-    { date: "Thu 8 Oct to Fri 9 Oct", event: "Fed minutes Thu 5:00am AEDT · big four pass on RBA rise 9 Oct · Moderna rejoins Nasdaq-100 9 Oct", note: "Check your savings rate has moved too; minutes predate the jobs data" },
-    { date: "Mon 12 Oct to Wed 14 Oct", event: "US bond market closed 12 Oct (shares open) · US bank earnings begin 13 Oct · US September CPI 14 Oct (11:30pm AEDT, consensus ~3.7%)", note: "First month fully capturing the oil move; the last inflation print before the Fed meets" },
-    { date: "Tue 20 Oct to Thu 29 Oct", event: "BHP quarterly review 20 Oct · BHP AGM 22 Oct · Firmus ASX debut 23 Oct · Australian Q3 CPI 28 Oct · FOMC 27-28 Oct (hold ~80%) · MSFT results 28 Oct · AAPL 29 Oct · ECB 29 Oct", note: "The two inputs that decide November for the RBA and December for the Fed" },
-    { date: "Tue 3 Nov to Wed 18 Nov", event: "RBA decision 3 Nov · US midterms 3 Nov · CSL update 11 Nov · NVDA results 18 Nov", note: "Melbourne Cup day RBA decision; Westpac and UBS say rise, CBA says done" }
+  "calendar": [
+    {
+      "date": "Thu 8 Oct (today)",
+      "event": "ASX opens 10:00am AEDT · US 10-year near 5.28%",
+      "note": "US rows are Wednesday closes; no major local data today"
+    },
+    {
+      "date": "Fri 9 Oct",
+      "event": "Big four banks pass on the RBA rise · Moderna rejoins Nasdaq-100",
+      "note": "Check your savings rate has moved too"
+    },
+    {
+      "date": "Mon 12 Oct to Wed 14 Oct",
+      "event": "US bond market closed 12 Oct (shares open) · US bank earnings begin 13 Oct · US September CPI 14 Oct (11:30pm AEDT, consensus about 3.7%)",
+      "note": "The last inflation print before the Fed meets"
+    },
+    {
+      "date": "Tue 20 Oct to Thu 29 Oct",
+      "event": "BHP quarterly review 20 Oct · BHP AGM 22 Oct · Australian Q3 CPI 28 Oct · FOMC 27 to 28 Oct (hold about 80%) · MSFT results 28 Oct · AAPL 29 Oct",
+      "note": "The two inputs that decide November for the RBA and December for the Fed"
+    },
+    {
+      "date": "Tue 3 Nov to Wed 18 Nov",
+      "event": "RBA decision 3 Nov · US midterms 3 Nov · CSL update 11 Nov · NVDA results 18 Nov",
+      "note": "Melbourne Cup day RBA decision"
+    }
   ],
-  tactical: [
-    { sym: "Cash buffer", conv: "Conviction: High", action: "b-buy",
-      text: "The RBA cash rate is 4.60%, the private inflation gauge is 4.8% and Westpac still tips a November rise. A competitive savings account is the only item on this page with a certain return and no market risk. Bendigo passes the rise to mortgages today and the big four on Friday; check they pass it to savers too. The cash slice is also what lets you watch a 5.3% Treasury yield without worrying. Still the one action item.",
-      plain: "Rates went up last week and may go up again in November. Check your savings account pays close to 4.6%. If it pays under 4%, it is worth moving this week.",
-      entry: "Not a market position; the existing 10% cash allocation", target: "A rate within about 0.3% of the RBA cash rate", stop: "Not applicable" },
-    { sym: "XAGUSD / SIL", conv: "Conviction: Medium", action: "b-hold",
-      text: "Silver US$61.36 (+0.5% Tuesday), ratio 67.9, with SIL about US$86.64 ≈ rising alongside it. The move rests on Fed-hold pricing that a hot CPI on 14 October could reverse, and the 10-year is still about 5.27%. Hold at target size inside the 10% real-assets sleeve. One day of the miners keeping pace is not a reason to add to a position already at its cap, nor to switch from the ETF to the miners.",
-      plain: "Silver edged up again and the miners fund rose with it this time. Hold your small slice and leave it alone. Do not add, do not sell, do not swap the ETF for the miners.",
-      entry: "Existing allocation only, inside the 10% real-assets sleeve", target: "No price target; held for the multi-year supply story", stop: "Position sizing is the risk control, not a stop loss" },
-    { sym: "NVDA / SMH", conv: "Conviction: Medium", action: "b-watch",
-      text: "Nvidia closed Tuesday at a record US$239.24 (+0.14%, about US$5.78 trillion) after touching US$243.37; SMH fell 0.22% to US$632.50 on the same day. The S&P 500 is at a record with the 10-year near 5.3% and breadth poor. Records, a US$150 billion buyback, broker top-pick calls and a hot Australian AI IPO together are the enthusiastic phase of a theme. Keep adding through the normal monthly contribution and let the 15% sleeve cap do the work; if the sleeve has drifted above 15%, trim back on your normal rebalancing date, not today.",
-      plain: "Chip shares are at records but the chip ETF actually fell on Tuesday, which tells you only a few names are rising. Keep adding through your normal monthly contribution, not on the news, and do not let the AI slice grow past about 15% of the total.",
-      entry: "Only via the existing 15% AI & technology allocation", target: "No individual target; held as part of the theme", stop: "Position sizing is the risk control, not a stop" },
-    { sym: "DBC", conv: "Conviction: Low-Medium", action: "b-hold",
-      text: "About US$32.16 ≈ (-0.7%, secondary source) on Tuesday as oil fell during the session on the G7's 100-million-barrel release before Brent recovered to about US$101 by the close. DBC is about 23% energy futures, so it follows crude. It sits in the sleeve as inflation insurance; a lower oil price is good for the rest of your portfolio even when it is bad for this line, and Tuesday's record in shares was partly that trade.",
-      plain: "The commodities fund slipped because oil fell for part of the day. That is the hedge doing what hedges do: losing a little when the thing it protects against is calming down. Hold.",
-      entry: "Existing allocation only, inside the 10% real-assets sleeve", target: "No price target; held as inflation insurance", stop: "Position sizing is the risk control, not a stop" }
+  "tactical": [
+    {
+      "sym": "Cash buffer",
+      "conv": "Conviction: High",
+      "action": "b-buy",
+      "text": "The RBA cash rate is 4.60%, the private inflation gauge is 4.8% and Westpac still tips a November rise. A competitive savings account is the only item on this page with a certain return and no market risk. The big four pass the rise to mortgages on Friday 9 October; check they pass it to savers too. The cash slice is also what lets you watch a 5.3% Treasury yield without worrying. Still the one action item.",
+      "plain": "Rates went up last week and may go up again in November. Check your savings account pays close to 4.6%. If it pays under 4%, it is worth moving this week.",
+      "entry": "Not a market position; the existing 10% cash allocation",
+      "target": "A rate within about 0.3% of the RBA cash rate",
+      "stop": "Not applicable"
+    },
+    {
+      "sym": "XAGUSD / SIL",
+      "conv": "Conviction: Medium",
+      "action": "b-hold",
+      "text": "Silver US$59.78 (-2.5% Wednesday, lowest since early August), ratio 68.8, with SIL US$83.56 (-3.5%). The fall rests on higher yields and a stronger US dollar, and a hot CPI on 14 October could extend it. Hold at target size inside the 10% real-assets sleeve. A fall is not a reason to add to a position already at its cap, and not a reason to sell a long-term hold either.",
+      "plain": "Silver and the miners fund fell on rising bond yields. Hold your small slice and leave it alone. Do not add, do not sell, do not swap the ETF for the miners.",
+      "entry": "Existing allocation only, inside the 10% real-assets sleeve",
+      "target": "No price target; held for the multi-year supply story",
+      "stop": "Position sizing is the risk control, not a stop loss"
+    },
+    {
+      "sym": "NVDA / SMH",
+      "conv": "Conviction: Medium",
+      "action": "b-watch",
+      "text": "Nvidia closed Wednesday at US$237.47 (-0.74%), a touch under its record, and SMH fell 1.18% to US$625.03. Records, broker top-pick calls and hot AI listings together are the enthusiastic phase of a theme. Keep adding through the normal monthly contribution and let the 15% sleeve cap do the work; if the sleeve has drifted above 15%, trim back on your normal rebalancing date, not today.",
+      "plain": "Chip shares are at records but the chip ETF actually fell on Tuesday, which tells you only a few names are rising. Keep adding through your normal monthly contribution, not on the news, and do not let the AI slice grow past about 15% of the total.",
+      "entry": "Only via the existing 15% AI & technology allocation",
+      "target": "No individual target; held as part of the theme",
+      "stop": "Position sizing is the risk control, not a stop"
+    },
+    {
+      "sym": "DBC",
+      "conv": "Conviction: Low-Medium",
+      "action": "b-hold",
+      "text": "DBC US$32.51 (-0.55%) on Wednesday, with WTI about US$89 and Brent about US$100 to 102. DBC is about 23% energy futures, so it follows crude. It sits in the sleeve as an inflation hedge; a lower oil price is good for the rest of your portfolio even when it is bad for this line.",
+      "plain": "The commodities fund slipped because oil fell for part of the day. That is the hedge doing what hedges do: losing a little when the thing it protects against is calming down. Hold.",
+      "entry": "Existing allocation only, inside the 10% real-assets sleeve",
+      "target": "No price target; held as inflation insurance",
+      "stop": "Position sizing is the risk control, not a stop"
+    }
   ],
-  strategic: [
-    { sym: "SPY / QQQM", conv: "Theme conviction: High", action: "b-buy",
-      text: "The broad-index core at 55% of the mix. SPY closed Tuesday at US$779.09 (+0.55%), a record, while the 10-year holds about 5.27%. The record was narrow (Russell 2000 -0.57%), which is the argument for owning the whole index rather than guessing which giants carry it next. A 5.3% bond yield still lowers expected returns from here; keep contributing steadily.",
-      plain: "Own the whole market, add every month, ignore both the flat days on the ASX and the record days on Wall Street.",
-      entry: "Regular monthly contributions, not lump-sum timing", target: "No target; the permanent core", stop: "Not applicable; the core is not a trade" },
-    { sym: "XAUUSD / XAGUSD", conv: "Theme conviction: Medium-High", action: "b-hold",
-      text: "The 10% real-assets sleeve. Gold US$4,164 and silver US$61.36 after a soft September (gold about -5.5% over a month, silver about -7.2%). Gold is up about 4.5% on a year ago and silver about 28%. The multi-year supports are unchanged: central bank buying, China's imports on pace for a record 1,700 tonnes, and a sixth straight silver deficit. The near-term risk is real: BofA sees gold possibly below US$4,000 in Q4 if yields stay high, and the dollar is near an 18-month high. Gold should stay the larger part of the sleeve because it has the central bank bid and silver does not.",
-      plain: "Gold and silver both edged up after a weak month. This 10% is long-term insurance against oil-driven inflation. Check it is still about 10% on your normal rebalancing date.",
-      entry: "Target weight only, inside the 10% real-assets sleeve", target: "No price target; held for the structural case", stop: "Rebalance back to 10% on schedule, not on price" },
-    { sym: "BHP.AX", conv: "Theme conviction: Medium", action: "b-hold",
-      text: "A$62.86 (+1.57%) on Tuesday, the best of the big three for a second day, and now the ASX's largest company again, ahead of CBA. Iron ore is steady at about US$91 and copper edged up. UBS lifted its long-term iron ore forecast to US$93/t; Macquarie still prefers Rio. BHP sits in the inflation-hedge theme because it produces the raw materials whose prices drive inflation, but its own fuel and freight bills rise with oil, so an easing oil price helps it. Quarterly review 20 October, AGM 22 October.",
-      plain: "BHP digs up the raw materials behind the inflation, so it sits in the hedging slice. It has had two strong days and is now the biggest company on the ASX.",
-      entry: "Existing allocation only, inside the 10% real-assets sleeve", target: "No price target; held for the structural commodity case", stop: "Position sizing is the risk control, not a stop" },
-    { sym: "CSL.AX", conv: "Theme conviction: Medium", action: "b-hold",
-      text: "A$178.68 (+0.95%) on Tuesday, a second day of gains after the Alentis co-development deal (US$355m upfront, up to US$1.2bn in milestones). A global plasma and biotech business earning most of its revenue offshore, so the Aussie dollar at 0.6982 flatters A$ earnings. FY27 guidance is for flat revenue and about 5% NPAT growth. Held for defensive quality across a full cycle, not for a short-term rebound; next catalyst 11 November.",
-      plain: "CSL earns most of its money overseas, which is what the defensive slice is for. It has bounced two days in a row after a weak week.",
-      entry: "Existing allocation only, inside the 10% dividends & defensives sleeve", target: "No price target; held for defensive quality", stop: "Position sizing is the risk control, not a stop" }
+  "strategic": [
+    {
+      "sym": "SPY / QQQM",
+      "conv": "Theme conviction: High",
+      "action": "b-buy",
+      "text": "The broad-index core at 55% of the mix. SPY closed Tuesday at US$779.09 (+0.55%), a record, while the 10-year holds about 5.27%. The record was narrow (Russell 2000 -0.57%), which is the argument for owning the whole index rather than guessing which giants carry it next. A 5.3% bond yield still lowers expected returns from here; keep contributing steadily.",
+      "plain": "Own the whole market, add every month, ignore both the flat days on the ASX and the record days on Wall Street.",
+      "entry": "Regular monthly contributions, not lump-sum timing",
+      "target": "No target; the permanent core",
+      "stop": "Not applicable; the core is not a trade"
+    },
+    {
+      "sym": "XAUUSD / XAGUSD",
+      "conv": "Theme conviction: Medium-High",
+      "action": "b-hold",
+      "text": "The 10% real-assets sleeve. Gold US$4,164 and silver US$61.36 after a soft September (gold about -5.5% over a month, silver about -7.2%). Gold is up about 4.5% on a year ago and silver about 28%. The multi-year supports are unchanged: central bank buying, China's imports on pace for a record 1,700 tonnes, and a sixth straight silver deficit. The near-term risk is real: BofA sees gold possibly below US$4,000 in Q4 if yields stay high, and the dollar is near an 18-month high. Gold should stay the larger part of the sleeve because it has the central bank bid and silver does not.",
+      "plain": "Gold and silver both edged up after a weak month. This 10% is long-term insurance against oil-driven inflation. Check it is still about 10% on your normal rebalancing date.",
+      "entry": "Target weight only, inside the 10% real-assets sleeve",
+      "target": "No price target; held for the structural case",
+      "stop": "Rebalance back to 10% on schedule, not on price"
+    },
+    {
+      "sym": "BHP.AX",
+      "conv": "Theme conviction: Medium",
+      "action": "b-hold",
+      "text": "A$62.86 (+1.57%) on Tuesday, the best of the big three for a second day, and now the ASX's largest company again, ahead of CBA. Iron ore is steady at about US$91 and copper edged up. UBS lifted its long-term iron ore forecast to US$93/t; Macquarie still prefers Rio. BHP sits in the inflation-hedge theme because it produces the raw materials whose prices drive inflation, but its own fuel and freight bills rise with oil, so an easing oil price helps it. Quarterly review 20 October, AGM 22 October.",
+      "plain": "BHP digs up the raw materials behind the inflation, so it sits in the hedging slice. It has had two strong days and is now the biggest company on the ASX.",
+      "entry": "Existing allocation only, inside the 10% real-assets sleeve",
+      "target": "No price target; held for the structural commodity case",
+      "stop": "Position sizing is the risk control, not a stop"
+    },
+    {
+      "sym": "CSL.AX",
+      "conv": "Theme conviction: Medium",
+      "action": "b-hold",
+      "text": "A$178.68 (+0.95%) on Tuesday, a second day of gains after the Alentis co-development deal (US$355m upfront, up to US$1.2bn in milestones). A global plasma and biotech business earning most of its revenue offshore, so the Aussie dollar at 0.6982 flatters A$ earnings. FY27 guidance is for flat revenue and about 5% NPAT growth. Held for defensive quality across a full cycle, not for a short-term rebound; next catalyst 11 November.",
+      "plain": "CSL earns most of its money overseas, which is what the defensive slice is for. It has bounced two days in a row after a weak week.",
+      "entry": "Existing allocation only, inside the 10% dividends & defensives sleeve",
+      "target": "No price target; held for defensive quality",
+      "stop": "Position sizing is the risk control, not a stop"
+    }
   ],
-  watchlist: [
-    { group: "US equities & ETFs (Tuesday 6 Oct closes)" },
-    { sym: "AAPL", name: "Apple", price: "$333.63", chg: 0.22, signal: "Hold" },
-    { sym: "MSFT", name: "Microsoft", price: "$529.30", chg: 0.78, signal: "Hold" },
-    { sym: "NVDA", name: "Nvidia", price: "$239.24", chg: 0.14, signal: "Watch" },
-    { sym: "SPY", name: "S&P 500 ETF", price: "$779.09", chg: 0.55, signal: "Buy/Hold" },
-    { sym: "QQQM", name: "Nasdaq-100 ETF", price: "$312.30 ≈", chg: 0.61, signal: "Hold" },
-    { group: "ASX (Tuesday 6 Oct closes; ASX opens 10:00am, futures flat)" },
-    { sym: "BHP.AX", name: "BHP Group", price: "A$62.86", chg: 1.57, signal: "Hold" },
-    { sym: "CBA.AX", name: "Commonwealth Bank", price: "A$152.38", chg: 0.77, signal: "Watch" },
-    { sym: "CSL.AX", name: "CSL Limited", price: "A$178.68", chg: 0.95, signal: "Hold" },
-    { group: "FX & commodities (Tuesday closes; AUD = ECB 6 Oct reference)" },
-    { sym: "XAUUSD", name: "Gold spot", price: "$4,164", chg: 0.59, signal: "Hold" },
-    { sym: "XAGUSD", name: "Silver spot", price: "$61.36", chg: 0.49, signal: "Hold" },
-    { sym: "AUDUSD", name: "Aussie dollar", price: "0.6982", chg: 0.20, signal: "Hold" },
-    { group: "Thematic ETFs (Tuesday 6 Oct closes)" },
-    { sym: "SMH", name: "Semiconductors (AI)", price: "$632.50", chg: -0.22, signal: "Watch" },
-    { sym: "DBC", name: "Commodities basket", price: "$32.16 ≈", chg: -0.71, signal: "Hold" },
-    { sym: "ICLN", name: "Clean energy", price: "$17.54", chg: 1.45, signal: "Watch" },
-    { sym: "SCHD", name: "US dividend/quality", price: "$32.85", chg: 0.40, signal: "Hold" },
-    { group: "Silver miners" },
-    { sym: "SIL", name: "Global X Silver Miners ETF", price: "$86.64 ≈", chg: 0.57, signal: "Watch" },
-    { sym: "SVL.AX", name: "Silver Mines Ltd", price: "A$0.138 †", chg: 0.00, signal: "Watch" }
+  "watchlist": [
+    {
+      "group": "US equities & ETFs (Wednesday 7 Oct closes)"
+    },
+    {
+      "sym": "AAPL",
+      "name": "Apple",
+      "price": "$336.67",
+      "chg": 0.91,
+      "signal": "Hold"
+    },
+    {
+      "sym": "MSFT",
+      "name": "Microsoft",
+      "price": "$529.76",
+      "chg": 0.09,
+      "signal": "Hold"
+    },
+    {
+      "sym": "NVDA",
+      "name": "Nvidia",
+      "price": "$237.47",
+      "chg": -0.74,
+      "signal": "Watch"
+    },
+    {
+      "sym": "SPY",
+      "name": "S&P 500 ETF",
+      "price": "$777.22",
+      "chg": -0.24,
+      "signal": "Buy/Hold"
+    },
+    {
+      "sym": "QQQM",
+      "name": "Nasdaq-100 ETF",
+      "price": "$311.94",
+      "chg": -0.26,
+      "signal": "Hold"
+    },
+    {
+      "group": "ASX (Wednesday 7 Oct closes; ASX opens 10:00am)"
+    },
+    {
+      "sym": "BHP.AX",
+      "name": "BHP Group",
+      "price": "A$62.45",
+      "chg": -0.65,
+      "signal": "Hold"
+    },
+    {
+      "sym": "CBA.AX",
+      "name": "Commonwealth Bank",
+      "price": "A$150.37",
+      "chg": -1.32,
+      "signal": "Watch"
+    },
+    {
+      "sym": "CSL.AX",
+      "name": "CSL Limited",
+      "price": "A$181.99",
+      "chg": 1.85,
+      "signal": "Hold"
+    },
+    {
+      "group": "FX & commodities (Wednesday closes; AUD = ECB 7 Oct reference)"
+    },
+    {
+      "sym": "XAUUSD",
+      "name": "Gold spot",
+      "price": "$4,111",
+      "chg": -1.29,
+      "signal": "Hold"
+    },
+    {
+      "sym": "XAGUSD",
+      "name": "Silver spot",
+      "price": "$59.78",
+      "chg": -2.53,
+      "signal": "Hold"
+    },
+    {
+      "sym": "AUDUSD",
+      "name": "Aussie dollar",
+      "price": "0.6951",
+      "chg": -0.44,
+      "signal": "Hold"
+    },
+    {
+      "group": "Thematic ETFs (Wednesday 7 Oct closes)"
+    },
+    {
+      "sym": "SMH",
+      "name": "Semiconductors (AI)",
+      "price": "$625.03",
+      "chg": -1.18,
+      "signal": "Watch"
+    },
+    {
+      "sym": "DBC",
+      "name": "Commodities basket",
+      "price": "$32.51",
+      "chg": -0.55,
+      "signal": "Hold"
+    },
+    {
+      "sym": "ICLN",
+      "name": "Clean energy",
+      "price": "$17.31",
+      "chg": -1.31,
+      "signal": "Watch"
+    },
+    {
+      "sym": "SCHD",
+      "name": "US dividend/quality",
+      "price": "$32.65",
+      "chg": -0.61,
+      "signal": "Hold"
+    },
+    {
+      "group": "Silver miners"
+    },
+    {
+      "sym": "SIL",
+      "name": "Global X Silver Miners ETF",
+      "price": "$83.56",
+      "chg": -3.54,
+      "signal": "Watch"
+    },
+    {
+      "sym": "SVL.AX",
+      "name": "Silver Mines Ltd",
+      "price": "A$0.138 †",
+      "chg": 0,
+      "signal": "Watch"
+    }
   ],
-  notes: "Wednesday 7 October run at about 8:45am AEDT. US equity and ETF rows are Tuesday 6 October closes: AAPL US$333.63 (Yahoo Finance), MSFT US$529.30, NVDA US$239.24, SMH US$632.50, ICLN US$17.54, SCHD US$32.85 (StockAnalysis), SPY US$779.09 (Yahoo). QQQM about US$312.30 is computed from Monday's US$310.39 and the Nasdaq-100's +0.61% (Trading Economics) because no published close was found (≈). DBC US$32.16 (-0.71%) is from a single secondary source; StockAnalysis still showed Monday's close (≈). SIL about US$86.64 is Robinhood's end-of-day quote with a day range of US$85.14 to US$87.46; Yahoo's 10:40am print was US$85.99 (≈). Index levels: S&P 500 7,818.93, Nasdaq 27,599.79, Dow 51,521.28, Russell 2000 2,830.97 (TheStreet/CNBC). ASX rows per Market Index via search: ASX 200 8,736 (+0.57%, Trading Economics; ABC 7:20am snapshot also 8,736), CBA A$152.38 (+0.77%), BHP A$62.86 (+1.57%), CSL A$178.68 (+0.95%); futures flat at 8,765 (ABC). Gold US$4,164.34 (+0.59%) and silver US$61.36 (+0.49%) are Trading Economics CFD closes for 6 October; Kitco/Fortune had silver at US$61.41 at 3:30pm ET with a US$60.67 to US$62.06 range. Gold/silver ratio 67.9. AUD/USD 0.6982 is the ECB reference rate for 6 October (Frankfurter API); ABC's 7:20am quote was 0.698. Yields: US 10-year 5.27-5.275% (Trading Economics/TheStreet), 30-year 5.65%, 2-year 4.79%; Australia 5.35-5.39% (ABC). Fed odds per Trading Economics and CME FedWatch commentary (about 80% hold October, about 70% December rise). Westpac consumer sentiment 80.4 (-4.7%), post-RBA sub-sample 67.2 (Bloomberg/Investing.com). SVL.AX: about A$0.138 from one feed's last-trade figure, consistent with A$0.1375 carried since 28 September; no exchange-published close verified (†). Private dashboard artifact: the Cowork artifact tools (list_artifacts/update_artifact) were not available in this run, so the local artifact copy (_artifact_new.html) was refreshed and no hosted artifact was updated. General information and education only; not personal financial advice."
+  "notes": "Thursday 8 October run at about 9:05am AEDT. US equity and ETF rows are Wednesday 7 October closes from StockAnalysis (4:00pm EDT): AAPL US$336.67 (+0.91%), MSFT US$529.76 (+0.09%), NVDA US$237.47 (-0.74%), SPY US$777.22 (-0.24%), QQQM US$311.94 (-0.26%), SMH US$625.03 (-1.18%), DBC US$32.51 (-0.55%), ICLN US$17.31 (-1.31%), SCHD US$32.65 (-0.61%), SIL US$83.56 (-3.54%). Index closes: S&P 500 7,801.77 (-0.22%), Nasdaq 27,538.69 (-0.22%), Dow 51,179.87 (-0.66%), Russell 2000 about 2,793 (-1.31%) (TheStreet/Yahoo Finance). ASX: ASX 200 8,728 (-0.09%), BHP A$62.45 (-0.65%), CBA A$150.37 (-1.32%), CSL A$181.99 (+1.85%) (Trading Economics, CFD-based, not official ASX values). Gold US$4,110.98 (-1.29%) and silver US$59.78 (-2.53%) are Trading Economics CFD prices; Yahoo Finance had gold at US$4,135.30 (-1.24%). Gold/silver ratio 68.8. AUD/USD 0.69513 is the ECB reference rate for 7 October (Frankfurter API), against 0.6982 for 6 October. Yields: US 10-year 5.28% (touched 5.36%), 30-year 5.66% (Yahoo Finance). Fed minutes: most members expect another rise by year end; October odds about 17 to 20%. SVL.AX: no verified quote, A$0.138 carried (†). The US September CPI consensus (about 3.7%) and upcoming dates are carried from the previous run. The Cowork artifact tools were not available in this run, so the local artifact copy (_artifact_new.html) was refreshed instead. General information and education only; not personal financial advice."
 };
 
 function cls(v){ return v>0.05?"up":(v<-0.05?"down":"flat"); }
