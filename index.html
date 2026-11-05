@@ -470,111 +470,164 @@ const TREND_PICKS = [
     note:"A hedge, not a growth engine — usually a small slice (~5–10%) held for the long term." }
 ];
 const SNAPSHOT = {
-  "updated": "4 Nov 2026 AEST (Wednesday morning run, after the RBA decision and Tuesday's US close). Fresh today: RBA decision (3 Nov), US index closes and 10-year yield (Tue 3 Nov), single-stock day moves for NVDA, AAPL and MSFT (Tue), gold and silver (FindBullionPrices, 3 Nov 7:45pm ET), AUD/USD (Frankfurter, 2 Nov). Not refreshed (carried, marked †): single-stock and ETF prices (Friday 30 Oct for AAPL, MSFT, NVDA, SPY, SMH; QQQM 27 Oct; DBC, ICLN, SIL 26 Oct; SCHD, BHP, CSL 27 Oct; CBA 23 Oct; SVL.AX 21 Oct).",
+  "updated": "5 Nov 2026 AEST (Thursday run). Fresh today: AAPL and SPY (Wed 4 Nov US close), gold and silver (FindBullionPrices, 5 Nov 5:34pm ET), AUD/USD (Frankfurter, 5 Nov), US 10-year yield (4.84%), Fed and RBA decisions confirmed. Not refreshed (carried, marked †): MSFT, NVDA, QQQM, SMH, DBC, ICLN, SCHD, SIL and all ASX prices.",
   "takeaways": {
-    "mood": "RBA hiked to 4.85%, chips bounced",
+    "mood": "Stocks and metals bounced, rates still high",
     "moodCls": "neutral",
-    "headline": "The RBA lifted the cash rate 0.25% to 4.85% on Tuesday (6 to 3 vote), the highest in about 18 years, and said inflation stays above 3% until late 2027. Wall Street was mixed: the S&P 500 rose 0.36% and the Nasdaq 0.83%, led by chip stocks, while the Dow fell 0.38%. Gold slipped to about US$3,926 and silver to about US$49.58, so the gold/silver ratio is about 79.2. Plan unchanged.",
+    "headline": "US shares rallied on Wednesday: the S&P 500 fund SPY rose 1.65% and Apple jumped 5.3%. Gold lifted to about US$4,088 and silver to about US$51.78, so the gold/silver ratio eased to about 79.0. The RBA cash rate is 4.85% and the Fed is on hold at 3.75-4.00%. Plan unchanged.",
     "points": [
       {
-        "icon": "alert",
-        "t": "RBA raised the cash rate to 4.85% (6 to 3 vote)",
-        "d": "It is the fifth rise this year. Three board members wanted to hold. The RBA says inflation stays above 3% for the coming year. Expect banks to lift variable loan rates within weeks. If you have a variable mortgage, work out the extra repayment. Check your savings account pays close to the new rate."
+        "icon": "up",
+        "t": "US shares bounced: SPY +1.65%, Apple +5.3%",
+        "d": "One strong day after a choppy fortnight. It does not change the plan. Keep your regular monthly contribution going and avoid adding a lump sum because of a rally."
       },
       {
-        "icon": "up",
-        "t": "Chips bounced: Nvidia +2.3%, Microsoft +2.7%, Apple -1.9%",
-        "d": "The chip index rose about 2.6% after two weak sessions. Apple fell after a weaker profit margin outlook in its results. One good day does not change the plan. Keep the AI and technology slice at 15% and add only through your normal monthly contribution."
+        "icon": "alert",
+        "t": "RBA cash rate 4.85% after the 3 November rise",
+        "d": "Banks usually pass rises on to variable loans within weeks. Check your savings rate and work out any extra loan repayment. The next RBA meeting is 7 to 8 December."
       },
       {
         "icon": "shield",
-        "t": "US 10-year yield back up to 4.95%, Fed on hold at 3.75-4.00%",
-        "d": "The yield rose about 0.04 percentage points on Tuesday. The Fed held on 28 October (10-2, two wanted a rise). We have not refreshed the odds of a December rise (about 86% at last check). US October inflation on 10 November is the next big test."
+        "t": "US 10-year yield 4.84%, Fed held at 3.75-4.00%",
+        "d": "The yield dipped about 0.05 percentage points. The Fed held on 28 October (10-2, two wanted a rise). US October inflation on 10 November is the next big test."
       },
       {
-        "icon": "drop",
-        "t": "Gold about US$3,926, silver about US$49.58, ratio about 79.2",
-        "d": "Both metals slipped again and silver is back under US$50. The ratio is well above the long-run average of about 70, meaning silver is lagging gold. Hold the small slice. Do not add and do not sell in a panic."
+        "icon": "idea",
+        "t": "Gold about US$4,088, silver about US$51.78, ratio about 79.0",
+        "d": "Both metals bounced about 0.6% or more. The ratio is above the long-run average of about 70, so silver is still lagging gold. Hold the small slice; do not add and do not sell in a panic."
       }
     ],
-    "bottom": "An RBA rise and a choppy tech market are reasons to check your savings rate and your loan, not to trade. Keep your monthly contribution going and stick to the mix."
+    "bottom": "A good day for shares is not a signal to trade. Keep contributing regularly, check your savings and loan rates, and stick to the mix."
   },
   "portfolio": {
     "note": "An illustration of how a balanced beginner might spread money across asset types. Education, not advice, and not a recommendation to buy any specific fund. The mix is unchanged. Sample A$500 a month: A$275 broad index, A$75 AI & tech, A$50 gold & real assets, A$50 dividends & defensives, A$50 cash.",
     "mix": [
-      { "name": "Broad index core", "pct": 55, "color": "#4f46e5", "ex": "e.g. IVV / VTS / global ETF" },
-      { "name": "AI & technology", "pct": 15, "color": "#22d3ee", "ex": "e.g. SMH / QQQM" },
-      { "name": "Gold & real assets", "pct": 10, "color": "#b8860b", "ex": "e.g. GOLD / PMGOLD / DBC" },
-      { "name": "Dividends & defensives", "pct": 10, "color": "#0a8a44", "ex": "e.g. SCHD / VHY / CSL" },
-      { "name": "Cash buffer", "pct": 10, "color": "#94a3b8", "ex": "e.g. high-interest savings / cash ETF" }
+      {
+        "name": "Broad index core",
+        "pct": 55,
+        "color": "#4f46e5",
+        "ex": "e.g. IVV / VTS / global ETF"
+      },
+      {
+        "name": "AI & technology",
+        "pct": 15,
+        "color": "#22d3ee",
+        "ex": "e.g. SMH / QQQM"
+      },
+      {
+        "name": "Gold & real assets",
+        "pct": 10,
+        "color": "#b8860b",
+        "ex": "e.g. GOLD / PMGOLD / DBC"
+      },
+      {
+        "name": "Dividends & defensives",
+        "pct": 10,
+        "color": "#0a8a44",
+        "ex": "e.g. SCHD / VHY / CSL"
+      },
+      {
+        "name": "Cash buffer",
+        "pct": 10,
+        "color": "#94a3b8",
+        "ex": "e.g. high-interest savings / cash ETF"
+      }
     ]
   },
   "beginner": {
-    "lead": "Today's lesson: what happens after a rate rise, and why a split vote matters.",
-    "meaning": "The RBA raised the cash rate from 4.60% to 4.85%. Banks usually pass this on to variable loans within a few weeks, and savings rates often follow. A 0.25% rise adds about A$62 a month on a A$300,000 variable loan balance. The vote was 6 to 3, which tells you the board is not unanimous, so more rises are possible but not certain.",
+    "lead": "Today's lesson: why one big up day should not change your plan.",
+    "meaning": "Shares jumped on Wednesday (SPY +1.65%), but they were choppy for the two weeks before. Single days are noise. Regular monthly contributions buy more units when prices are low and fewer when they are high, so you do not need to guess the best day.",
     "steps": [
       "Nothing to trade today. Make your normal monthly contribution on schedule.",
-      "Check your savings account rate. If it pays under 4%, it is worth moving this week.",
-      "If you have a variable-rate mortgage, work out the extra monthly repayment from the 0.25% rise so it is not a surprise.",
-      "Do not chase a one-day chip rebound with a lump sum. Regular instalments handle both up and down days."
+      "Check your savings account rate against the RBA cash rate of 4.85%.",
+      "Do not chase a one-day rally with a lump sum.",
+      "Put 10 November (US inflation) in your diary."
     ],
     "jargon": [
-      { "t": "Cash rate", "d": "The RBA's official interest rate. It sets the starting point for what banks charge on loans and pay on savings. It is now 4.85%." },
-      { "t": "Split vote", "d": "When board members disagree. Here 6 voted to raise and 3 wanted to hold. It hints the next move could be a pause." },
-      { "t": "Gold/silver ratio", "d": "How many ounces of silver buy one ounce of gold. About 79.2 now (US$3,926.16 divided by US$49.58), above the long-run average of about 70. A higher ratio means silver is lagging gold." },
-      { "t": "Yield", "d": "The annual return you get for lending to a government. The US 10-year yield was 4.95% on Tuesday. When it rises, shares and gold usually come under pressure." }
+      {
+        "t": "Cash rate",
+        "d": "The RBA's official interest rate. It sets the starting point for what banks charge on loans and pay on savings. It is now 4.85%."
+      },
+      {
+        "t": "Split vote",
+        "d": "When board members disagree. Here 6 voted to raise and 3 wanted to hold. It hints the next move could be a pause."
+      },
+      {
+        "t": "Gold/silver ratio",
+        "d": "How many ounces of silver buy one ounce of gold. About 79.0 now (US$4,088 divided by US$51.78), above the long-run average of about 70. A higher ratio means silver is lagging gold."
+      },
+      {
+        "t": "Yield",
+        "d": "The annual return you get for lending to a government. The US 10-year yield was 4.84% on 5 November. When it rises, shares and gold usually come under pressure."
+      }
     ]
   },
   "regime": {
-    "label": "Hiking cycle, RBA 4.85% (6-3) · Fed held 3.75-4.00% (10-2) · US 10Y 4.95% · US CPI 3.7% · AI wobble, chips bounced · gold US$3,926, silver US$49.58, ratio ~79.2 · Brent ~US$103.60",
-    "text": "Still a tightening cycle. The RBA raised to 4.85% on Tuesday and said inflation stays above 3% until late 2027. The Fed is on hold but a December rise is still priced. US shares were mixed: chips rebounded, Apple and the Dow fell, and US midterm results are coming in. Stances are unchanged: AI Neutral (watch the 15% size), real assets Overweight but capped at 10%, clean energy Underweight, dividends Neutral. Next swing factors: US October CPI (10 November), Nvidia results (18 November) and the Fed (9 December)."
+    "label": "Hiking cycle, RBA 4.85% · Fed held 3.75-4.00% (10-2) · US 10Y 4.84% · US CPI 3.7% · shares bounced · gold US$4,088, silver US$51.78, ratio ~79.0",
+    "text": "Still a tightening cycle. The RBA is at 4.85% and the Fed is on hold, though two Fed members wanted a rise. US shares bounced on Wednesday and metals lifted. Stances are unchanged: AI Neutral, real assets Overweight but capped at 10%, clean energy Underweight, dividends Neutral. Next swing factors: US October CPI (10 November), Nvidia results (18 November, carried date) and the Fed (8-9 December)."
   },
   "macro": [
     {
       "label": "US CPI inflation (YoY)",
       "value": "3.7% (core 2.6%)",
-      "note": "September CPI, released 14 October (carried). Next CPI is due 10 November.",
+      "note": "September CPI, released 14 October. Next CPI (October) is due 10 November.",
       "tone": "neg"
     },
     {
       "label": "Fed funds",
       "value": "3.75-4.00% (held)",
-      "note": "Held on 28 October in a 10-2 vote (two wanted a rise). A quarter-point rise on 9 December was about 86% priced at last check (not refreshed today).",
+      "note": "Held on 28 October in a 10-2 vote (two wanted a rise). Next meeting 8 to 9 December. December rise odds not refreshed.",
       "tone": "neg"
     },
     {
       "label": "RBA cash rate",
       "value": "4.85% (raised 0.25%)",
-      "note": "Raised on 3 November by a 6 to 3 vote, the highest since 2008 and the fifth rise this year. The RBA expects inflation above 3% for the coming year and not back in the 2 to 3% band until late 2027.",
+      "note": "Raised 0.25% on 3 November by a 6 to 3 vote. Next RBA meeting 7 to 8 December (decision likely 8 December).",
       "tone": "neg"
     },
     {
       "label": "US 10-year yield",
-      "value": "4.95% (Tue)",
-      "note": "Up about 0.04 percentage points on the day. The 2026 high so far is 5.31% (5 October).",
+      "value": "4.84% (5 Nov)",
+      "note": "Down about 0.05 percentage points on the day (Trading Economics quote, not a confirmed close).",
       "tone": "neutral"
     }
   ],
   "market": [
-    { "name": "S&P 500 (Tue close)", "value": "7,569", "chg": 0.36 },
-    { "name": "ASX 200 (Tue, sources differ)", "value": "~8,850", "chg": 0 },
-    { "name": "Gold (USD/oz)", "value": "3,926", "chg": -0.60 },
-    { "name": "AUD/USD (2 Nov)", "value": "0.7008", "chg": -0.23 }
+    {
+      "name": "S&P 500 (SPY, Wed)",
+      "value": "SPY $766.81",
+      "chg": 1.65
+    },
+    {
+      "name": "ASX 200 (not refreshed)",
+      "value": "~8,850 †",
+      "chg": 0
+    },
+    {
+      "name": "Gold (USD/oz)",
+      "value": "4,088",
+      "chg": 0.59
+    },
+    {
+      "name": "AUD/USD (5 Nov)",
+      "value": "0.7001",
+      "chg": -0.1
+    }
   ],
   "silver": {
-    "stance": "Neutral (small sleeve) · held for a thirty-seventh session. Silver US$49.58, ratio about 79.2, SIL not refreshed (US$74.66 on 26 Oct). Structural deficit intact, but high yields and a hawkish Fed have pressed metals. Hold at target size; no adding, no selling",
+    "stance": "Neutral (small sleeve) · held. Silver US$51.78, ratio about 79.0, SIL not refreshed. Structural deficit intact, but high yields have pressed metals. Hold at target size; no adding, no selling",
     "cls": "nw",
-    "headline": "Silver is about US$49.58, back under US$50, and gold is about US$3,926, so the gold/silver ratio is about 79.2 (long-run average about 70). A higher US 10-year yield (4.95%) weighed on both metals. The long-term picture is unchanged: the Silver Institute estimates a sixth straight deficit of about 46 Moz in 2026.",
+    "headline": "Silver is about US$51.78 and gold about US$4,088, so the gold/silver ratio is about 79.0 (long-run average about 70). Both bounced as the US 10-year yield eased to 4.84%. The long-term picture is unchanged: the Silver Institute estimates a sixth straight deficit of about 46 Moz in 2026.",
     "metrics": [
       {
         "label": "Silver spot",
-        "value": "US$49.58/oz (about -2.2% vs last run)",
-        "note": "FindBullionPrices, quote time Tuesday 3 Nov 7:45pm ET. Last run's US$50.68 was a Monday quote. All-time high US$121.64 in January 2026."
+        "value": "US$51.78/oz (about +4.4% vs last run)",
+        "note": "FindBullionPrices, Thu 5 Nov 5:34pm ET (market in maintenance break, so treat as last value). Last run's US$49.58 was a 3 Nov quote. All-time high US$121.64 in January 2026."
       },
       {
         "label": "Gold/silver ratio",
-        "value": "About 79.2 (from about 77.95)",
-        "note": "US$3,926.16 divided by US$49.58 (source shows 79.19). Above the long-run average of about 70, meaning silver is lagging gold."
+        "value": "About 79.0 (from about 79.2)",
+        "note": "US$4,088.28 divided by US$51.78 (source shows 78.95). Above the long-run average of about 70, meaning silver is lagging gold."
       },
       {
         "label": "2026 supply deficit",
@@ -588,19 +641,35 @@ const SNAPSHOT = {
       }
     ],
     "drivers": [
-      "Yields and the Fed: the 10-year yield rose to 4.95% on Tuesday, which weighs on metals that pay no income. A Fed rise on 9 December was still about 86% priced at last check.",
+      "Yields and the Fed: the 10-year yield eased to 4.84%, a small help for metals that pay no income. The Fed held on 28 October; October US CPI on 10 November is the next test.",
       "Oil and inflation: Brent is about US$103.60, still high. Higher fuel prices keep central banks (the RBA included) cautious, which supports the case for rate rises.",
       "Industrial demand: about half of silver demand is industrial. The chip bounce helps the solar and electronics story a little, but the sentiment is fragile.",
       "Supply: the sixth straight deficit (~46 Moz) is the multi-year reason to hold a small slice. Deutsche Bank's counter-argument (higher London stocks) is why the slice stays small."
     ],
-    "plain": "Silver slipped back under US$50 but is still near its lowest in about a year. Nothing about the long-term shortage story changed. Hold your small slice, do not add, do not sell in a panic.",
+    "plain": "Silver bounced back above US$50 but is still well below its January high. The long-term shortage story is unchanged. Hold your small slice, do not add, do not sell in a panic.",
     "how": "Lowest to highest risk. First, a physically backed silver ETF such as SLV or PSLV: you own a claim on the metal, no company risk (price not refreshed today). Second, a silver miners ETF such as SIL (US$74.66 on 26 Oct, not refreshed): a basket of about 41 miners that moves more than the metal in both directions. Third, a single explorer such as SVL.AX (A$0.110 on 21 Oct): one project and the widest range of outcomes, including zero. Most beginners are best served by the first, in a small amount, bought in instalments.",
-    "watch": "Three things. Whether silver holds near US$50. Whether the gold/silver ratio climbs further above 79 or drops back towards 75. And what US inflation data on 10 November does to yields.",
+    "watch": "Three things. Whether silver holds above US$50. Whether the gold/silver ratio drifts back towards 75. And what US inflation data on 10 November does to yields.",
     "miners": [
-      { "name": "Physically backed silver (metal, not companies)", "sym": "SLV / PSLV", "note": "The simplest route. You own a claim on physical silver, so you get the metal's move without company risk (price not refreshed today). For most beginners, the sensible default in a small size." },
-      { "name": "Global X Silver Miners ETF", "sym": "SIL", "note": "US$74.66 at the 26 October close (carried, not refreshed). A basket of about 41 silver-focused miners. Moves more than the metal in both directions, so expect today's price to differ from this carried figure." },
-      { "name": "Silver Mines Ltd", "sym": "SVL.AX", "note": "A$0.110 (21 October, delayed quote †, no newer quote found). The Bowdens project near Mudgee, NSW awaits a NSW planning process. The highest-risk way to own silver on this page; outcomes include zero." },
-      { "name": "Producing precious-metals miner", "sym": "e.g. WPM, PAAS", "note": "A profitable producer earns money even at lower silver prices, so it sits between an ETF and an explorer on the risk scale. Prices not refreshed today." }
+      {
+        "name": "Physically backed silver (metal, not companies)",
+        "sym": "SLV / PSLV",
+        "note": "The simplest route. You own a claim on physical silver, so you get the metal's move without company risk (price not refreshed today). For most beginners, the sensible default in a small size."
+      },
+      {
+        "name": "Global X Silver Miners ETF",
+        "sym": "SIL",
+        "note": "US$74.66 at the 26 October close (carried †, not refreshed). A basket of about 41 silver-focused miners. Moves more than the metal in both directions."
+      },
+      {
+        "name": "Silver Mines Ltd",
+        "sym": "SVL.AX",
+        "note": "A$0.110 (21 October, delayed quote †, no newer quote found). The Bowdens project near Mudgee, NSW awaits a NSW planning process. The highest-risk way to own silver on this page; outcomes include zero."
+      },
+      {
+        "name": "Producing precious-metals miner",
+        "sym": "e.g. WPM, PAAS",
+        "note": "A profitable producer earns money even at lower silver prices, so it sits between an ETF and an explorer on the risk scale. Prices not refreshed today."
+      }
     ]
   },
   "themes": [
@@ -608,21 +677,21 @@ const SNAPSHOT = {
       "name": "AI & technology",
       "stance": "Neutral · unchanged for a thirty-third session",
       "cls": "nw",
-      "text": "Tuesday: Nasdaq +0.83%, Nvidia +2.29%, Microsoft +2.74%, Apple -1.90% (prices carried from Friday: SMH US$522.49, NVDA US$204.64, MSFT US$521.91, AAPL US$344.63). AMD reports after the US close on 3 November. Hold the 15% sleeve, add through regular contributions only, and do not lump-sum into a rebound.",
+      "text": "Chips and tech were not refreshed today (SMH, NVDA, MSFT, QQQM carried †). Apple jumped 5.3% to US$349.51 and SPY rose 1.65%. Hold the 15% sleeve, add through regular contributions only, and do not lump-sum into a rebound.",
       "inst": "NVDA · SMH · QQQM · MSFT"
     },
     {
       "name": "Inflation & rates hedges",
       "stance": "Overweight · unchanged",
       "cls": "ow",
-      "text": "Gold about US$3,926 and silver US$49.58 both slipped. Brent is about US$103.60. DBC US$33.78 (26 Oct) and BHP A$57.53 (27 Oct) are carried; BHP fell about 0.6% on Tuesday. The sleeve is capped at 10% because these assets swing. Hold; no adding or selling.",
+      "text": "Gold about US$4,088 (+0.6%) and silver US$51.78 both bounced. DBC US$33.78 (26 Oct) and BHP A$57.53 (27 Oct) are carried †. The sleeve is capped at 10% because these assets swing. Hold; no adding or selling.",
       "inst": "XAUUSD · XAGUSD · DBC · BHP.AX"
     },
     {
       "name": "Energy transition",
       "stance": "Underweight · unchanged",
       "cls": "uw",
-      "text": "ICLN US$15.55 (26 October close, carried). Clean energy funds are sensitive to long-term interest rates because projects are financed with debt. The 10-year yield rose to 4.95% and the RBA raised again, so the rate cycle is still a headwind. Stays Underweight.",
+      "text": "ICLN US$15.55 (26 October close, carried †). Clean energy funds are sensitive to long-term interest rates. The 10-year yield is 4.84% and the RBA is at 4.85%, so the rate cycle is still a headwind. Stays Underweight.",
       "inst": "ICLN"
     },
     {
@@ -637,34 +706,29 @@ const SNAPSHOT = {
     {
       "name": "After the RBA rise",
       "hz": "Horizon: 1-8 weeks",
-      "text": "The cash rate is 4.85% after a 6 to 3 vote. Economists are split: one expects another rise in February 2027, another expects a wait-and-see approach over summer. The RBA says inflation stays above 3% until late 2027. We do not know the next meeting date yet.",
+      "text": "The cash rate is 4.85% after a 6 to 3 vote on 3 November. The next RBA meeting is 7 to 8 December. The RBA says inflation stays above 3% until late 2027.",
       "how": "Know your mortgage and savings numbers. If your saver pays under 4%, move it."
     },
     {
       "name": "AI spending doubts",
       "hz": "Horizon: 1-3 weeks",
-      "text": "Chips bounced on Tuesday after two weak sessions, but Apple fell on a weaker margin outlook. AMD reports after the US close on 3 November and Nvidia reports on 18 November (carried date). Chip funds can swing 5-10% in a day in this mood.",
+      "text": "Chip funds can swing 5-10% in a day in this mood. Nvidia reports on 18 November (carried date, not re-checked).",
       "how": "Keep the AI sleeve at 15% via regular contributions. Do not add extra and do not sell on one bad day."
     },
     {
-      "name": "The Fed: December rise priced",
+      "name": "The Fed: on hold, split",
       "hz": "Horizon: 1-6 weeks",
-      "text": "The Fed held at 3.75-4.00% on 28 October (10-2, two wanted a rise). A quarter-point rise on 9 December was about 86% priced at last check (not refreshed). October CPI on 10 November decides.",
+      "text": "The Fed held at 3.75-4.00% on 28 October (10-2, two wanted a quarter-point rise). The next meeting is 8 to 9 December. October CPI on 10 November is the key input. Rise odds were not refreshed today.",
       "how": "A tightening cycle favours regular contributions and a properly sized cash buffer over market timing."
     },
     {
       "name": "US midterms and oil",
       "hz": "Horizon: 1-2 weeks",
-      "text": "US midterm results are still coming in, and Brent is about US$103.60 amid Middle East tension. Both can move markets for a few days.",
+      "text": "US midterm results and oil (last known Brent about US$103.60, not refreshed) can move markets for a few days.",
       "how": "Event risk, not a signal. Nothing to trade."
     }
   ],
   "calendar": [
-    {
-      "date": "Wed 4 Nov",
-      "event": "US ADP jobs, ISM services; Qualcomm, AppLovin results after the close",
-      "note": "Jobs and services data can move yields"
-    },
     {
       "date": "Tue 10 Nov",
       "event": "US October CPI",
@@ -678,12 +742,17 @@ const SNAPSHOT = {
     {
       "date": "Wed 18 Nov",
       "event": "Nvidia results (carried date)",
-      "note": "The AI bellwether, after the chip selloff"
+      "note": "The AI bellwether"
     },
     {
-      "date": "Wed 9 Dec",
-      "event": "US Fed (FOMC) decision",
-      "note": "A quarter-point rise was about 86% priced at last check"
+      "date": "Mon 7 to Tue 8 Dec",
+      "event": "RBA board meeting (decision likely 8 Dec)",
+      "note": "After the 3 Nov rise to 4.85%"
+    },
+    {
+      "date": "Tue 8 to Wed 9 Dec",
+      "event": "US Fed (FOMC) meeting",
+      "note": "Two members wanted a rise in October"
     }
   ],
   "tactical": [
@@ -691,7 +760,7 @@ const SNAPSHOT = {
       "sym": "Cash buffer",
       "conv": "Conviction: High",
       "action": "b-buy",
-      "text": "The RBA cash rate is now 4.85%. A competitive savings account is the only item on this page with a certain return and no market risk. Still the one action item.",
+      "text": "The RBA cash rate is 4.85%. A competitive savings account is the only item on this page with a certain return and no market risk. Still the one action item.",
       "plain": "Rates went up on Tuesday. Check your savings account pays close to 4.85%. If it pays under 4%, it is worth moving this week.",
       "entry": "Not a market position; the existing 10% cash allocation",
       "target": "A rate within about 0.3% of the RBA cash rate",
@@ -701,8 +770,8 @@ const SNAPSHOT = {
       "sym": "XAGUSD / SIL",
       "conv": "Conviction: Medium",
       "action": "b-hold",
-      "text": "Silver US$49.58, ratio about 79.2. Hold at target size inside the 10% real-assets sleeve. A dip is not a reason to sell a long-term hold, and a position at its cap does not need adding to.",
-      "plain": "Silver is just under US$50. Hold your small slice and leave it alone. Do not add, do not sell, do not swap the ETF for the miners.",
+      "text": "Silver US$51.78, ratio about 79.0. Hold at target size inside the 10% real-assets sleeve. A dip is not a reason to sell a long-term hold, and a position at its cap does not need adding to.",
+      "plain": "Silver bounced above US$50. Hold your small slice and leave it alone. Do not add, do not sell.",
       "entry": "Existing allocation only, inside the 10% real-assets sleeve",
       "target": "No price target; held for the multi-year supply story",
       "stop": "Position sizing is the risk control, not a stop loss"
@@ -711,7 +780,7 @@ const SNAPSHOT = {
       "sym": "NVDA / SMH",
       "conv": "Conviction: Medium",
       "action": "b-watch",
-      "text": "Chips rebounded on Tuesday (Nvidia +2.29%). Latest prices carried from Friday: SMH US$522.49 and Nvidia US$204.64. Keep adding only through the normal monthly contribution; do not lump-sum into a bounce and do not sell on one day's drop.",
+      "text": "Chip prices were not refreshed today (SMH US$522.49 and Nvidia US$204.64 carried †). Keep adding only through the normal monthly contribution; do not lump-sum into a bounce and do not sell on one day's drop.",
       "plain": "Chips are volatile. That swing, up and down, is the risk of the AI slice. Keep adding through your normal monthly contribution and let the 15% target guide you.",
       "entry": "Only via the existing 15% AI & technology allocation",
       "target": "No individual target; held as part of the theme",
@@ -733,7 +802,7 @@ const SNAPSHOT = {
       "sym": "SPY / QQQM",
       "conv": "Theme conviction: High",
       "action": "b-buy",
-      "text": "The broad-index core at 55% of the mix. The S&P 500 closed at 7,569 on Tuesday (+0.36%). The latest SPY close we have is US$755.72 (Friday, carried). Regular instalments handle sharp days better than guessing a low.",
+      "text": "The broad-index core at 55% of the mix. SPY closed at US$766.81 on Wednesday (+1.65%). Regular instalments handle sharp days better than guessing a low.",
       "plain": "The broad index fund is the foundation. Keep buying regularly in instalments and ignore single days.",
       "entry": "Regular monthly contributions, not lump-sum timing",
       "target": "No target; the permanent core",
@@ -743,8 +812,8 @@ const SNAPSHOT = {
       "sym": "XAUUSD / XAGUSD",
       "conv": "Theme conviction: Medium-High",
       "action": "b-hold",
-      "text": "The 10% real-assets sleeve. Gold about US$3,926 and silver US$49.58. A long-term hedge, held small because it swings. Hold; no adding or selling.",
-      "plain": "Gold is under US$4,000 and silver just under US$50. This 10% is long-term protection against inflation. Check it is still about 10% on your normal rebalancing date.",
+      "text": "The 10% real-assets sleeve. Gold about US$4,088 and silver US$51.78. A long-term hedge, held small because it swings. Hold; no adding or selling.",
+      "plain": "Gold is around US$4,100 and silver around US$52. This 10% is long-term protection against inflation. Check it is still about 10% on your normal rebalancing date.",
       "entry": "Target weight only, inside the 10% real-assets sleeve",
       "target": "No price target; held for the structural case",
       "stop": "Rebalance back to 10% on schedule, not on price"
@@ -771,30 +840,142 @@ const SNAPSHOT = {
     }
   ],
   "watchlist": [
-    { "group": "US equities & ETFs (Fri 30 Oct close, carried †; Tue 3 Nov day moves for AAPL, MSFT, NVDA)" },
-    { "sym": "AAPL", "name": "Apple", "price": "$344.63 †", "chg": -1.90, "signal": "Hold" },
-    { "sym": "MSFT", "name": "Microsoft", "price": "$521.91 †", "chg": 2.74, "signal": "Hold" },
-    { "sym": "NVDA", "name": "Nvidia", "price": "$204.64 †", "chg": 2.29, "signal": "Watch" },
-    { "sym": "SPY", "name": "S&P 500 ETF", "price": "$755.72 †", "chg": 0, "signal": "Buy/Hold" },
-    { "sym": "QQQM", "name": "Nasdaq-100 ETF", "price": "$296.52 †", "chg": 0, "signal": "Hold" },
-    { "group": "ASX (BHP, CSL 27 Oct †; CBA 23 Oct †; SVL 21 Oct †, all carried)" },
-    { "sym": "BHP.AX", "name": "BHP Group", "price": "A$57.53 †", "chg": 0, "signal": "Hold" },
-    { "sym": "CBA.AX", "name": "Commonwealth Bank", "price": "A$164.00 †", "chg": 0, "signal": "Watch" },
-    { "sym": "CSL.AX", "name": "CSL Limited", "price": "A$196.78 †", "chg": 0, "signal": "Hold" },
-    { "group": "FX & commodities (FindBullionPrices Tue 3 Nov 7:45pm ET; AUD = Frankfurter 2 Nov)" },
-    { "sym": "XAUUSD", "name": "Gold spot", "price": "$3,926.16", "chg": -0.60, "signal": "Hold" },
-    { "sym": "XAGUSD", "name": "Silver spot", "price": "$49.58", "chg": -2.17, "signal": "Hold" },
-    { "sym": "AUDUSD", "name": "Aussie dollar", "price": "0.7008", "chg": -0.23, "signal": "Hold" },
-    { "group": "Thematic ETFs (SMH Fri 30 Oct †; others † 26 Oct, carried)" },
-    { "sym": "SMH", "name": "Semiconductors (AI)", "price": "$522.49 †", "chg": 0, "signal": "Watch" },
-    { "sym": "DBC", "name": "Commodities basket", "price": "$33.78 †", "chg": 0, "signal": "Hold" },
-    { "sym": "ICLN", "name": "Clean energy", "price": "$15.55 †", "chg": 0, "signal": "Watch" },
-    { "sym": "SCHD", "name": "US dividend/quality", "price": "$35.30 †", "chg": 0, "signal": "Hold" },
-    { "group": "Silver miners (SIL 26 Oct †; SVL.AX 21 Oct †, carried)" },
-    { "sym": "SIL", "name": "Global X Silver Miners ETF", "price": "$74.66 †", "chg": 0, "signal": "Hold" },
-    { "sym": "SVL.AX", "name": "Silver Mines Ltd", "price": "A$0.110 †", "chg": 0, "signal": "Watch" }
+    {
+      "group": "US equities & ETFs (AAPL, SPY Wed 4 Nov close; others carried †)"
+    },
+    {
+      "sym": "AAPL",
+      "name": "Apple",
+      "price": "$349.51",
+      "chg": 5.31,
+      "signal": "Hold"
+    },
+    {
+      "sym": "MSFT",
+      "name": "Microsoft",
+      "price": "$521.91 †",
+      "chg": 0,
+      "signal": "Hold"
+    },
+    {
+      "sym": "NVDA",
+      "name": "Nvidia",
+      "price": "$204.64 †",
+      "chg": 0,
+      "signal": "Watch"
+    },
+    {
+      "sym": "SPY",
+      "name": "S&P 500 ETF",
+      "price": "$766.81",
+      "chg": 1.65,
+      "signal": "Buy/Hold"
+    },
+    {
+      "sym": "QQQM",
+      "name": "Nasdaq-100 ETF",
+      "price": "$296.52 †",
+      "chg": 0,
+      "signal": "Hold"
+    },
+    {
+      "group": "ASX (BHP, CSL 27 Oct †; CBA 23 Oct †; SVL 21 Oct †, all carried)"
+    },
+    {
+      "sym": "BHP.AX",
+      "name": "BHP Group",
+      "price": "A$57.53 †",
+      "chg": 0,
+      "signal": "Hold"
+    },
+    {
+      "sym": "CBA.AX",
+      "name": "Commonwealth Bank",
+      "price": "A$164.00 †",
+      "chg": 0,
+      "signal": "Watch"
+    },
+    {
+      "sym": "CSL.AX",
+      "name": "CSL Limited",
+      "price": "A$196.78 †",
+      "chg": 0,
+      "signal": "Hold"
+    },
+    {
+      "group": "FX & commodities (FindBullionPrices Thu 5 Nov 5:34pm ET; AUD = Frankfurter 5 Nov)"
+    },
+    {
+      "sym": "XAUUSD",
+      "name": "Gold spot",
+      "price": "$4,088.28",
+      "chg": 0.59,
+      "signal": "Hold"
+    },
+    {
+      "sym": "XAGUSD",
+      "name": "Silver spot",
+      "price": "$51.78",
+      "chg": 4.44,
+      "signal": "Hold"
+    },
+    {
+      "sym": "AUDUSD",
+      "name": "Aussie dollar",
+      "price": "0.7001",
+      "chg": -0.11,
+      "signal": "Hold"
+    },
+    {
+      "group": "Thematic ETFs (SMH Fri 30 Oct †; others † 26 Oct, carried)"
+    },
+    {
+      "sym": "SMH",
+      "name": "Semiconductors (AI)",
+      "price": "$522.49 †",
+      "chg": 0,
+      "signal": "Watch"
+    },
+    {
+      "sym": "DBC",
+      "name": "Commodities basket",
+      "price": "$33.78 †",
+      "chg": 0,
+      "signal": "Hold"
+    },
+    {
+      "sym": "ICLN",
+      "name": "Clean energy",
+      "price": "$15.55 †",
+      "chg": 0,
+      "signal": "Watch"
+    },
+    {
+      "sym": "SCHD",
+      "name": "US dividend/quality",
+      "price": "$35.30 †",
+      "chg": 0,
+      "signal": "Hold"
+    },
+    {
+      "group": "Silver miners (SIL 26 Oct †; SVL.AX 21 Oct †, carried)"
+    },
+    {
+      "sym": "SIL",
+      "name": "Global X Silver Miners ETF",
+      "price": "$74.66 †",
+      "chg": 0,
+      "signal": "Hold"
+    },
+    {
+      "sym": "SVL.AX",
+      "name": "Silver Mines Ltd",
+      "price": "A$0.110 †",
+      "chg": 0,
+      "signal": "Watch"
+    }
   ],
-  "notes": "Wednesday 4 November run (morning in Australia). Fresh: RBA raised the cash rate to 4.85% on 3 Nov, 6 to 3 vote (RBA media release, ABC); S&P 500 7,568.92 (+0.36%), Nasdaq 25,372.01 (+0.83%), Dow 51,786.72 (-0.38%) for Tue 3 Nov (CappNotes, EconCurrents agree); US 10-year 4.95%; Brent about US$103.60; NVDA +2.29%, AAPL -1.90%, MSFT +2.74% (CappNotes); gold US$3,926.16 and silver US$49.58 (FindBullionPrices, 3 Nov 7:45pm ET; another source showed gold US$3,931.90), day changes shown against last run's quotes; AUD/USD 0.70082 (Frankfurter, 2 Nov). ASX 200 on Tuesday: sources disagreed (about 8,835 to 8,887), so the level is shown as about 8,850 with no change figure; BHP about -0.6% (TradingEconomics, third-party data). Not refreshed and carried: per-stock and ETF prices (the data sites still showed Friday 30 Oct or older), US CPI 3.7%, Fed December-rise odds (about 86%), Nvidia date (18 Nov), CSL date (11 Nov). The private dashboard artifact was not updated this run (the update tool was not available in this session). A 0 change on a † row means not refreshed, not flat. General information and education only; not personal financial advice."
+  "notes": "Thursday 5 November run. Fresh: AAPL US$349.51 (+5.31%) and SPY US$766.81 (+1.65%) at the Wed 4 Nov close (stockanalysis.com); gold US$4,088.28 and silver US$51.78, ratio 78.95 (FindBullionPrices, 5 Nov 5:34pm ET, maintenance break); AUD/USD 0.70006 (Frankfurter, 5 Nov); US 10-year 4.84% (Trading Economics); Fed held 3.75-4.00% on 28 Oct, next 8-9 Dec (Fed); RBA 4.85% on 3 Nov, next meeting 7-8 Dec (RBA); US CPI 3.7% (core 2.6%) for September, next release 10 Nov (BLS). Not refreshed and carried (†): MSFT, NVDA, QQQM, SMH, DBC, ICLN, SCHD, SIL and all ASX prices (data sites returned stale or empty quotes); ASX 200 level; Brent; Fed rise odds. A 0 change on a † row means not refreshed, not flat. Day change for silver is against last run's quote. The private dashboard artifact may not have been updated this run (the update tool was not available). General information and education only; not personal financial advice."
 };;
 
 function cls(v){ return v>0.05?"up":(v<-0.05?"down":"flat"); }
